@@ -8,10 +8,12 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min; //Максимум не включается, минимум включается
 }
 
-getRandomInt(0, 9)
+console.log(getRandomInt(0, 9));
+
 
 function getLengthComment(line, length) {
-  if (line.length > length) {
+  const lineLength = line.length;
+  if (lineLength> length) {
     return false;
   } else {
     return true;
