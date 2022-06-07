@@ -20,4 +20,4 @@ function getLengthComment(line, length) {
   }
 }
 
-getLengthComment(5, 10)
+getLengthComment(5, 10);
