@@ -1,6 +1,5 @@
 function getRandomInt(min, max) {
   if (max <= min) {
-    // eslint-disable-next-line no-console
     return console.log('Измените значение max. Оно должно быть больше значения min');
   }
 
