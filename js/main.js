@@ -10,3 +10,12 @@ function getRandomInt(min, max) {
 
 getRandomInt(0, 9)
 
+function getLengthComment(line, length) {
+  if (line.length <= 0 || line.length > length) {
+    return 'false';
+  } else {
+    return 'true';
+  }
+}
+
+getLengthComment(5, 10)
