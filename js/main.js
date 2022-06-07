@@ -1,5 +1,6 @@
 function getRandomInt(min, max) {
   if (max <= min) {
+    // eslint-disable-next-line no-console
     return console.log('Измените значение max. Оно должно быть больше значения min');
   }
 
@@ -8,7 +9,7 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min; //Максимум не включается, минимум включается
 }
 
-console.log(getRandomInt(0, 9));
+getRandomInt(0, 9);
 
 
 function getLengthComment(line, length) {
