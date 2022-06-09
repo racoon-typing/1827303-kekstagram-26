@@ -3,7 +3,7 @@ function getRandomInt(min, max) {
     throw new Error('Измените значение max. Оно должно быть больше значения min');
   }
 
-  if (max < 0, min < 0) {
+  if (max < 0 || min < 0) {
     throw new Error('Значение min и max должно быть не отрицательным');
   }
 
