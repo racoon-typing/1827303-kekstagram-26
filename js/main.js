@@ -16,9 +16,7 @@ getRandomInt(0, 9);
 
 
 function getLengthComment(line, length) {
-  const lineLength = line.length;
-  const lengthComment = (lineLength> length) ? false : true;
-  return lengthComment;
+  return line.length <= length;
 }
 
 getLengthComment(5, 10);
