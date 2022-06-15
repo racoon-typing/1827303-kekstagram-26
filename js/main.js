@@ -41,7 +41,7 @@ function getRandomArrayElement (elements) {
   return elements[getRandomPositiveInteger(0, elements.length - 1)];
 }
 
-const createPhoto = function () {
+const createData = function () {
   return {
     id: getRandomPositiveInteger (1, 25),
     url: `photos/${getRandomPositiveInteger (1, 25)}.jpg`,
@@ -54,4 +54,8 @@ const createPhoto = function () {
   };
 };
 
-createPhoto();
+const simylarData = Array.from({length: 25}, createData);
+
+console.log(simylarData);
+
+
