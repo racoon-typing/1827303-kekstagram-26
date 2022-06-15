@@ -47,15 +47,15 @@ const createData = function () {
     url: `photos/${getRandomPositiveInteger (1, 25)}.jpg`,
     description: getRandomArrayElement(DESCRIPTIONS),
     likes: getRandomPositiveInteger (15, 200),
-    comments: ['id: ' + getRandomPositiveInteger (0, 200),
-      'avatar: ' + `img/avatar-${getRandomPositiveInteger (1, 6)}.svg`,
-      'message: ' + getRandomArrayElement(MESSAGE),
-      'name: ' + getRandomArrayElement(NAME)],
+    comments: [`id: ${getRandomPositiveInteger (0, 200)}`,
+      `avatar: img/avatar-${getRandomPositiveInteger(1, 6)}.svg`,
+      `message: ${getRandomArrayElement(MESSAGE)}`,
+      `name: ${getRandomArrayElement(NAME)}`],
   };
 };
 
 const simylarData = Array.from({length: 25}, createData);
 
-console.log(simylarData);
+// console.log(simylarData);
 
 
