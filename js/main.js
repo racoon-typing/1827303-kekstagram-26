@@ -25,13 +25,28 @@ const MESSAGE = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
 ];
 
-
 function getRandomPositiveInteger (a, b) {
   const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
   const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
   const result = Math.random() * (upper - lower + 1) + lower;
   return Math.floor(result);
 }
+
+let newArray = [];
+
+function getNewArray () {
+  newArray.find = getRandomPositiveInteger();
+
+  if (newArray.find === getRandomPositiveInteger()) {
+    let newResult = getRandomPositiveInteger();
+    return newArray.push = newResult;
+  }
+
+  return newArray.push = getRandomPositiveInteger();
+}
+
+// console.log(newArray);
+
 
 // function checkStringLength (string, length) {
 //   return string.length <= length;
@@ -40,6 +55,7 @@ function getRandomPositiveInteger (a, b) {
 function getRandomArrayElement (elements) {
   return elements[getRandomPositiveInteger(0, elements.length - 1)];
 }
+
 
 const createData = function () {
   return {
