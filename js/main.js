@@ -25,164 +25,71 @@ const MESSAGE = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
 ];
 
-// function getRandomPositiveInteger (a, b) {
-//   const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
-//   const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
-//   const result = Math.random() * (upper - lower + 1) + lower;
-//   return Math.floor(result);
+function getRandomPositiveInteger (a, b) {
+  const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
+  const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
+  const result = Math.random() * (upper - lower + 1) + lower;
+  return Math.floor(result);
+}
+
+// function checkStringLength (string, length) {
+//   return string.length <= length;
 // }
 
-// // function checkStringLength (string, length) {
-// //   return string.length <= length;
-// // }
+function getRandomArrayElement (elements) {
+  return elements[getRandomPositiveInteger(0, elements.length - 1)];
+}
 
-// function getRandomArrayElement (elements) {
-//   return elements[getRandomPositiveInteger(0, elements.length - 1)];
-// }
+function createComment (index) {
+  return {
+    id: index + 1,
+    avatar: `img/avatar-${getRandomPositiveInteger(1, 6)}.svg`,
+    message: getRandomArrayElement(MESSAGE),
+    name: getRandomArrayElement(NAME),
+  };
+}
 
-// function createComment (index) {
-//   return {
-//     id: index + 1,
-//     avatar: `img/avatar-${getRandomPositiveInteger(1, 6)}.svg`,
-//     message: getRandomArrayElement(MESSAGE),
-//     name: getRandomArrayElement(NAME),
-//   };
-// }
+const createData = function (index) {
+  return {
+    id: index + 1,
+    url: `photos/${index + 1}.jpg`,
+    description: getRandomArrayElement(DESCRIPTIONS),
+    likes: getRandomPositiveInteger (15, 200),
+    comments: Array.from({length: getRandomPositiveInteger(1, 10)}, (_, index) => createComment(index)),
+  };
+};
 
-// const createData = function (index) {
-//   return {
-//     id: index + 1,
-//     url: `photos/${index + 1}.jpg`,
-//     description: getRandomArrayElement(DESCRIPTIONS),
-//     likes: getRandomPositiveInteger (15, 200),
-//     comments: Array.from({length: getRandomPositiveInteger(1, 10)}, (_, index) => createComment(index)),
-//   };
-// };
+const simylarData = Array.from({length: 25}, (_, index) => createData(index));
 
-// const simylarData = Array.from({length: 25}, (_, index) => createData(index));
+console.log(simylarData);
 
-// console.log(simylarData);
+
 
 
 // Случайный массив
 
+// function getRandomArray (count) {
+//   let array = [];
 
-// const count = 5;
+//   while (array.length < count) {
+//     // «дополнять массив уникальными числами»
 
-function getRandomArray (count) {
-  let array = [];
+//     let result = Math.floor(Math.random() * (count + 1));
 
-  while (array.length < count) {
-    // «дополнять массив уникальными числами»
-
-    let result = Math.floor(Math.random() * (count + 1));
-
-    if (!array.includes(result)) {
-      array.push(result);
-    }
-  }
-
-  return array;
-}
-// console.log(getRandomArray(25));
-
-function getAllElement () {
-  const fullArray = getRandomArray (25);
-  console.log(fullArray);
-
-  const element = fullArray[0];
-
-  return element;
-}
-
-console.log(getAllElement());
-
-
-
-// const createData = {
-//   return {
-//     id: index + 1,
-//     url: `photos/${index + 1}.jpg`,
-//     description: getRandomArrayElement(DESCRIPTIONS),
-//     likes: getRandomPositiveInteger (15, 200),
-//     comments: Array.from({length: getRandomPositiveInteger(1, 10)}, (_, index) => createComment(index)),
-//   };
-// };
-
-// function getElementOfArray (count) {
-//   let array = getRandomArray (count);
-//   let newElement = array[0];
-
-//   return newElement;
-// }
-
-// function getNumberId () {
-//   let numberId = getElementOfArray(5);
-//   return numberId;
-// }
-
-// console.log(getNumberId());
-
-
-//   let order = 0;
-//   let newElement = array[order];
-//   console.log(newElement);
-
-
-  // for (let i = 0; i < count; i++) {
-  //   newElement = array[order];
-  //   order ++;
-  //   console.log(newElement);
-  // }
-
-  // return newElement;
-// }
-
-// console.log(getElementOfArray());
-
-
-// let numberId = Array.from({length: 10}, getElementOfArray)
-// console.log(numberId);
-
-
-
-// const createData = {
-//     return {
-//       id: index + 1,
-//       url: `photos/${index + 1}.jpg`,
-//       description: getRandomArrayElement(DESCRIPTIONS),
-//       likes: getRandomPositiveInteger (15, 200),
-//       comments: Array.from({length: getRandomPositiveInteger(1, 10)}, (_, index) => createComment(index)),
-//     };
-//   };
-
-// // Элемент из массива
-
-// function getElementOfArray (count) {
-//   let order = 0;
-
-//   const randomArray = getRandomArray (count);
-
-//   // console.log(randomArray);
-
-//   for (let i = 0; i < count; i++) {
-//     order ++;
-//     console.log(order);
-//     return randomArray[order];
+//     if (!array.includes(result)) {
+//       array.push(result);
+//     }
 //   }
 
-
-//   return randomArray[order];
-
-//   // let order = 0;
-
-//   // for (let i = 0; i < 20; i++) {
-//   //   order = order + 1;
-
-//   //   return array[order];
-
-//   // }
+//   return array;
 // }
 
-// console.log(getElementOfArray(10));
+// function getAllElement () {
+//   const fullArray = getRandomArray (25);
 
+//   fullArray.forEach(createComment);
+
+//   return fullArray;
+// }
+
+// console.log(getAllElement());
