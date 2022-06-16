@@ -105,7 +105,7 @@ function createComment (index) {
   };
 }
 
-const simylarCommet = Array.from({length: 25}, (_, index) => createComment(index));
+// const simylarCommet = Array.from({length: 25}, (_, index) => createComment(index));
 
 
 // const createData = function () {
@@ -124,14 +124,11 @@ const createData = function (index) {
     url: `photos/${index + 1}.jpg`,
     description: getRandomArrayElement(DESCRIPTIONS),
     likes: getRandomPositiveInteger (15, 200),
-    comments: simylarCommet,
+    comments: createComment(),
   };
 };
 
 const simylarData = Array.from({length: 25}, (_, index) => createData(index));
-
-// console.log(createData());
-
 
 // const simylarData = Array.from({length: 25}, createData);
 
