@@ -66,11 +66,11 @@ const MESSAGE = [
 
 // Случайный массив
 
-let array = [];
 
-const count = 25;
+const count = 5;
 
 function getRandomArray (count) {
+  let array = [];
 
   while (array.length < count) {
     // «дополнять массив уникальными числами»
@@ -83,23 +83,56 @@ function getRandomArray (count) {
   }
 
   return array;
-};
+}
 
-// console.log(getRandomArray(count));
-
-// // Элемент из массива
+let array = getRandomArray (count);
+console.log(array);
 
 function getElementOfArray () {
-  let order = 0;
-
-  for (let i = 0; i < 25; i++) {
-    order = order + 1;
-
-    
-    console.log(order);
-  }
-  return order;
+  let firtElement = array[0];
+  return firtElement;
 }
 
 console.log(getElementOfArray());
+
+
+// const createData = {
+//     return {
+//       id: index + 1,
+//       url: `photos/${index + 1}.jpg`,
+//       description: getRandomArrayElement(DESCRIPTIONS),
+//       likes: getRandomPositiveInteger (15, 200),
+//       comments: Array.from({length: getRandomPositiveInteger(1, 10)}, (_, index) => createComment(index)),
+//     };
+//   };
+
+// // Элемент из массива
+
+// function getElementOfArray (count) {
+//   let order = 0;
+
+//   const randomArray = getRandomArray (count);
+
+//   // console.log(randomArray);
+
+//   for (let i = 0; i < count; i++) {
+//     order ++;
+//     console.log(order);
+//     return randomArray[order];
+//   }
+
+
+//   return randomArray[order];
+
+//   // let order = 0;
+
+//   // for (let i = 0; i < 20; i++) {
+//   //   order = order + 1;
+
+//   //   return array[order];
+
+//   // }
+// }
+
+// console.log(getElementOfArray(10));
 
