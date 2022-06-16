@@ -67,7 +67,7 @@ const MESSAGE = [
 // Случайный массив
 
 
-const count = 5;
+// const count = 5;
 
 function getRandomArray (count) {
   let array = [];
@@ -85,15 +85,41 @@ function getRandomArray (count) {
   return array;
 }
 
-let array = getRandomArray (count);
-console.log(array);
+function getElementOfArray (count) {
+  let array = getRandomArray (count);
+  let newElement = array[0];
 
-function getElementOfArray () {
-  let firtElement = array[0];
-  return firtElement;
+  return newElement;
 }
 
-console.log(getElementOfArray());
+function getNumberId () {
+  let numberId = getElementOfArray(5);
+  return numberId;
+}
+
+console.log(getNumberId());
+
+
+//   let order = 0;
+//   let newElement = array[order];
+//   console.log(newElement);
+
+
+  // for (let i = 0; i < count; i++) {
+  //   newElement = array[order];
+  //   order ++;
+  //   console.log(newElement);
+  // }
+
+  // return newElement;
+// }
+
+// console.log(getElementOfArray());
+
+
+// let numberId = Array.from({length: 10}, getElementOfArray)
+// console.log(numberId);
+
 
 
 // const createData = {
