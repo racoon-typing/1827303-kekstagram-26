@@ -25,68 +25,12 @@ const MESSAGE = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
 ];
 
-
-
-// let arrays = [];
-
-// function getOrderedArray (quantity) {
-
-//   while (quantity >= 0) {
-//     arrays.push(quantity--);
-//   }
-
-//   return arrays;
-// }
-
-// console.log(getOrderedArray(200));
-
-
 function getRandomPositiveInteger (a, b) {
   const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
   const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
   const result = Math.random() * (upper - lower + 1) + lower;
   return Math.floor(result);
 }
-
-// function getNewArray () {
-//   const secondArrays = [];
-//   arrays.push(getRandomPositiveInteger (0, 25));
-
-//   const newArray = arrays.concat(secondArrays);
-//   // console.log(arrays);
-//   return newArray;
-// }
-
-// console.log(getNewArray());
-
-// function getElementOfArray (a, b) {
-//   getOrderedArray(b);
-//   let element = arrays[getRandomPositiveInteger (a, b)];
-
-//   if (element) {
-
-//   }
-//   return element;
-// }
-
-// console.log(getElementOfArray(0, 25));
-
-
-// let newArray = [];
-
-// function getNewArray () {
-//   newArray.find = getRandomPositiveInteger();
-
-//   if (newArray.find === getRandomPositiveInteger()) {
-//     let newResult = getRandomPositiveInteger();
-//     return newArray.push = newResult;
-//   }
-
-//   return newArray.push = getRandomPositiveInteger();
-// }
-
-// console.log(newArray);
-
 
 // function checkStringLength (string, length) {
 //   return string.length <= length;
@@ -105,33 +49,58 @@ function createComment (index) {
   };
 }
 
-// const simylarCommet = Array.from({length: 25}, (_, index) => createComment(index));
-
-
-// const createData = function () {
-//   return {
-//     id: getRandomPositiveInteger (1, 25),
-//     url: `photos/${getRandomPositiveInteger (1, 25)}.jpg`,
-//     description: getRandomArrayElement(DESCRIPTIONS),
-//     likes: getRandomPositiveInteger (15, 200),
-//     comments: createComment(),
-//   };
-// };
-
 const createData = function (index) {
   return {
     id: index + 1,
     url: `photos/${index + 1}.jpg`,
     description: getRandomArrayElement(DESCRIPTIONS),
     likes: getRandomPositiveInteger (15, 200),
-    comments: createComment(),
+    comments: Array.from({length: getRandomPositiveInteger(1, 10)}, (_, index) => createComment(index)),
   };
 };
 
 const simylarData = Array.from({length: 25}, (_, index) => createData(index));
 
-// const simylarData = Array.from({length: 25}, createData);
-
-console.log(simylarData);
+// console.log(simylarData);
 
 
+// Случайный массив
+
+// let array = [];
+
+// const count = 25;
+
+// function getRandomArray (count) {
+
+//   while (array.length < count) {
+//     // «дополнять массив уникальными числами»
+
+//     let result = Math.floor(Math.random() * (count + 1));
+
+//     if (!array.includes(result)) {
+//       array.push(result);
+//     }
+//   }
+
+//   return array;
+// };
+
+// console.log(getRandomArray(count));
+
+// // Элемент из массива
+
+// function getElementOfArray () {
+//   for (let i = 0; i < 25; i++) {
+//     let number = 0;
+//     let elementArray = array[number];
+
+//     number = number + 1;
+//     return elementArray;
+//   }
+// }
+
+// console.log(getElementOfArray());
+
+// const simylarElement = Array.from({length: 25}, getElementOfArray);
+
+// console.log(simylarElement);
