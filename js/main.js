@@ -27,7 +27,7 @@ const MESSAGE = [
 
 
 
-let arrays = [];
+// let arrays = [];
 
 // function getOrderedArray (quantity) {
 
@@ -48,16 +48,16 @@ function getRandomPositiveInteger (a, b) {
   return Math.floor(result);
 }
 
-function getNewArray () {
-  const secondArrays = [];
-  arrays.push(getRandomPositiveInteger (0, 25));
+// function getNewArray () {
+//   const secondArrays = [];
+//   arrays.push(getRandomPositiveInteger (0, 25));
 
-  const newArray = arrays.concat(secondArrays);
-  // console.log(arrays);
-  return newArray;
-}
+//   const newArray = arrays.concat(secondArrays);
+//   // console.log(arrays);
+//   return newArray;
+// }
 
-console.log(getNewArray());
+// console.log(getNewArray());
 
 // function getElementOfArray (a, b) {
 //   getOrderedArray(b);
@@ -96,34 +96,45 @@ function getRandomArrayElement (elements) {
   return elements[getRandomPositiveInteger(0, elements.length - 1)];
 }
 
-function createComment () {
+function createComment (index) {
   return {
-    id: getRandomPositiveInteger (0, 200),
+    id: index + 1,
     avatar: `img/avatar-${getRandomPositiveInteger(1, 6)}.svg`,
     message: getRandomArrayElement(MESSAGE),
     name: getRandomArrayElement(NAME),
   };
 }
 
-// console.log(createComment());
+const simylarCommet = Array.from({length: 25}, (_, index) => createComment(index));
 
 
+// const createData = function () {
+//   return {
+//     id: getRandomPositiveInteger (1, 25),
+//     url: `photos/${getRandomPositiveInteger (1, 25)}.jpg`,
+//     description: getRandomArrayElement(DESCRIPTIONS),
+//     likes: getRandomPositiveInteger (15, 200),
+//     comments: createComment(),
+//   };
+// };
 
-const createData = function () {
+const createData = function (index) {
   return {
-    id: getRandomPositiveInteger (1, 25),
-    url: `photos/${getRandomPositiveInteger (1, 25)}.jpg`,
+    id: index + 1,
+    url: `photos/${index + 1}.jpg`,
     description: getRandomArrayElement(DESCRIPTIONS),
     likes: getRandomPositiveInteger (15, 200),
-    comments: createComment(),
+    comments: simylarCommet,
   };
 };
+
+const simylarData = Array.from({length: 25}, (_, index) => createData(index));
 
 // console.log(createData());
 
 
-const simylarData = Array.from({length: 25}, createData);
+// const simylarData = Array.from({length: 25}, createData);
 
-// console.log(simylarData);
+console.log(simylarData);
 
 
