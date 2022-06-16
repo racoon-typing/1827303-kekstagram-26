@@ -84,20 +84,44 @@ function getRandomArray (count) {
 
   return array;
 }
+// console.log(getRandomArray(25));
 
-function getElementOfArray (count) {
-  let array = getRandomArray (count);
-  let newElement = array[0];
+function getAllElement () {
+  const fullArray = getRandomArray (25);
+  console.log(fullArray);
 
-  return newElement;
+  const element = fullArray[0];
+
+  return element;
 }
 
-function getNumberId () {
-  let numberId = getElementOfArray(5);
-  return numberId;
-}
+console.log(getAllElement());
 
-console.log(getNumberId());
+
+
+// const createData = {
+//   return {
+//     id: index + 1,
+//     url: `photos/${index + 1}.jpg`,
+//     description: getRandomArrayElement(DESCRIPTIONS),
+//     likes: getRandomPositiveInteger (15, 200),
+//     comments: Array.from({length: getRandomPositiveInteger(1, 10)}, (_, index) => createComment(index)),
+//   };
+// };
+
+// function getElementOfArray (count) {
+//   let array = getRandomArray (count);
+//   let newElement = array[0];
+
+//   return newElement;
+// }
+
+// function getNumberId () {
+//   let numberId = getElementOfArray(5);
+//   return numberId;
+// }
+
+// console.log(getNumberId());
 
 
 //   let order = 0;
