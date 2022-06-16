@@ -61,35 +61,4 @@ const createData = function (index) {
 
 const simylarData = Array.from({length: 25}, (_, index) => createData(index));
 
-console.log(simylarData);
-
-
-
-
-// Случайный массив
-
-// function getRandomArray (count) {
-//   let array = [];
-
-//   while (array.length < count) {
-//     // «дополнять массив уникальными числами»
-
-//     let result = Math.floor(Math.random() * (count + 1));
-
-//     if (!array.includes(result)) {
-//       array.push(result);
-//     }
-//   }
-
-//   return array;
-// }
-
-// function getAllElement () {
-//   const fullArray = getRandomArray (25);
-
-//   fullArray.forEach(createComment);
-
-//   return fullArray;
-// }
-
-// console.log(getAllElement());
+// console.log(simylarData);
