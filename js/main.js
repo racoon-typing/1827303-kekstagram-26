@@ -25,6 +25,22 @@ const MESSAGE = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
 ];
 
+
+
+let arrays = [];
+
+// function getOrderedArray (quantity) {
+
+//   while (quantity >= 0) {
+//     arrays.push(quantity--);
+//   }
+
+//   return arrays;
+// }
+
+// console.log(getOrderedArray(200));
+
+
 function getRandomPositiveInteger (a, b) {
   const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
   const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
@@ -32,18 +48,42 @@ function getRandomPositiveInteger (a, b) {
   return Math.floor(result);
 }
 
-let newArray = [];
-
 function getNewArray () {
-  newArray.find = getRandomPositiveInteger();
+  const secondArrays = [];
+  arrays.push(getRandomPositiveInteger (0, 25));
 
-  if (newArray.find === getRandomPositiveInteger()) {
-    let newResult = getRandomPositiveInteger();
-    return newArray.push = newResult;
-  }
-
-  return newArray.push = getRandomPositiveInteger();
+  const newArray = arrays.concat(secondArrays);
+  // console.log(arrays);
+  return newArray;
 }
+
+console.log(getNewArray());
+
+// function getElementOfArray (a, b) {
+//   getOrderedArray(b);
+//   let element = arrays[getRandomPositiveInteger (a, b)];
+
+//   if (element) {
+
+//   }
+//   return element;
+// }
+
+// console.log(getElementOfArray(0, 25));
+
+
+// let newArray = [];
+
+// function getNewArray () {
+//   newArray.find = getRandomPositiveInteger();
+
+//   if (newArray.find === getRandomPositiveInteger()) {
+//     let newResult = getRandomPositiveInteger();
+//     return newArray.push = newResult;
+//   }
+
+//   return newArray.push = getRandomPositiveInteger();
+// }
 
 // console.log(newArray);
 
@@ -56,6 +96,18 @@ function getRandomArrayElement (elements) {
   return elements[getRandomPositiveInteger(0, elements.length - 1)];
 }
 
+function createComment () {
+  return {
+    id: getRandomPositiveInteger (0, 200),
+    avatar: `img/avatar-${getRandomPositiveInteger(1, 6)}.svg`,
+    message: getRandomArrayElement(MESSAGE),
+    name: getRandomArrayElement(NAME),
+  };
+}
+
+// console.log(createComment());
+
+
 
 const createData = function () {
   return {
@@ -63,12 +115,12 @@ const createData = function () {
     url: `photos/${getRandomPositiveInteger (1, 25)}.jpg`,
     description: getRandomArrayElement(DESCRIPTIONS),
     likes: getRandomPositiveInteger (15, 200),
-    comments: [`id: ${getRandomPositiveInteger (0, 200)}`,
-      `avatar: img/avatar-${getRandomPositiveInteger(1, 6)}.svg`,
-      `message: ${getRandomArrayElement(MESSAGE)}`,
-      `name: ${getRandomArrayElement(NAME)}`],
+    comments: createComment(),
   };
 };
+
+// console.log(createData());
+
 
 const simylarData = Array.from({length: 25}, createData);
 
