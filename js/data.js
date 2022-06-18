@@ -1,4 +1,6 @@
 import {getRandomArrayElement} from './util.js';
+import {getRandomPositiveInteger} from './util.js';
+
 
 const NAME = [
   'Олег',
@@ -49,5 +51,3 @@ const createData = function (index) {
 const simylarData = () => Array.from({length: 25}, (_, index) => createData(index));
 
 export {simylarData};
-
-// console.log(simylarData);
