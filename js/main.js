@@ -1,5 +1,1 @@
-import {simylarData} from './data.js';
-
-console.log(
-  simylarData()
-);
+import 'miniature.js';
