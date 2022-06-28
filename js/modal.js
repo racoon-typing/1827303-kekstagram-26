@@ -1,9 +1,9 @@
 import {simylarData} from './data.js';
 
-function openModalWindow () {
-  const modalWindow = document.querySelector('.big-picture');
-  modalWindow.classList.remove('hidden');
+const modalWindow = document.querySelector('.big-picture');
+modalWindow.classList.remove('hidden');
 
+function openModalWindow () {
   const likesCounter = document.querySelector('.social__comment-count');
   likesCounter.classList.add('hidden');
 
@@ -13,6 +13,8 @@ function openModalWindow () {
   const tegBody = document.querySelector('body');
   tegBody.classList.add('modal-open');
 }
+
+openModalWindow();
 
 const bigImgWrapper = modalWindow.querySelector('.big-picture__img');
 
@@ -42,3 +44,13 @@ function createCommentElement ({description}) {
   textDescription.textContent = description;
 }
 
+function closeModalWindow (evt) {
+  evt.preventDefault();
+
+  const closeButton = document.querySelector('#picture-cancel');
+  closeButton.addEventListener('click', function () => {
+    modalWindow.classList.add('hidden');
+  });
+}
+
+closeModalWindow();
