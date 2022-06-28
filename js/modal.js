@@ -12,13 +12,30 @@ simylarModalPhoto.forEach(({url, likes, comments}) => {
   const bigImg = bigImgWrapper.children[0];
   bigImg.src = url;
 
+  const likesCount = document.querySelector('.likes-count');
+  likesCount.textContent = likes;
 
+  const commentCount = document.querySelector('.comments-count');
+  commentCount.textContent = comments;
 
-  // const simylarElement = simylarPhotoTempalate.cloneNode(true);
-  // simylarElement.querySelector('.picture__img').src = url;
-  // simylarElement.querySelector('.picture__likes').textContent = likes;
-  // simylarElement.querySelector('.picture__comments').textContent = comments;
-
-  modalList.appendChild(simylarElement);
+  modalList.appendChild(simylarModalPhoto);
 });
 
+const commentList = document.createDocumentFragment();
+
+function createCommentElement ({description}) {
+  const socailItem = document.querySelector('.social__comment');
+  const newItem = socailItem.slice;
+
+  const textDescription = document.querySelector('.social__caption');
+  textDescription.textContent = description;
+}
+
+const likesCounter = document.querySelector('.social__comment-count');
+likesCounter.classList.add('hidden');
+
+const uploadComment = document.querySelector('.comments-loader');
+uploadComment.classList.add('hidden');
+
+const tegBody = document.querySelector('body');
+tegBody.classList.add('modal-open');
