@@ -1,7 +1,18 @@
 import {simylarData} from './data.js';
 
-const modalWindow = document.querySelector('.big-picture');
-modalWindow.classList.remove('hidden');
+function openModalWindow () {
+  const modalWindow = document.querySelector('.big-picture');
+  modalWindow.classList.remove('hidden');
+
+  const likesCounter = document.querySelector('.social__comment-count');
+  likesCounter.classList.add('hidden');
+
+  const uploadComment = document.querySelector('.comments-loader');
+  uploadComment.classList.add('hidden');
+
+  const tegBody = document.querySelector('body');
+  tegBody.classList.add('modal-open');
+}
 
 const bigImgWrapper = modalWindow.querySelector('.big-picture__img');
 
@@ -31,11 +42,3 @@ function createCommentElement ({description}) {
   textDescription.textContent = description;
 }
 
-const likesCounter = document.querySelector('.social__comment-count');
-likesCounter.classList.add('hidden');
-
-const uploadComment = document.querySelector('.comments-loader');
-uploadComment.classList.add('hidden');
-
-const tegBody = document.querySelector('body');
-tegBody.classList.add('modal-open');
