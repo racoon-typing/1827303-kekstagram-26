@@ -44,11 +44,9 @@ function createCommentElement ({description}) {
   textDescription.textContent = description;
 }
 
-function closeModalWindow (evt) {
-  evt.preventDefault();
-
+function closeModalWindow () {
   const closeButton = document.querySelector('#picture-cancel');
-  closeButton.addEventListener('click', function () => {
+  closeButton.addEventListener('click', () => {
     modalWindow.classList.add('hidden');
   });
 }
