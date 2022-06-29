@@ -19,10 +19,14 @@ simylarModalPhoto.forEach(({url, likes, comments}) => {
 });
 
 const commentItem = document.querySelector('.social__comment').cloneNode(true);
+const commentList = document.createDocumentFragment();
 
-console.log(commentItem);
+function createNewComment () {
+  for (let i = 0; i < comments.length; i++) {
+    
+  }
+}
 
-// const commentList = document.createDocumentFragment();
 
 // function createCommentElement ({description}) {
 //   const socailItem = document.querySelector('.social__comment');
