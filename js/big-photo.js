@@ -1,5 +1,6 @@
 const miniPhoto = document.querySelectorAll('.picture');
 const modalWindow = document.querySelector('.big-picture');
+const bigPhoto = document.querySelector('.big-picture__img').children[0];
 
 
 for (let i = 0; i < miniPhoto.length; i++) {
@@ -8,6 +9,9 @@ for (let i = 0; i < miniPhoto.length; i++) {
     evt.preventDefault();
 
     modalWindow.classList.remove('hidden');
+
+    const urlMiniPhoto = document.querySelector('.picture__img').src;
+    bigPhoto.src = urlMiniPhoto;
   });
 }
 
