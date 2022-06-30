@@ -5,6 +5,10 @@ const simylarPhotoTempalate = document.querySelector('#picture')
   .content
   .querySelector('.picture');
 
+const modalWindow = document.querySelector('.big-picture');
+// const linkMiiniPhoto = document.querySelector('.picture');
+
+
 const simylarPhoto = simylarData();
 
 const miniatureList = document.createDocumentFragment();
@@ -15,8 +19,16 @@ simylarPhoto.forEach(({url, likes, comments}) => {
   simylarElement.querySelector('.picture__likes').textContent = likes;
   simylarElement.querySelector('.picture__comments').textContent = comments.length;
 
+  simylarElement.addEventListener('click', (evt) => {
+    evt.preventDefault();
+
+    modalWindow.classList.remove('hidden');
+  });
+
   miniatureList.appendChild(simylarElement);
 });
+
+
 
 simylarListElement.appendChild(miniatureList);
 
