@@ -1,8 +1,9 @@
 import './miniature.js';
-import {tegBody} from './miniature.js';
 import {simylarData} from './data.js';
 
 const modalWindow = document.querySelector('.big-picture');
+const tegBody = document.querySelector('body');
+
 
 const buttonClose = document.querySelector('#picture-cancel');
 buttonClose.addEventListener('click', () => {
@@ -15,8 +16,6 @@ document.addEventListener('keydown', (e) => {
     modalWindow.classList.add('hidden');
   }
 });
-
-
 
 const commentList = document.querySelector('.social__comments');
 const commentItemPhoto = document.querySelector('.social__picture');
