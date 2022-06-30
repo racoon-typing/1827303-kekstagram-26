@@ -1,3 +1,5 @@
+import './miniature.js';
+
 const modalWindow = document.querySelector('.big-picture');
 
 const buttonClose = document.querySelector('#picture-cancel');

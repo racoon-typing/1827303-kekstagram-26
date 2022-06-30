@@ -6,6 +6,7 @@ const simylarPhotoTempalate = document.querySelector('#picture')
   .querySelector('.picture');
 
 const modalWindow = document.querySelector('.big-picture');
+const bigPhoto = document.querySelector('.big-picture__img');
 
 const simylarPhoto = simylarData();
 
@@ -21,12 +22,11 @@ simylarPhoto.forEach(({url, likes, comments}) => {
     evt.preventDefault();
 
     modalWindow.classList.remove('hidden');
+    bigPhoto.children[0].src = url;
   });
 
   miniatureList.appendChild(simylarElement);
 });
-
-
 
 simylarListElement.appendChild(miniatureList);
 
