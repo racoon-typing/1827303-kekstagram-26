@@ -11,9 +11,18 @@ for (let i = 0; i < miniPhoto.length; i++) {
     modalWindow.classList.remove('hidden');
 
     const urlMiniPhoto = document.querySelector('.picture__img').src;
-    bigPhoto.src = urlMiniPhoto;
+    console.log(urlMiniPhoto);
+
+    // bigPhoto.src = urlMiniPhoto;
   });
 }
+
+const buttonClose = document.querySelector('#picture-cancel');
+buttonClose.addEventListener('click', () => {
+  modalWindow.classList.add('hidden');
+});
+
+
 
 
 
