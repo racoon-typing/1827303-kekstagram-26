@@ -1,21 +1,4 @@
-const miniPhoto = document.querySelectorAll('.picture');
 const modalWindow = document.querySelector('.big-picture');
-const bigPhoto = document.querySelector('.big-picture__img').children[0];
-
-
-for (let i = 0; i < miniPhoto.length; i++) {
-  const itemLink = miniPhoto[i];
-  itemLink.addEventListener('click', (evt) => {
-    evt.preventDefault();
-
-    modalWindow.classList.remove('hidden');
-
-    const urlMiniPhoto = document.querySelector('.picture__img').src;
-    console.log(urlMiniPhoto);
-
-    // bigPhoto.src = urlMiniPhoto;
-  });
-}
 
 const buttonClose = document.querySelector('#picture-cancel');
 buttonClose.addEventListener('click', () => {

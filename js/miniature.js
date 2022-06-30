@@ -6,8 +6,6 @@ const simylarPhotoTempalate = document.querySelector('#picture')
   .querySelector('.picture');
 
 const modalWindow = document.querySelector('.big-picture');
-// const linkMiiniPhoto = document.querySelector('.picture');
-
 
 const simylarPhoto = simylarData();
 
