@@ -5,6 +5,11 @@ buttonClose.addEventListener('click', () => {
   modalWindow.classList.add('hidden');
 });
 
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    modalWindow.classList.add('hidden');
+  }
+});
 
 
 
