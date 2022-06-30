@@ -13,7 +13,7 @@ simylarPhoto.forEach(({url, likes, comments}) => {
   const simylarElement = simylarPhotoTempalate.cloneNode(true);
   simylarElement.querySelector('.picture__img').src = url;
   simylarElement.querySelector('.picture__likes').textContent = likes;
-  simylarElement.querySelector('.picture__comments').textContent = comments;
+  simylarElement.querySelector('.picture__comments').textContent = comments.length;
 
   miniatureList.appendChild(simylarElement);
 });
