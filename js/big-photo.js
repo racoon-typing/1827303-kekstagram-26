@@ -1,11 +1,12 @@
 const miniPhoto = document.querySelectorAll('.picture');
+const modalWindow = document.querySelector('.big-picture');
+
 
 for (let i = 0; i < miniPhoto.length; i++) {
-  itemLink = itemLink[i];
+  const itemLink = miniPhoto[i];
   itemLink.addEventListener('click', (evt) => {
     evt.preventDefault();
 
-    const modalWindow = document.querySelector('.big-picture');
     modalWindow.classList.remove('hidden');
   });
 }
@@ -40,7 +41,7 @@ for (let i = 0; i < miniPhoto.length; i++) {
   //   commentList.appendChild(commentItem);
   //   i++;
   // }
-});
+// });
 
 // const commentList = document.createDocumentFragment();
 
