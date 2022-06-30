@@ -1,10 +1,13 @@
 import './miniature.js';
+import {tegBody} from './miniature.js';
+import {simylarData} from './data.js';
 
 const modalWindow = document.querySelector('.big-picture');
 
 const buttonClose = document.querySelector('#picture-cancel');
 buttonClose.addEventListener('click', () => {
   modalWindow.classList.add('hidden');
+  tegBody.classList.remove('modal-open');
 });
 
 document.addEventListener('keydown', (e) => {
@@ -15,9 +18,24 @@ document.addEventListener('keydown', (e) => {
 
 
 
+const commentList = document.querySelector('.social__comments');
+const commentItemPhoto = document.querySelector('.social__picture');
+const tempalteCommentItem = document.querySelector('#comment-item')
+  .content
+  .querySelector('.social__comment');
 
-// import {simylarData} from './data.js';
+const addCommentList = document.createDocumentFragment();
 
+const simylarNewComment = simylarData();
+
+simylarNewComment.forEach(({comments}) => {
+  const simylarComment = tempalteCommentItem.cloneNode(true);
+  commentItemPhoto.src = comments.avatar;
+
+  addCommentList.appendChild(simylarComment);
+});
+
+commentList.appendChild(addCommentList);
 
 
 
@@ -25,7 +43,6 @@ document.addEventListener('keydown', (e) => {
 
 // const simylarModalPhoto = simylarData();
 
-// const commentList = document.querySelector('.social__comments');
 // const commentItem = document.querySelector('.social__comment').cloneNode(true);
 
 
