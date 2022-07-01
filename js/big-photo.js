@@ -1,4 +1,3 @@
-import './miniature.js';
 import {simylarData} from './data.js';
 
 const modalWindow = document.querySelector('.big-picture');
@@ -18,18 +17,19 @@ document.addEventListener('keydown', (e) => {
 });
 
 const commentList = document.querySelector('.social__comments');
-const commentItemPhoto = document.querySelector('.social__picture');
 const tempalteCommentItem = document.querySelector('#comment-item')
   .content
   .querySelector('.social__comment');
 
-const addCommentList = document.createDocumentFragment();
-
 const simylarNewComment = simylarData();
+
+const addCommentList = document.createDocumentFragment();
 
 simylarNewComment.forEach(({comments}) => {
   const simylarComment = tempalteCommentItem.cloneNode(true);
-  commentItemPhoto.src = comments.avatar;
+  simylarComment.querySelector('.social__picture').src = comments.avatar;
+  simylarComment.querySelector('.social__picture').alt = comments.name;
+  simylarComment.querySelector('.social__text').textContent = comments.message;
 
   addCommentList.appendChild(simylarComment);
 });
