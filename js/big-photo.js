@@ -66,7 +66,7 @@ const tempalteCommentItem = document.querySelector('#comment-item')
   .content
   .querySelector('.social__comment');
 
-
+for (let i = 0; i < commentList.children.length; i++)
 commentItem.children.remove();
 
 const simylarNewComment = simylarData();
