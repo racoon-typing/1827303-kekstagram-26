@@ -60,19 +60,27 @@ if (modalWindow.classList.contains('hidden')) {
 
 // Добавляет комментарии
 const commentList = document.querySelector('.social__comments');
-const commentItem = document.querySelector('.social__comment');
+// const commentItem = document.querySelector('.social__comment');
+
+// for (let i = 0; i < commentList.children.length; i++) {
+//   commentItem.remove();
+// }
+
+// let value = 0;
+
+// while (value < commentList.children.length) {
+//   value++;
+//   commentItem.remove();
+// }
+
 
 const tempalteCommentItem = document.querySelector('#comment-item')
   .content
   .querySelector('.social__comment');
 
-for (let i = 0; i < commentList.children.length; i++)
-commentItem.children.remove();
-
-const simylarNewComment = simylarData();
+const comments = simylarData();
 
 const addCommentList = document.createDocumentFragment();
-
 
 // Руслан
 comments.forEach(({avatar, name, message}) => {
