@@ -20,17 +20,17 @@ function openModalWindow () {
       bigPhoto.children[0].src = listElement[i].children[0].src;
       commentCount.textContent = listElement[i].querySelector('.picture__comments').textContent;
       likesCount.textContent = listElement[i].querySelector('.picture__likes').textContent;
+
+      const likesCounter = document.querySelector('.social__comment-count');
+      likesCounter.classList.add('hidden');
+
+      const uploadComment = document.querySelector('.comments-loader');
+      uploadComment.classList.add('hidden');
+
+      const tegBody = document.querySelector('body');
+      tegBody.classList.add('modal-open');
     });
   }
-
-  const likesCounter = document.querySelector('.social__comment-count');
-  likesCounter.classList.add('hidden');
-
-  const uploadComment = document.querySelector('.comments-loader');
-  uploadComment.classList.add('hidden');
-
-  const tegBody = document.querySelector('body');
-  tegBody.classList.add('modal-open');
 }
 
 openModalWindow ();
@@ -70,6 +70,7 @@ const addCommentList = document.createDocumentFragment();
 
 simylarNewComment.forEach(({comments, description}) => {
   const simylarComment = tempalteCommentItem.cloneNode(true);
+
   simylarComment.querySelector('.social__picture').src = comments.avatar;
   simylarComment.querySelector('.social__picture').alt = comments.name;
   simylarComment.querySelector('.social__text').textContent = comments.message;
