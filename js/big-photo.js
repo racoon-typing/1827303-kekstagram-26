@@ -1,27 +1,25 @@
 import {simylarData} from './data.js';
-import {simylarListElement} from './miniature.js';
 
+const listElement = document.querySelectorAll('.picture');
 const modalWindow = document.querySelector('.big-picture');
+const commentCount = document.querySelector('.comments-count');
+const bigPhoto = document.querySelector('.big-picture__img');
+const likesCount = document.querySelector('.likes-count');
+
+
 const commentDescription = document.querySelector('.social__caption');
 
-const bigPhoto = document.querySelector('.big-picture__img');
-const commentCount = document.querySelector('.comments-count');
-const likesCount = document.querySelector('.likes-count');
-const miniPhoto = document.querySelector('.picture__img');
-
-
-
+// Открывает модальное окно
 function openModalWindow () {
-  for (let i = 0; i < simylarListElement.children.length; i++) {
-    simylarListElement.children[i].addEventListener('click', (evt) => {
+  for (let i = 0; i < listElement.length; i++) {
+    listElement[i].addEventListener('click', (evt) => {
       evt.preventDefault();
 
-        modalWindow.classList.remove('hidden');
+      modalWindow.classList.remove('hidden');
 
-        bigPhoto.children[0].src = miniPhoto.src;
-        commentCount.textContent = comments.length;
-        likesCount.textContent = likes;
-      });
+      bigPhoto.children[0].src = listElement[i].children[0].src;
+      commentCount.textContent = listElement[i].querySelector('.picture__comments').textContent;
+      likesCount.textContent = listElement[i].querySelector('.picture__likes').textContent;
     });
   }
 
@@ -37,8 +35,7 @@ function openModalWindow () {
 
 openModalWindow ();
 
-
-//Правильно
+// Закрывает модальное окно
 const buttonClose = document.querySelector('#picture-cancel');
 buttonClose.addEventListener('click', () => {
   modalWindow.classList.add('hidden');
@@ -61,7 +58,7 @@ if (modalWindow.classList.contains('hidden')) {
 }
 
 
-// Неправильно
+// Добавляет комментарии
 const commentList = document.querySelector('.social__comments');
 const tempalteCommentItem = document.querySelector('#comment-item')
   .content
