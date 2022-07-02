@@ -19,3 +19,5 @@ simylarPhoto.forEach(({url, likes, comments}) => {
 });
 
 simylarListElement.appendChild(miniatureList);
+
+export {simylarListElement};

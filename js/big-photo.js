@@ -1,4 +1,5 @@
 import {simylarData} from './data.js';
+import {simylarListElement} from './miniature.js';
 
 const modalWindow = document.querySelector('.big-picture');
 const commentDescription = document.querySelector('.social__caption');
@@ -6,18 +7,23 @@ const commentDescription = document.querySelector('.social__caption');
 const bigPhoto = document.querySelector('.big-picture__img');
 const commentCount = document.querySelector('.comments-count');
 const likesCount = document.querySelector('.likes-count');
-const miniPhoto = document.querySelector('.picture');
+const miniPhoto = document.querySelector('.picture__img');
+
+
 
 function openModalWindow () {
-  miniPhoto.addEventListener('click', (evt) => {
-    evt.preventDefault();
+  for (let i = 0; i < simylarListElement.children.length; i++) {
+    simylarListElement.children[i].addEventListener('click', (evt) => {
+      evt.preventDefault();
 
-    modalWindow.classList.remove('hidden');
-    bigPhoto.children[0].src = url;
-    commentCount.textContent = comments.length;
-    likesCount.textContent = likes;
-    openModalWindow();
-  });
+        modalWindow.classList.remove('hidden');
+
+        bigPhoto.children[0].src = miniPhoto.src;
+        commentCount.textContent = comments.length;
+        likesCount.textContent = likes;
+      });
+    });
+  }
 
   const likesCounter = document.querySelector('.social__comment-count');
   likesCounter.classList.add('hidden');
@@ -31,9 +37,12 @@ function openModalWindow () {
 
 openModalWindow ();
 
+
+//Правильно
 const buttonClose = document.querySelector('#picture-cancel');
 buttonClose.addEventListener('click', () => {
   modalWindow.classList.add('hidden');
+  const tegBody = document.querySelector('body');
   tegBody.classList.remove('modal-open');
 });
 
@@ -51,6 +60,8 @@ if (modalWindow.classList.contains('hidden')) {
   });
 }
 
+
+// Неправильно
 const commentList = document.querySelector('.social__comments');
 const tempalteCommentItem = document.querySelector('#comment-item')
   .content
