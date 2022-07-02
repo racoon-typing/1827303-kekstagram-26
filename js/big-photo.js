@@ -1,15 +1,24 @@
 import {simylarData} from './data.js';
 
 const modalWindow = document.querySelector('.big-picture');
-const tegBody = document.querySelector('body');
 const commentDescription = document.querySelector('.social__caption');
-
 
 const bigPhoto = document.querySelector('.big-picture__img');
 const commentCount = document.querySelector('.comments-count');
 const likesCount = document.querySelector('.likes-count');
+const miniPhoto = document.querySelector('.picture');
 
 function openModalWindow () {
+  miniPhoto.addEventListener('click', (evt) => {
+    evt.preventDefault();
+
+    modalWindow.classList.remove('hidden');
+    bigPhoto.children[0].src = url;
+    commentCount.textContent = comments.length;
+    likesCount.textContent = likes;
+    openModalWindow();
+  });
+
   const likesCounter = document.querySelector('.social__comment-count');
   likesCounter.classList.add('hidden');
 
@@ -21,16 +30,6 @@ function openModalWindow () {
 }
 
 openModalWindow ();
-
-  simylarElement.addEventListener('click', (evt) => {
-    evt.preventDefault();
-
-    modalWindow.classList.remove('hidden');
-    bigPhoto.children[0].src = url;
-    commentCount.textContent = comments.length;
-    likesCount.textContent = likes;
-    openModalWindow();
-  });
 
 const buttonClose = document.querySelector('#picture-cancel');
 buttonClose.addEventListener('click', () => {
