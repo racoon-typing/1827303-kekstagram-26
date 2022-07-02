@@ -60,9 +60,14 @@ if (modalWindow.classList.contains('hidden')) {
 
 // Добавляет комментарии
 const commentList = document.querySelector('.social__comments');
+const commentItem = document.querySelector('.social__comment');
+
 const tempalteCommentItem = document.querySelector('#comment-item')
   .content
   .querySelector('.social__comment');
+
+
+commentItem.children.remove();
 
 const simylarNewComment = simylarData();
 
