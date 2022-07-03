@@ -57,49 +57,52 @@ function closeModalWindow () {
 closeModalWindow ();
 
 // Удаляет комментарии
-const commentList = document.querySelector('.social__comments');
-const commentItem = document.querySelector('.social__comment');
+// const commentList = document.querySelector('.social__comments');
+// const commentItem = document.querySelector('.social__comment');
 
-// if (commentList.children === true) {
-//   commentItem.remove();
-//   console.log('Удалили старые комментарии');
-// }
-
-// for (let i = 0; i < commentList.children.length; i++) {
-//   commentList.children[i].remove();
-//   // commentItem.remove();
-// }
-
-// let value = 0;
-
-// while (value < commentList.children.length) {
-//   value++;
-//   commentItem.remove();
-// }
 
 // Добавляет комментарии
+const commentList = document.querySelector('.social__comments');
 const tempalteCommentItem = document.querySelector('#comment-item')
   .content
   .querySelector('.social__comment');
 
-const createCommnet = simylarData();
+const createComment = simylarData();
 
 const addCommentList = document.createDocumentFragment();
 
-// Руслан
-createCommnet.forEach(({comments}) => {
-  comments.forEach(({avatar, name, message}) => {
-    for (let i = 0; i < comments.length; i++) {
-      const similarComment = tempalteCommentItem.cloneNode(true);
+// New
+function creteCommentItem() {
+  createComment.forEach((item) => {
+    const similarComment = tempalteCommentItem.cloneNode(true);
+    similarComment.querySelector('.socialpicture').src = item.avatar;
+    similarComment.querySelector('.socialpicture').alt = item.name;
+    similarComment.querySelector('.socialtext').textContent = item.message;
 
-      similarComment.querySelector('.social__picture').src = avatar;
-      similarComment.querySelector('.social__picture').alt = name;
-      similarComment.querySelector('.social__text').textContent = message;
-
-      addCommentList.appendChild(similarComment);
-    }
+    addCommentList.appendChild(similarComment);
   });
-});
+
+  commentList.appendChild(addCommentList);
+}
+
+creteCommentItem();
+
+// Руслан
+// createComment.forEach(({comments}) => {
+//   comments.forEach(({avatar, name, message}) => {
+//     console.log(message);
+
+//     for (let i = 0; i < comments.length; i++) {
+//       const similarComment = tempalteCommentItem.cloneNode(true);
+
+//       similarComment.querySelector('.social__picture').src = avatar;
+//       similarComment.querySelector('.social__picture').alt = name;
+//       similarComment.querySelector('.social__text').textContent = message;
+
+//       addCommentList.appendChild(similarComment);
+//     }
+//   });
+// });
 
 commentList.appendChild(addCommentList);
 
@@ -113,21 +116,3 @@ createDescription.forEach(({description}) => {
   commentDescription.textContent = description;
 });
 
-
-
-
-// Мой вариант
-// simylarNewComment.forEach(({comments, description}) => {
-//   const simylarComment = tempalteCommentItem.cloneNode(true);
-
-//   simylarComment.querySelector('.social__picture').src = comments.avatar;
-//   simylarComment.querySelector('.social__picture').alt = comments.name;
-//   simylarComment.querySelector('.social__text').textContent = comments.message;
-
-
-//   commentDescription.textContent = description;
-
-//   addCommentList.appendChild(simylarComment);
-// });
-
-// commentList.appendChild(addCommentList);
