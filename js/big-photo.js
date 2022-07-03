@@ -6,9 +6,6 @@ const commentCount = document.querySelector('.comments-count');
 const bigPhoto = document.querySelector('.big-picture__img');
 const likesCount = document.querySelector('.likes-count');
 
-
-const commentDescription = document.querySelector('.social__caption');
-
 // Открывает модальное окно
 function openModalWindow () {
   for (let i = 0; i < listElement.length; i++) {
@@ -36,29 +33,32 @@ function openModalWindow () {
 openModalWindow ();
 
 // Закрывает модальное окно
-const buttonClose = document.querySelector('#picture-cancel');
-buttonClose.addEventListener('click', () => {
-  modalWindow.classList.add('hidden');
-  const tegBody = document.querySelector('body');
-  tegBody.classList.remove('modal-open');
-});
-
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
+function closeModalWindow () {
+  const buttonClose = document.querySelector('#picture-cancel');
+  buttonClose.addEventListener('click', () => {
     modalWindow.classList.add('hidden');
-  }
-});
+    const tegBody = document.querySelector('body');
+    tegBody.classList.remove('modal-open');
+  });
 
-if (modalWindow.classList.contains('hidden')) {
-  document.removeEventListener('keydown', (e) => {
+  document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       modalWindow.classList.add('hidden');
     }
   });
+
+  if (modalWindow.classList.contains('hidden')) {
+    document.removeEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        modalWindow.classList.add('hidden');
+      }
+    });
+  }
 }
 
+closeModalWindow ();
 
-// Добавляет комментарии
+// Удаляет комментарии
 const commentList = document.querySelector('.social__comments');
 // const commentItem = document.querySelector('.social__comment');
 
@@ -73,29 +73,43 @@ const commentList = document.querySelector('.social__comments');
 //   commentItem.remove();
 // }
 
-
+// Добавляет комментарии
 const tempalteCommentItem = document.querySelector('#comment-item')
   .content
   .querySelector('.social__comment');
 
-const comments = simylarData();
+const createCommnet = simylarData();
 
 const addCommentList = document.createDocumentFragment();
 
 // Руслан
-comments.forEach(({avatar, name, message}) => {
+
+createCommnet.forEach(({comments}) => {
   for (let i = 0; i < comments.length; i++) {
-    const similarComment = tempalteCommentItem.cloneNode(true);
+    comments.forEach(({avatar, name, message}) => {
+      const similarComment = tempalteCommentItem.cloneNode(true);
 
-    similarComment.querySelector('.social__picture').src = avatar;
-    similarComment.querySelector('.social__picture').alt = name;
-    similarComment.querySelector('.social__text').textContent = message;
+      similarComment.querySelector('.social__picture').src = avatar;
+      similarComment.querySelector('.social__picture').alt = name;
+      similarComment.querySelector('.social__text').textContent = message;
 
-    addCommentList.appendChild(similarComment);
+      addCommentList.appendChild(similarComment);
+    });
   }
 });
 
 commentList.appendChild(addCommentList);
+
+
+// Добавляет описание для BigPhoto
+const commentDescription = document.querySelector('.social__caption');
+
+const createDescription = simylarData();
+
+createDescription.forEach(({description}) => {
+  commentDescription.textContent = description;
+});
+
 
 
 
