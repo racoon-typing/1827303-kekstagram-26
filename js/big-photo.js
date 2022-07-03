@@ -41,29 +41,33 @@ function closeModalWindow () {
     tegBody.classList.remove('modal-open');
   });
 
-  document.addEventListener('keydown', (e) => {
+  function clickHandlerByEsc (e) {
     if (e.key === 'Escape') {
       modalWindow.classList.add('hidden');
     }
-  });
-
-  if (modalWindow.classList.contains('hidden')) {
-    document.removeEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        modalWindow.classList.add('hidden');
-      }
-    });
   }
+
+  if (modalWindow.classList.contains('hidden') === true) {
+    document.removeEventListener('keydown', clickHandlerByEsc);
+  }
+
+  document.addEventListener('keydown', clickHandlerByEsc);
 }
 
 closeModalWindow ();
 
 // Удаляет комментарии
 const commentList = document.querySelector('.social__comments');
-// const commentItem = document.querySelector('.social__comment');
+const commentItem = document.querySelector('.social__comment');
+
+// if (commentList.children === true) {
+//   commentItem.remove();
+//   console.log('Удалили старые комментарии');
+// }
 
 // for (let i = 0; i < commentList.children.length; i++) {
-//   commentItem.remove();
+//   commentList.children[i].remove();
+//   // commentItem.remove();
 // }
 
 // let value = 0;
@@ -83,10 +87,9 @@ const createCommnet = simylarData();
 const addCommentList = document.createDocumentFragment();
 
 // Руслан
-
 createCommnet.forEach(({comments}) => {
-  for (let i = 0; i < comments.length; i++) {
-    comments.forEach(({avatar, name, message}) => {
+  comments.forEach(({avatar, name, message}) => {
+    for (let i = 0; i < comments.length; i++) {
       const similarComment = tempalteCommentItem.cloneNode(true);
 
       similarComment.querySelector('.social__picture').src = avatar;
@@ -94,8 +97,8 @@ createCommnet.forEach(({comments}) => {
       similarComment.querySelector('.social__text').textContent = message;
 
       addCommentList.appendChild(similarComment);
-    });
-  }
+    }
+  });
 });
 
 commentList.appendChild(addCommentList);
