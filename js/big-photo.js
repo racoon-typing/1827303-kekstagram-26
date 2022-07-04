@@ -26,6 +26,21 @@ function openModalWindow () {
 
       const tegBody = document.querySelector('body');
       tegBody.classList.add('modal-open');
+
+      // Удаляет комментарии
+      const commentListItem = document.querySelector('.social__comments');
+
+      function getEmptyList () {
+        commentListItem.innerHTML = '';
+      }
+
+      getEmptyList();
+
+      // commentListItem.remove();
+      // const commentItem = document.querySelector('.social__comment');
+      // commentItem.remove();
+
+      // console.log(commentItem);
     });
   }
 }
@@ -56,8 +71,6 @@ function closeModalWindow () {
 
 closeModalWindow ();
 
-// Удаляет комментарии
-// const commentList = document.querySelector('.social__comments');
 // const commentItem = document.querySelector('.social__comment');
 
 
@@ -88,17 +101,17 @@ const createComment = simylarData();
 // const newCommentList = creteCommentItems(createComment.comments);
 // commentList.appendChild(newCommentList);
 
-function creteCommentItems (comment) {
-  const similarComment = tempalteCommentItem.cloneNode(true);
+// function creteCommentItems (comment) {
+//   const similarComment = tempalteCommentItem.cloneNode(true);
 
-  // similarComment.querySelector('.social__picture').src = comment.avatar;
-  similarComment.querySelector('.social__picture').alt = comment.name;
-  similarComment.querySelector('.social__text').textContent = comment.message;
+//   // similarComment.querySelector('.social__picture').src = comment.avatar;
+//   similarComment.querySelector('.social__picture').alt = comment.name;
+//   similarComment.querySelector('.social__text').textContent = comment.message;
 
-  commentList.appendChild(similarComment);
-}
+//   commentList.appendChild(similarComment);
+// }
 
-creteCommentItems(createComment.comments);
+// creteCommentItems(createComment.comments);
 
 
 
