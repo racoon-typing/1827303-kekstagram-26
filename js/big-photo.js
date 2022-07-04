@@ -29,18 +29,34 @@ function openModalWindow () {
 
       // Удаляет комментарии
       const commentListItem = document.querySelector('.social__comments');
+      const commentItems = document.querySelectorAll('.social__comment');
+      // const commentItem = document.querySelector('.social__comment');
+
 
       function getEmptyList () {
-        commentListItem.innerHTML = '';
+        for (let j = 0; i < commentItems.children.length; j++) {
+          commentItems[j].remove();
+        }
       }
 
       getEmptyList();
 
-      // commentListItem.remove();
-      // const commentItem = document.querySelector('.social__comment');
-      // commentItem.remove();
+      const tempalteCommentItem = document.querySelector('#comment-item')
+        .content
+        .querySelector('.social__comment');
 
-      // console.log(commentItem);
+      const createComment = simylarData();
+
+      createComment.comments.forEach(({avatar, name, message}) => {
+        const similarComment = tempalteCommentItem.cloneNode(true);
+        // логика заполнения данными
+        similarComment.querySelector('.social__picture').src = avatar;
+        similarComment.querySelector('.social__picture').alt = name;
+        similarComment.querySelector('.social__text').textContent = message;
+
+        commentListItem.appendChild(similarComment);
+      });
+
     });
   }
 }
@@ -75,12 +91,12 @@ closeModalWindow ();
 
 
 // Добавляет комментарии
-const commentList = document.querySelector('.social__comments');
-const tempalteCommentItem = document.querySelector('#comment-item')
-  .content
-  .querySelector('.social__comment');
+// const commentList = document.querySelector('.social__comments');
+// const tempalteCommentItem = document.querySelector('#comment-item')
+//   .content
+//   .querySelector('.social__comment');
 
-const createComment = simylarData();
+// const createComment = simylarData();
 
 // Руслан
 // function creteCommentItems (comment) {
