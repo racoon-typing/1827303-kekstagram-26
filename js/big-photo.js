@@ -69,48 +69,43 @@ const tempalteCommentItem = document.querySelector('#comment-item')
 
 const createComment = simylarData();
 
-console.log(createComment);
-
-// const addCommentList = document.createDocumentFragment();
-
-// New
-// function creteCommentItem (item) {
+// Руслан
+// function creteCommentItems (comment) {
 //   const itemsContainer = [];
-//   item.forEach(({avatar, name, message}) => {
+
+//   for (let i = 0; i < comment.length; i++) {
 //     const similarComment = tempalteCommentItem.cloneNode(true);
-//     similarComment.querySelector('.social__picture').src = avatar;
-//     similarComment.querySelector('.social__picture').alt = name;
-//     similarComment.querySelector('.social__text').textContent = message;
+
+//     similarComment.querySelector('.social__picture').src = comment[i].avatar;
+//     similarComment.querySelector('.social__picture').alt = comment[i].name;
+//     similarComment.querySelector('.social__text').textContent = comment[i].message;
 
 //     itemsContainer.push(similarComment);
-//   });
-
+//   }
 //   return itemsContainer;
 // }
 
-// // creteCommentItem(createComment.comments);
-
-// commentList.appendChild(creteCommentItem(createComment.comments));
-
-
-
-// Руслан
+// const newCommentList = creteCommentItems(createComment.comments);
+// commentList.appendChild(newCommentList);
 
 function creteCommentItems (comment) {
-  for (let i = 0; i < comment.length; i++) {
-    const similarComment = tempalteCommentItem.cloneNode(true);
+  const similarComment = tempalteCommentItem.cloneNode(true);
 
-    similarComment.querySelector('.social__picture').src = comment[i].avatar;
-    similarComment.querySelector('.social__picture').alt = comment[i].name;
-    similarComment.querySelector('.social__text').textContent = comment[i].message;
+  // similarComment.querySelector('.social__picture').src = comment.avatar;
+  similarComment.querySelector('.social__picture').alt = comment.name;
+  similarComment.querySelector('.social__text').textContent = comment.message;
 
-    commentList.appendChild(similarComment);
-  }
+  commentList.appendChild(similarComment);
 }
 
 creteCommentItems(createComment.comments);
 
-console.log(createComment.comments);
+
+
+
+
+
+// console.log(createComment.comments.length);
 
 // createComment.forEach(({comments}) => {
 //   comments.forEach(({avatar, name, message}) => {
