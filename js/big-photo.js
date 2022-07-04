@@ -69,29 +69,51 @@ const tempalteCommentItem = document.querySelector('#comment-item')
 
 const createComment = simylarData();
 
-const addCommentList = document.createDocumentFragment();
+console.log(createComment);
+
+// const addCommentList = document.createDocumentFragment();
 
 // New
-function creteCommentItem() {
-  createComment.forEach((item) => {
-    const similarComment = tempalteCommentItem.cloneNode(true);
-    similarComment.querySelector('.socialpicture').src = item.avatar;
-    similarComment.querySelector('.socialpicture').alt = item.name;
-    similarComment.querySelector('.socialtext').textContent = item.message;
+// function creteCommentItem (item) {
+//   const itemsContainer = [];
+//   item.forEach(({avatar, name, message}) => {
+//     const similarComment = tempalteCommentItem.cloneNode(true);
+//     similarComment.querySelector('.social__picture').src = avatar;
+//     similarComment.querySelector('.social__picture').alt = name;
+//     similarComment.querySelector('.social__text').textContent = message;
 
-    addCommentList.appendChild(similarComment);
-  });
+//     itemsContainer.push(similarComment);
+//   });
 
-  commentList.appendChild(addCommentList);
-}
+//   return itemsContainer;
+// }
 
-creteCommentItem();
+// // creteCommentItem(createComment.comments);
+
+// commentList.appendChild(creteCommentItem(createComment.comments));
+
+
 
 // Руслан
+
+function creteCommentItems (comment) {
+  for (let i = 0; i < comment.length; i++) {
+    const similarComment = tempalteCommentItem.cloneNode(true);
+
+    similarComment.querySelector('.social__picture').src = comment[i].avatar;
+    similarComment.querySelector('.social__picture').alt = comment[i].name;
+    similarComment.querySelector('.social__text').textContent = comment[i].message;
+
+    commentList.appendChild(similarComment);
+  }
+}
+
+creteCommentItems(createComment.comments);
+
+console.log(createComment.comments);
+
 // createComment.forEach(({comments}) => {
 //   comments.forEach(({avatar, name, message}) => {
-//     console.log(message);
-
 //     for (let i = 0; i < comments.length; i++) {
 //       const similarComment = tempalteCommentItem.cloneNode(true);
 
@@ -104,7 +126,7 @@ creteCommentItem();
 //   });
 // });
 
-commentList.appendChild(addCommentList);
+// commentList.appendChild(addCommentList);
 
 
 // Добавляет описание для BigPhoto
