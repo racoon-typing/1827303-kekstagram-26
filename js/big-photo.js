@@ -33,29 +33,50 @@ function openModalWindow () {
       // const commentItem = document.querySelector('.social__comment');
 
 
-      function getEmptyList () {
-        for (let j = 0; i < commentItems.children.length; j++) {
-          commentItems[j].remove();
-        }
-      }
+      // function getEmptyList () {
+      //   for (let j = 0; i < commentItems.children.length; j++) {
+      //     commentItems[j].remove();
+      //   }
+      // }
 
-      getEmptyList();
+      // getEmptyList();
 
       const tempalteCommentItem = document.querySelector('#comment-item')
         .content
         .querySelector('.social__comment');
 
-      const createComment = simylarData();
+      const createNewComment = simylarData();
 
-      createComment.comments.forEach(({avatar, name, message}) => {
-        const similarComment = tempalteCommentItem.cloneNode(true);
-        // логика заполнения данными
-        similarComment.querySelector('.social__picture').src = avatar;
-        similarComment.querySelector('.social__picture').alt = name;
-        similarComment.querySelector('.social__text').textContent = message;
 
-        commentListItem.appendChild(similarComment);
+      // function createComment ({avatar, name, message}) {
+      //   // createNewComment.comments.forEach((listItem) => {
+      //     const similarComment = tempalteCommentItem.cloneNode(true);
+
+      //     similarComment.querySelector('.social__picture').src = avatar;
+      //     similarComment.querySelector('.social__picture').alt = name;
+      //     similarComment.querySelector('.social__text').textContent = message;
+
+      //     console.log(avatar);
+
+      //     commentListItem.appendChild(similarComment);
+      //   // });
+      // }
+
+      // createComment(createNewComment);
+
+      createNewComment.forEach(({comments}) => {
+        comments.forEach(({avatar, name, message}) => {
+            const similarComment = tempalteCommentItem.cloneNode(true);
+
+            similarComment.querySelector('.social__picture').src = avatar;
+            similarComment.querySelector('.social__picture').alt = name;
+            similarComment.querySelector('.social__text').textContent = message;
+
+            commentListItem.appendChild(similarComment);
+        });
       });
+
+      commentListItem.appendChild(addCommentList);
 
     });
   }
