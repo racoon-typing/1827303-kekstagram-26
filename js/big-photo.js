@@ -76,7 +76,6 @@ function openModalWindow () {
         });
       });
 
-      commentListItem.appendChild(addCommentList);
 
     });
   }
