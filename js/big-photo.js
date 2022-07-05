@@ -64,6 +64,8 @@ function openModalWindow () {
 
       // createComment(createNewComment);
 
+
+
       createNewComment.forEach(({comments}) => {
         comments.forEach(({avatar, name, message}) => {
             const similarComment = tempalteCommentItem.cloneNode(true);

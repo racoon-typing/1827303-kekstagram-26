@@ -9,13 +9,15 @@ const simylarPhoto = simylarData();
 
 const miniatureList = document.createDocumentFragment();
 
-simylarPhoto.forEach(({url, likes, comments}) => {
+function createSimilarPhoto ({url, likes, comments}) {
   const simylarElement = simylarPhotoTempalate.cloneNode(true);
   simylarElement.querySelector('.picture__img').src = url;
   simylarElement.querySelector('.picture__likes').textContent = likes;
   simylarElement.querySelector('.picture__comments').textContent = comments.length;
 
   miniatureList.appendChild(simylarElement);
-});
+}
+
+simylarPhoto.forEach(createSimilarPhoto);
 
 simylarListElement.appendChild(miniatureList);
