@@ -6,6 +6,8 @@ const simylarPhotoTempalate = document.querySelector('#picture')
   .content
   .querySelector('.picture');
 
+const similarPhoto = simylarData();
+
 const miniatureList = document.createDocumentFragment();
 
 function createSimilarPhoto ({url, likes, comments, description}) {
@@ -15,13 +17,12 @@ function createSimilarPhoto ({url, likes, comments, description}) {
   simylarElement.querySelector('.picture__comments').textContent = comments.length;
   simylarElement.addEventListner('click', (evt) => {
     evt.preventDefault();
-
     openModalWindow(url, likes, comments, description);
   });
 
   miniatureList.appendChild(simylarElement);
 }
 
-simylarData.forEach(createSimilarPhoto);
+similarPhoto.forEach(createSimilarPhoto);
 
 simylarListElement.appendChild(miniatureList);

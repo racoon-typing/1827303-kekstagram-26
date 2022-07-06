@@ -18,16 +18,14 @@ uploadComment.classList.add('hidden');
 
 // Открывает модальное окно
 function openModalWindow (url, description, likes, comments) {
-
-  modalWindow.classList.remove('hidden');
   document.body.classList.add('modal-open');
+  modalWindow.classList.remove('hidden');
 
   bigPhoto.src = url;
   commentCount.textContent = comments.length;
   likesCount.textContent = likes;
   commentDescription.textContent = description;
   commentListItem.innerHTML = '';
-
   comments.forEach(createComment);
 }
 
