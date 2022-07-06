@@ -1,6 +1,6 @@
 const modalWindow = document.querySelector('.big-picture');
 const commentCount = document.querySelector('.comments-count');
-const bigPhoto = document.querySelector('.big-picture__img');
+const bigPhoto = document.querySelector('.big-picture__img img');
 const likesCount = document.querySelector('.likes-count');
 const commentDescription = document.querySelector('.social__caption');
 const commentListItem = document.querySelector('.social__comments');
@@ -17,20 +17,20 @@ uploadComment.classList.add('hidden');
 
 
 // Открывает модальное окно
-function openModalWindow (url, description, likes, comments) {
+function openModalWindow(url, description, likes, comments) {
   document.body.classList.add('modal-open');
   modalWindow.classList.remove('hidden');
 
   bigPhoto.src = url;
   commentCount.textContent = comments.length;
   likesCount.textContent = likes;
-  commentDescription.textContent = description;
+  commentDescription.textContent = likes;
   commentListItem.innerHTML = '';
   comments.forEach(createComment);
 }
 
 // Добавляет комментарии
-function createComment ({avatar, name, message}) {
+function createComment({ avatar, name, message }) {
   const similarComment = tempalteCommentItem.cloneNode(true);
 
   similarComment.querySelector('.social__picture').src = avatar;
@@ -39,7 +39,6 @@ function createComment ({avatar, name, message}) {
 
   commentListItem.appendChild(similarComment);
 }
-
 
 // Закрывает модальное окно
 function closeModalWindow() {
@@ -65,5 +64,5 @@ function closeModalWindow() {
 
 closeModalWindow();
 
-export {openModalWindow};
+export { openModalWindow };
 
