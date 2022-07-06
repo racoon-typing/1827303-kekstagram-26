@@ -15,6 +15,7 @@ function createSimilarPhoto ({url, likes, comments, description}) {
   simylarElement.querySelector('.picture__img').src = url;
   simylarElement.querySelector('.picture__likes').textContent = likes;
   simylarElement.querySelector('.picture__comments').textContent = comments.length;
+
   simylarElement.addEventListener('click', (evt) => {
     evt.preventDefault();
     openModalWindow(url, likes, comments, description);
