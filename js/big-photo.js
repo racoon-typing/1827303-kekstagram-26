@@ -33,7 +33,6 @@ function openModalWindow (url, description, likes, comments) {
 
 // Добавляет комментарии
 function createComment ({avatar, name, message}) {
-
   const similarComment = tempalteCommentItem.cloneNode(true);
 
   similarComment.querySelector('.social__picture').src = avatar;
