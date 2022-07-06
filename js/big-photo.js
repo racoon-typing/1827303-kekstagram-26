@@ -1,11 +1,15 @@
-import { simylarData } from './data.js';
+import {simylarData} from './data.js';
 
-const listElement = document.querySelectorAll('.picture');
 const modalWindow = document.querySelector('.big-picture');
 const commentCount = document.querySelector('.comments-count');
 const bigPhoto = document.querySelector('.big-picture__img');
 const likesCount = document.querySelector('.likes-count');
 const commentDescription = document.querySelector('.social__caption');
+const commentListItem = document.querySelector('.social__comments');
+const tempalteCommentItem = document.querySelector('#comment-item')
+  .content
+  .querySelector('.social__comment');
+
 
 const likesCounter = document.querySelector('.social__comment-count');
 likesCounter.classList.add('hidden');
@@ -14,44 +18,29 @@ const uploadComment = document.querySelector('.comments-loader');
 uploadComment.classList.add('hidden');
 
 
-
 // Открывает модальное окно
-function openModalWindow({ url, description, likes, comments }) {
+function openModalWindow ({ url, description, likes, comments }) {
 
   modalWindow.classList.remove('hidden');
   document.body.classList.add('modal-open');
 
-    bigPhoto.src = url;
+  bigPhoto.src = url;
   commentCount.textContent = comments.length;
   likesCount.textContent = likes;
   commentDescription.textContent = description;
 }
 
-// Удаляет комментарии
-const commentListItem = document.querySelector('.social__comments');
+function createComment ({avatar, name, message}) {
 
 
+  const similarComment = tempalteCommentItem.cloneNode(true);
 
-const tempalteCommentItem = document.querySelector('#comment-item')
-  .content
-  .querySelector('.social__comment');
+  similarComment.querySelector('.social__picture').src = avatar;
+  similarComment.querySelector('.social__picture').alt = name;
+  similarComment.querySelector('.social__text').textContent = message;
 
-
-createNewComment.forEach(({ comments }) => {
-  comments.forEach(({ avatar, name, message }) => {
-    const similarComment = tempalteCommentItem.cloneNode(true);
-
-    similarComment.querySelector('.social__picture').src = avatar;
-    similarComment.querySelector('.social__picture').alt = name;
-    similarComment.querySelector('.social__text').textContent = message;
-
-    commentListItem.appendChild(similarComment);
-  });
-});
-
-
-  });
-
+  openModalWindow();
+  commentListItem.appendChild(similarComment);
 }
 
 openModalWindow();

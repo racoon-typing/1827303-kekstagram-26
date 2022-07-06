@@ -46,6 +46,6 @@ const createData = function (index) {
   };
 };
 
-const simylarData = () => Array.from({length: 25}, (_, index) => createData(index));
+const simylarData = Array.from({length: 25}, (_, index) => createData(index));
 
 export {simylarData};

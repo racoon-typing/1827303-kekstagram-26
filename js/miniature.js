@@ -5,8 +5,6 @@ const simylarPhotoTempalate = document.querySelector('#picture')
   .content
   .querySelector('.picture');
 
-const simylarPhoto = simylarData();
-
 const miniatureList = document.createDocumentFragment();
 
 function createSimilarPhoto ({url, likes, comments}) {
@@ -18,6 +16,6 @@ function createSimilarPhoto ({url, likes, comments}) {
   miniatureList.appendChild(simylarElement);
 }
 
-simylarPhoto.forEach(createSimilarPhoto);
+simylarData.forEach(createSimilarPhoto);
 
 simylarListElement.appendChild(miniatureList);
