@@ -1,5 +1,3 @@
-import {simylarData} from './data.js';
-
 const modalWindow = document.querySelector('.big-picture');
 const commentCount = document.querySelector('.comments-count');
 const bigPhoto = document.querySelector('.big-picture__img');
@@ -19,7 +17,7 @@ uploadComment.classList.add('hidden');
 
 
 // Открывает модальное окно
-function openModalWindow ({ url, description, likes, comments }) {
+function openModalWindow (url, description, likes, comments) {
 
   modalWindow.classList.remove('hidden');
   document.body.classList.add('modal-open');
@@ -28,10 +26,13 @@ function openModalWindow ({ url, description, likes, comments }) {
   commentCount.textContent = comments.length;
   likesCount.textContent = likes;
   commentDescription.textContent = description;
+  commentListItem.innerHTML = '';
+
+  comments.forEach(createComment);
 }
 
+// Добавляет комментарии
 function createComment ({avatar, name, message}) {
-
 
   const similarComment = tempalteCommentItem.cloneNode(true);
 
@@ -39,11 +40,9 @@ function createComment ({avatar, name, message}) {
   similarComment.querySelector('.social__picture').alt = name;
   similarComment.querySelector('.social__text').textContent = message;
 
-  openModalWindow();
   commentListItem.appendChild(similarComment);
 }
 
-openModalWindow();
 
 // Закрывает модальное окно
 function closeModalWindow() {
@@ -69,4 +68,5 @@ function closeModalWindow() {
 
 closeModalWindow();
 
+export {openModalWindow};
 

@@ -1,4 +1,5 @@
 import {simylarData} from './data.js';
+import {openModalWindow} from './big-photo.js';
 
 const simylarListElement = document.querySelector('.pictures');
 const simylarPhotoTempalate = document.querySelector('#picture')
@@ -12,6 +13,9 @@ function createSimilarPhoto ({url, likes, comments}) {
   simylarElement.querySelector('.picture__img').src = url;
   simylarElement.querySelector('.picture__likes').textContent = likes;
   simylarElement.querySelector('.picture__comments').textContent = comments.length;
+  simylarElement.addEventListner('click', () => {
+    openModalWindow(url, likes, comments);
+  });
 
   miniatureList.appendChild(simylarElement);
 }
