@@ -60,8 +60,7 @@ const uploadPhotoImg = document.querySelector('.img-upload__preview img');
 const effectControlItem = document.querySelectorAll('.effects__radio');
 for (let i = 0; i < effectControlItem.length; i++) {
   effectControlItem[i].addEventListener('click', () => {
-    console.log('Клик на фильтр');
-    const cssEffectByPhoto = `effects__preview ${effectControlItem.value}`;
+    const cssEffectByPhoto = `effects__preview--${effectControlItem[i].value}`;
     uploadPhotoImg.classList.add(cssEffectByPhoto);
   });
 }
