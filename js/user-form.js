@@ -3,15 +3,12 @@ const form = document.querySelector('.img-upload__overlay');
 form.classList.remove('hidden');
 
 const uploadPhotoImg = document.querySelector('.img-upload__preview img');
-
 const uploadPhoto = document.querySelector('#upload-file');
 
 function openUploadPhoto () {
   uploadPhoto.addEventListener('change', () => {
     document.body.classList.add('modal-open');
     form.classList.remove('hidden');
-
-    console.log(uploadPhoto.value);
 
     const fileReader = new FileReader();
     fileReader.onload = function () {
@@ -43,8 +40,6 @@ function closenUploadPhoto () {
   document.addEventListener('keydown', clickHandlerUploadByEsc);
 
   uploadPhoto.value = '';
-  // console.log(uploadPhoto.value);
-
 }
 
 closenUploadPhoto();
@@ -67,15 +62,19 @@ const buttonScaleBigger = document.querySelector('.scale__control--bigger');
 
 // changeScaleValue();
 
-const effectControlItem = document.querySelectorAll('.effects__radio');
-for (let i = 0; i < effectControlItem.length; i++) {
-  effectControlItem[i].addEventListener('click', () => {
-    uploadPhotoImg.className = '';
-    const cssEffectByPhoto = `effects__preview--${effectControlItem[i].value}`;
-    uploadPhotoImg.classList.add(cssEffectByPhoto);
-
-    if (cssEffectByPhoto === 'effects__preview--none') {
+function createEffect () {
+  const effectControlItem = document.querySelectorAll('.effects__radio');
+  for (let i = 0; i < effectControlItem.length; i++) {
+    effectControlItem[i].addEventListener('click', () => {
       uploadPhotoImg.className = '';
-    }
-  });
+      const cssEffectByPhoto = `effects__preview--${effectControlItem[i].value}`;
+      uploadPhotoImg.classList.add(cssEffectByPhoto);
+
+      if (cssEffectByPhoto === 'effects__preview--none') {
+        uploadPhotoImg.className = '';
+      }
+    });
+  }
 }
+
+createEffect ();
