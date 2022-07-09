@@ -37,4 +37,20 @@ function closenUploadPhoto () {
 
 closenUploadPhoto();
 
+const buttonScaleSmaller = document.querySelector('.scale__control--smaller');
+const buttonScaleBigger = document.querySelector('.scale__control--bigger');
 
+function changeScaleValue () {
+  let scaleValue = document.querySelector('.scale__control--value').value;
+  console.log(scaleValue);
+
+  buttonScaleSmaller.addEventListener('click', (evt) => {
+    evt.preventDefault();
+
+    scaleValue = scaleValue - 25%;
+
+    console.log('Клик по кнопке');
+  });
+}
+
+changeScaleValue();
