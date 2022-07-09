@@ -1,14 +1,38 @@
 // Показывает окно
 const form = document.querySelector('.img-upload__overlay');
 
-
 const uploadPhoto = document.querySelector('#upload-file');
-uploadPhoto.addEventListener('change', () => {
-  console.log('Загрузилось');
-  document.body.classList.add('modal-open');
-  form.classList.remove('hidden');
 
-  const fileImage = this.value;
-  console.log(fileImage);
+function openUploadPhoto () {
+  uploadPhoto.addEventListener('change', () => {
+    console.log('Загрузилось');
+    document.body.classList.add('modal-open');
+    form.classList.remove('hidden');
+  });
+}
 
-});
+openUploadPhoto();
+
+const buttonCloseUpload = document.querySelector('#upload-cancel');
+
+function closenUploadPhoto () {
+  buttonCloseUpload.addEventListener('click', ()=> {
+    document.body.classList.remove('modal-open');
+    form.classList.add('hidden');
+  });
+
+  function clickHandlerByEsc(e) {
+    if (e.key === 'Escape') {
+      form.classList.add('hidden');
+    }
+  }
+
+  if (form.classList.contains('hidden') === true) {
+    document.removeEventListener('keydown', clickHandlerByEsc);
+  }
+
+  document.addEventListener('keydown', clickHandlerByEsc);
+}
+
+closenUploadPhoto();
+
