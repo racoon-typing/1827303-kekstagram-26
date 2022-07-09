@@ -21,17 +21,17 @@ function closenUploadPhoto () {
     form.classList.add('hidden');
   });
 
-  function clickHandlerByEsc(e) {
+  function clickHandlerUploadByEsc(e) {
     if (e.key === 'Escape') {
       form.classList.add('hidden');
     }
   }
 
   if (form.classList.contains('hidden') === true) {
-    document.removeEventListener('keydown', clickHandlerByEsc);
+    document.removeEventListener('keydown', clickHandlerUploadByEsc);
   }
 
-  document.addEventListener('keydown', clickHandlerByEsc);
+  document.addEventListener('keydown', clickHandlerUploadByEsc);
 }
 
 closenUploadPhoto();
