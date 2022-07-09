@@ -1,5 +1,6 @@
 // Показывает окно
 const form = document.querySelector('.img-upload__overlay');
+form.classList.remove('hidden');
 
 const uploadPhoto = document.querySelector('#upload-file');
 
@@ -35,4 +36,5 @@ function closenUploadPhoto () {
 }
 
 closenUploadPhoto();
+
 
