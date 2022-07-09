@@ -47,10 +47,21 @@ function changeScaleValue () {
   buttonScaleSmaller.addEventListener('click', (evt) => {
     evt.preventDefault();
 
-    scaleValue = scaleValue - 25%;
+    const newScaleValue = scaleValue * 0.25;
 
-    console.log('Клик по кнопке');
+    console.log(newScaleValue);
   });
 }
 
 changeScaleValue();
+
+const uploadPhotoImg = document.querySelector('.img-upload__preview img');
+
+const effectControlItem = document.querySelectorAll('.effects__radio');
+for (let i = 0; i < effectControlItem.length; i++) {
+  effectControlItem[i].addEventListener('click', () => {
+    console.log('Клик на фильтр');
+    const cssEffectByPhoto = `effects__preview ${effectControlItem.value}`;
+    uploadPhotoImg.classList.add(cssEffectByPhoto);
+  });
+}
