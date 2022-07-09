@@ -1,4 +1,9 @@
 // Показывает окно
 const form = document.querySelector('.img-upload__overlay');
-form.classList.remove('hidden');
 
+
+const uploadPhoto = document.querySelector('#upload-file');
+uploadPhoto.addEventListener('change', () => {
+  console.log('Загрузилось');
+  form.classList.remove('hidden');
+});
