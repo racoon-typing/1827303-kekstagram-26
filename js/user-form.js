@@ -2,13 +2,21 @@
 const form = document.querySelector('.img-upload__overlay');
 form.classList.remove('hidden');
 
+const uploadPhotoImg = document.querySelector('.img-upload__preview img');
+
 const uploadPhoto = document.querySelector('#upload-file');
 
 function openUploadPhoto () {
   uploadPhoto.addEventListener('change', () => {
-    console.log('Загрузилось');
     document.body.classList.add('modal-open');
     form.classList.remove('hidden');
+
+    console.log(uploadPhoto.value);
+
+    const fileReader = new FileReader();
+    fileReader.onload = function () {
+      uploadPhotoImg.src = fileReader.result;
+    };
   });
 }
 
@@ -33,6 +41,10 @@ function closenUploadPhoto () {
   }
 
   document.addEventListener('keydown', clickHandlerUploadByEsc);
+
+  uploadPhoto.value = '';
+  // console.log(uploadPhoto.value);
+
 }
 
 closenUploadPhoto();
@@ -40,22 +52,20 @@ closenUploadPhoto();
 const buttonScaleSmaller = document.querySelector('.scale__control--smaller');
 const buttonScaleBigger = document.querySelector('.scale__control--bigger');
 
-function changeScaleValue () {
-  let scaleValue = document.querySelector('.scale__control--value').value;
-  console.log(scaleValue);
+// function changeScaleValue () {
+//   let scaleValue = document.querySelector('.scale__control--value').value;
+//   console.log(scaleValue);
 
-  buttonScaleSmaller.addEventListener('click', (evt) => {
-    evt.preventDefault();
+//   buttonScaleSmaller.addEventListener('click', (evt) => {
+//     evt.preventDefault();
 
-    const newScaleValue = scaleValue * 0.25;
+//     const newScaleValue = scaleValue * 0.25;
 
-    console.log(newScaleValue);
-  });
-}
+//     console.log(newScaleValue);
+//   });
+// }
 
-changeScaleValue();
-
-const uploadPhotoImg = document.querySelector('.img-upload__preview img');
+// changeScaleValue();
 
 const effectControlItem = document.querySelectorAll('.effects__radio');
 for (let i = 0; i < effectControlItem.length; i++) {
