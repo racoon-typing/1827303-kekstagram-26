@@ -46,7 +46,7 @@ function closenUploadPhoto () {
 
 closenUploadPhoto();
 
-// Изменеят знаяение Scale
+// Изменеят значение Scale
 const buttonScaleSmaller = document.querySelector('.scale__control--smaller');
 const buttonScaleBigger = document.querySelector('.scale__control--bigger');
 const inputScale = document.querySelector('.scale__control--value');
@@ -59,30 +59,30 @@ function changeScaleValue () {
     //   buttonScaleSmaller.disabled = false;
     // }
 
+    scaleValueNumber = scaleValueNumber - scaleContolStep;
+    inputScale.value = `${scaleValueNumber}%`;
+
     if (scaleValueNumber === 25) {
       buttonScaleSmaller.disabled = true;
     } else {
       buttonScaleSmaller.disabled = false;
     }
-
-    scaleValueNumber = scaleValueNumber - scaleContolStep;
-    inputScale.value = `${scaleValueNumber}%`;
     return inputScale.value;
   });
 
   buttonScaleBigger.addEventListener('click', () => {
-    // if (scaleValueNumber === 25) {
-    //   buttonScaleSmaller.disabled = false;
-    // }
-
-    if (scaleValueNumber > 100) {
-      buttonScaleBigger.disabled = true;
-    } else {
+    if (scaleValueNumber > 25) {
       buttonScaleSmaller.disabled = false;
     }
 
     scaleValueNumber = scaleValueNumber + scaleContolStep;
     inputScale.value = `${scaleValueNumber}%`;
+
+    if (scaleValueNumber === 100) {
+      buttonScaleBigger.disabled = true;
+    } else {
+      buttonScaleSmaller.disabled = false;
+    }
     return inputScale.value;
   });
 }
