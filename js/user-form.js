@@ -1,4 +1,4 @@
-// Показывает окно
+// Показывает окно загрузки фото
 const form = document.querySelector('.img-upload__overlay');
 form.classList.remove('hidden');
 
@@ -19,6 +19,7 @@ function openUploadPhoto () {
 
 openUploadPhoto();
 
+// Скрывает окно загрузки фото
 const buttonCloseUpload = document.querySelector('#upload-cancel');
 
 function closenUploadPhoto () {
@@ -44,24 +45,34 @@ function closenUploadPhoto () {
 
 closenUploadPhoto();
 
+// Изменеят знаяение Scale
 const buttonScaleSmaller = document.querySelector('.scale__control--smaller');
 const buttonScaleBigger = document.querySelector('.scale__control--bigger');
+const inputScaleValue = document.querySelector('.scale__control--value');
+const scaleValue = document.querySelector('.scale__control--value');
+const scaleValueNumber = parseInt(scaleValue.value, 10);
 
-// function changeScaleValue () {
-//   let scaleValue = document.querySelector('.scale__control--value').value;
-//   console.log(scaleValue);
+function changeScaleValue () {
 
-//   buttonScaleSmaller.addEventListener('click', (evt) => {
-//     evt.preventDefault();
+  buttonScaleSmaller.addEventListener('click', () => {
+    const scaleContol = 25;
+    const scaleValueResult = `${scaleValueNumber - scaleContol}%`;
+    scaleValue.value = scaleValueResult;
+    return scaleValue.value;
+  });
 
-//     const newScaleValue = scaleValue * 0.25;
+  buttonScaleBigger.addEventListener('click', () => {
+    const scaleContol = 25;
+    scaleValue.value = `${scaleValueNumber + scaleContol}%`;
+    return scaleValue.value;
+  });
+}
 
-//     console.log(newScaleValue);
-//   });
-// }
+console.log(scaleValue.value);
 
-// changeScaleValue();
+changeScaleValue();
 
+// Добавляет эффект на фото
 function createEffect () {
   const effectControlItem = document.querySelectorAll('.effects__radio');
   for (let i = 0; i < effectControlItem.length; i++) {
@@ -78,3 +89,19 @@ function createEffect () {
 }
 
 createEffect ();
+
+// Проверка формы
+const pristine = new Pristine(form);
+
+// Проверка поля хэштег
+
+function validateHashtag (value) {
+  return value.length <= 20;
+}
+
+pristine.addValidator(form.querySelector('.text__hashtags'), validateHashtag);
+
+form.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+  pristine.validate();
+});
