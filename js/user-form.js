@@ -54,35 +54,39 @@ let scaleValueNumber = parseInt(inputScale.value, 10);
 const scaleContolStep = 25;
 
 function changeScaleValue () {
-  buttonScaleSmaller.addEventListener('click', () => {
-    // if (scaleValueNumber  100) {
-    //   buttonScaleSmaller.disabled = false;
-    // }
+  if (scaleValueNumber === 100) {
+    buttonScaleBigger.disabled = true;
+  }
 
+  buttonScaleSmaller.addEventListener('click', () => {
     scaleValueNumber = scaleValueNumber - scaleContolStep;
     inputScale.value = `${scaleValueNumber}%`;
 
+    // Проверка соответсвия условию от 25% до 100%
     if (scaleValueNumber === 25) {
       buttonScaleSmaller.disabled = true;
-    } else {
-      buttonScaleSmaller.disabled = false;
     }
+
+    if (scaleValueNumber < 100) {
+      buttonScaleBigger.disabled = false;
+    }
+
     return inputScale.value;
   });
 
   buttonScaleBigger.addEventListener('click', () => {
+    scaleValueNumber = scaleValueNumber + scaleContolStep;
+    inputScale.value = `${scaleValueNumber}%`;
+
+    // Проверка соответсвия условию от 25% до 100%
+    if (scaleValueNumber === 100) {
+      buttonScaleBigger.disabled = true;
+    }
+
     if (scaleValueNumber > 25) {
       buttonScaleSmaller.disabled = false;
     }
 
-    scaleValueNumber = scaleValueNumber + scaleContolStep;
-    inputScale.value = `${scaleValueNumber}%`;
-
-    if (scaleValueNumber === 100) {
-      buttonScaleBigger.disabled = true;
-    } else {
-      buttonScaleSmaller.disabled = false;
-    }
     return inputScale.value;
   });
 }
