@@ -1,6 +1,6 @@
 // Показывает окно загрузки фото
 const form = document.querySelector('.img-upload__overlay');
-// form.classList.remove('hidden');
+form.classList.remove('hidden');
 
 const uploadPhotoImg = document.querySelector('.img-upload__preview img');
 const uploadPhoto = document.querySelector('#upload-file');
@@ -49,27 +49,29 @@ closenUploadPhoto();
 // Изменеят знаяение Scale
 const buttonScaleSmaller = document.querySelector('.scale__control--smaller');
 const buttonScaleBigger = document.querySelector('.scale__control--bigger');
-const inputScaleValue = document.querySelector('.scale__control--value');
-const scaleValue = document.querySelector('.scale__control--value');
-const scaleValueNumber = parseInt(scaleValue.value, 10);
+// const inputScaleValue = document.querySelector('.scale__control--value');
+let scaleValue = document.querySelector('.scale__control--value').value;
+let scaleValueNumber = parseInt(scaleValue, 10);
+console.log(scaleValueNumber);
 
 function changeScaleValue () {
 
   buttonScaleSmaller.addEventListener('click', () => {
-    const scaleContol = 25;
-    const scaleValueResult = `${scaleValueNumber - scaleContol}%`;
-    scaleValue.value = scaleValueResult;
-    return scaleValue.value;
+    const scaleContolStep = 25;
+    scaleValueNumber = scaleValueNumber - scaleContolStep;
+    console.log(scaleValueNumber);
+
+    scaleValue = `${scaleValueNumber}%`;
+    console.log(scaleValue);
+    return scaleValue;
   });
 
-  buttonScaleBigger.addEventListener('click', () => {
-    const scaleContol = 25;
-    scaleValue.value = `${scaleValueNumber + scaleContol}%`;
-    return scaleValue.value;
-  });
+  // buttonScaleBigger.addEventListener('click', () => {
+  //   const scaleContol = 25;
+  //   scaleValue.value = `${scaleValueNumber + scaleContol}%`;
+  //   return scaleValue.value;
+  // });
 }
-
-console.log(scaleValue.value);
 
 changeScaleValue();
 
