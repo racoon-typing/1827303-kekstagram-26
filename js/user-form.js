@@ -1,6 +1,6 @@
 // Показывает окно загрузки фото
 const form = document.querySelector('.img-upload__overlay');
-form.classList.remove('hidden');
+// form.classList.remove('hidden');
 
 const uploadPhotoImg = document.querySelector('.img-upload__preview img');
 const uploadPhoto = document.querySelector('#upload-file');
@@ -10,10 +10,11 @@ function openUploadPhoto () {
     document.body.classList.add('modal-open');
     form.classList.remove('hidden');
 
-    const fileReader = new FileReader();
-    fileReader.onload = function () {
-      uploadPhotoImg.src = fileReader.result;
-    };
+    // Подставляет изображение в инпут
+    // const fileReader = new FileReader();
+    // fileReader.onload = function () {
+    //   uploadPhotoImg.src = fileReader.result;
+    // };
   });
 }
 
@@ -94,7 +95,6 @@ createEffect ();
 const pristine = new Pristine(form);
 
 // Проверка поля хэштег
-
 function validateHashtag (value) {
   return value.length <= 20;
 }
