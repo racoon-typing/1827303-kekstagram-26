@@ -54,8 +54,13 @@ let scaleValueNumber = parseInt(inputScale.value, 10);
 const scaleContolStep = 25;
 
 function changeScaleValue () {
-
   buttonScaleSmaller.addEventListener('click', () => {
+    if (scaleValueNumber <= 25) {
+      buttonScaleSmaller.disabled = true;
+    } else {
+      buttonScaleSmaller.disabled = false;
+    }
+
     scaleValueNumber = scaleValueNumber - scaleContolStep;
     inputScale.value = `${scaleValueNumber}%`;
     return inputScale.value;
@@ -67,11 +72,7 @@ function changeScaleValue () {
     return inputScale.value;
   });
 
-  if (scaleValueNumber <= 25) {
-    buttonScaleSmaller.disabled = true;
-  } else {
-    buttonScaleSmaller.disabled = false;
-  }
+
 
   // if (scaleValueNumber >= 100) {
   //   buttonScaleBigger.disabled = true;
