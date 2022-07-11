@@ -89,6 +89,10 @@ function changeScaleValue () {
 
     return inputScale.value;
   });
+
+  inputScale.addEventListener('change', () => {
+    uploadPhotoImg.style.transform = scale(scaleValueNumber / 100);
+  });
 }
 
 changeScaleValue();
@@ -111,7 +115,7 @@ function createEffect () {
 
 createEffect ();
 
-// Проверка формы
+// Проверка формы с помощью Pristine
 const pristine = new Pristine(form);
 
 // Проверка поля хэштег
