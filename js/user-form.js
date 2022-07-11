@@ -49,28 +49,35 @@ closenUploadPhoto();
 // Изменеят знаяение Scale
 const buttonScaleSmaller = document.querySelector('.scale__control--smaller');
 const buttonScaleBigger = document.querySelector('.scale__control--bigger');
-// const inputScaleValue = document.querySelector('.scale__control--value');
-let scaleValue = document.querySelector('.scale__control--value').value;
-let scaleValueNumber = parseInt(scaleValue, 10);
-console.log(scaleValueNumber);
+const inputScale = document.querySelector('.scale__control--value');
+let scaleValueNumber = parseInt(inputScale.value, 10);
+const scaleContolStep = 25;
 
 function changeScaleValue () {
 
   buttonScaleSmaller.addEventListener('click', () => {
-    const scaleContolStep = 25;
     scaleValueNumber = scaleValueNumber - scaleContolStep;
-    console.log(scaleValueNumber);
-
-    scaleValue = `${scaleValueNumber}%`;
-    console.log(scaleValue);
-    return scaleValue;
+    inputScale.value = `${scaleValueNumber}%`;
+    return inputScale.value;
   });
 
-  // buttonScaleBigger.addEventListener('click', () => {
-  //   const scaleContol = 25;
-  //   scaleValue.value = `${scaleValueNumber + scaleContol}%`;
-  //   return scaleValue.value;
-  // });
+  buttonScaleBigger.addEventListener('click', () => {
+    scaleValueNumber = scaleValueNumber + scaleContolStep;
+    inputScale.value = `${scaleValueNumber}%`;
+    return inputScale.value;
+  });
+
+  if (scaleValueNumber <= 25) {
+    buttonScaleSmaller.disabled = true;
+  } else {
+    buttonScaleSmaller.disabled = false;
+  }
+
+  // if (scaleValueNumber >= 100) {
+  //   buttonScaleBigger.disabled = true;
+  // } else {
+  //   buttonScaleSmaller.disabled = false;
+  // }
 }
 
 changeScaleValue();
