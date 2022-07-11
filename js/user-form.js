@@ -55,7 +55,11 @@ const scaleContolStep = 25;
 
 function changeScaleValue () {
   buttonScaleSmaller.addEventListener('click', () => {
-    if (scaleValueNumber <= 25) {
+    // if (scaleValueNumber  100) {
+    //   buttonScaleSmaller.disabled = false;
+    // }
+
+    if (scaleValueNumber === 25) {
       buttonScaleSmaller.disabled = true;
     } else {
       buttonScaleSmaller.disabled = false;
@@ -67,18 +71,20 @@ function changeScaleValue () {
   });
 
   buttonScaleBigger.addEventListener('click', () => {
+    // if (scaleValueNumber === 25) {
+    //   buttonScaleSmaller.disabled = false;
+    // }
+
+    if (scaleValueNumber > 100) {
+      buttonScaleBigger.disabled = true;
+    } else {
+      buttonScaleSmaller.disabled = false;
+    }
+
     scaleValueNumber = scaleValueNumber + scaleContolStep;
     inputScale.value = `${scaleValueNumber}%`;
     return inputScale.value;
   });
-
-
-
-  // if (scaleValueNumber >= 100) {
-  //   buttonScaleBigger.disabled = true;
-  // } else {
-  //   buttonScaleSmaller.disabled = false;
-  // }
 }
 
 changeScaleValue();
