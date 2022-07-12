@@ -91,7 +91,7 @@ function changeScaleValue () {
   });
 
   inputScale.addEventListener('change', () => {
-    uploadPhotoImg.style.transform = scale(scaleValueNumber / 100);
+    uploadPhotoImg.style.transform = 'scale(scaleValueNumber / 100)';
   });
 }
 
