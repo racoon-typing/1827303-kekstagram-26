@@ -71,6 +71,7 @@ function changeScaleValue () {
       buttonScaleBigger.disabled = false;
     }
 
+    uploadPhotoImg.style.transform = `scale(${scaleValueNumber / 100})`;
     return inputScale.value;
   });
 
@@ -87,12 +88,10 @@ function changeScaleValue () {
       buttonScaleSmaller.disabled = false;
     }
 
+    uploadPhotoImg.style.transform = `scale(${scaleValueNumber / 100})`;
     return inputScale.value;
   });
 
-  inputScale.addEventListener('change', () => {
-    uploadPhotoImg.style.transform = `scale(${scaleValueNumber / 100})`;
-  });
 }
 
 changeScaleValue();
