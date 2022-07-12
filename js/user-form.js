@@ -138,8 +138,9 @@ function validateHashtagCamalCase (value) {
   return value == value.toUpperCase();
 }
 
+let array = [];
+
 function validateHashtagNotTwice (value) {
-  let array = [];
   array.push(value);
 
   if (array.includes('value')) {
@@ -148,7 +149,7 @@ function validateHashtagNotTwice (value) {
 }
 
 // Поле хэштег
-pristine.addValidator(inputHashtag, validateHashtagSymbol);
+// pristine.addValidator(inputHashtag, validateHashtagSymbol);
 pristine.addValidator(inputHashtag, validateHashtagMaxLength);
 pristine.addValidator(inputHashtag, validateHashtagMinLength);
 pristine.addValidator(inputHashtag, validateHashtagCamalCase);
