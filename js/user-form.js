@@ -118,11 +118,33 @@ createEffect ();
 const pristine = new Pristine(form);
 
 // Проверка поля хэштег
-function validateHashtag (value) {
+const inputHashtag = form.querySelector('.text__hashtags');
+
+// function validateHashtagSymbol (value) {
+//   let re = /^#(?=.*[^0-9])[a-zа-яё0-9]{1,29}$/;
+//   let result = str.match
+//   return value <= /^#(?=.*[^0-9])[a-zа-яё0-9]{1,29}$/;
+// }
+
+function validateHashtagMaxLength (value) {
   return value.length <= 20;
 }
 
-pristine.addValidator(form.querySelector('.text__hashtags'), validateHashtag);
+function validateHashtagMinLength (value) {
+  return value.length > 1;
+}
+
+function validateHashtagCamalCase (value) {
+  return value == value.toUpperCase();
+}
+
+// Поле хэштег
+pristine.addValidator(inputHashtag, validateHashtagSymbol);
+pristine.addValidator(inputHashtag, validateHashtagMaxLength);
+pristine.addValidator(inputHashtag, validateHashtagMinLength);
+pristine.addValidator(inputHashtag, validateHashtagCamalCase);
+
+
 
 form.addEventListener('submit', (evt) => {
   evt.preventDefault();
