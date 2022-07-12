@@ -108,6 +108,9 @@ function createEffect () {
       if (cssEffectByPhoto === 'effects__preview--none') {
         uploadPhotoImg.className = '';
       }
+
+      
+
     });
   }
 }

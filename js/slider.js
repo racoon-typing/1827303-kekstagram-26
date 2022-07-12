@@ -1,7 +1,7 @@
-const slider = document.querySelector('.effect-level__value');
+const range = document.querySelector('.effect-level__value');
 
-noUiSlider.create(slider, {
-  start: [20, 80],
+noUiSlider.create(range, {
+  start: [100],
   connect: true,
   range: {
     'min': 0,
