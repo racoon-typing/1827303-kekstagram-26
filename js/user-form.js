@@ -120,13 +120,15 @@ const pristine = new Pristine(form);
 // Проверка поля хэштег
 const inputHashtag = form.querySelector('.text__hashtags');
 
+inputHashtag.addEventListener('input', () => {
 // хэш-тег начинается с символа # (решётка);
+
 // строка после решётки должна состоять из букв и чисел и не может содержать пробелы, спецсимволы (#, @, $ и т. п.), символы пунктуации (тире, дефис, запятая и т. п.), эмодзи и т. д.;
-function validateHashtagSymbol (value) {
-  const str = /^#(?=.*[^0-9])[a-zа-яё0-9]{1,29}$/;
-  let result = str.match(value);
-  return result;
-}
+// function validateHashtagSymbol (value) {
+//   const str = /^#(?=.*[^0-9])[a-zа-яё0-9]{1,29}$/;
+//   let result = str.match(value);
+//   return result;
+// }
 
 // хеш-тег не может состоять только из одной решётки;
 function validateHashtagMinLength (value) {
@@ -145,28 +147,54 @@ function validateHashtagCamalCase (value) {
 
 // хэш-теги разделяются пробелами;
 // один и тот же хэш-тег не может быть использован дважды;
-let array = [];
+// let array = [];
 
-function validateHashtagNotTwice (value) {
-  array.push(value);
+// function validateHashtagNotTwice (value) {
+//   array.push(value);
 
-  if (array.includes(value)) {
-    console.log('У вас 2 одинаковых хэштега');
-  }
-}
+//   if (array.includes(value)) {
+//     console.log('У вас 2 одинаковых хэштега');
+//   }
+// }
 
 // нельзя указать больше пяти хэш-тегов;
-// хэш-теги необязательны;
+// if (array.length == 5) {
+//   console.log('Максимальное количество хэштегов = 5');
+// }
+
+  // хэш-теги необязательны;
+  // console.log(inputHashtag.value);
+  // if (array.value = null) {
+  //   console.log('Хэштеги необязательны');
+  // }
+
 // если фокус находится в поле ввода хэш-тега, нажатие на Esc не должно приводить к закрытию формы редактирования изображения.
+  function focusOnInput () {
+    return inputHashtag.addEventListener('focus', () => {
+      document.removeEventListener('keydown', clickHandlerUploadByEsc);
+    });
+  }
 
+  function validateHashtagTabEsc () {
+    if () {
 
+    }
+  }
+
+  // Поле хэштег
+  // pristine.addValidator(inputHashtag, validateHashtagSymbol);
+  pristine.addValidator(inputHashtag, validateHashtagMaxLength);
+  pristine.addValidator(inputHashtag, validateHashtagMinLength);
+  pristine.addValidator(inputHashtag, validateHashtagCamalCase);
+  // pristine.addValidator(inputHashtag, validateHashtagNotTwice);
+});
 
 // Поле хэштег
-pristine.addValidator(inputHashtag, validateHashtagSymbol);
-pristine.addValidator(inputHashtag, validateHashtagMaxLength);
-pristine.addValidator(inputHashtag, validateHashtagMinLength);
-pristine.addValidator(inputHashtag, validateHashtagCamalCase);
-pristine.addValidator(inputHashtag, validateHashtagNotTwice);
+// pristine.addValidator(inputHashtag, validateHashtagSymbol);
+// pristine.addValidator(inputHashtag, validateHashtagMaxLength);
+// pristine.addValidator(inputHashtag, validateHashtagMinLength);
+// pristine.addValidator(inputHashtag, validateHashtagCamalCase);
+// pristine.addValidator(inputHashtag, validateHashtagNotTwice);
 
 
 
