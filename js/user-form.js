@@ -10,7 +10,10 @@ function openUploadPhoto() {
     document.body.classList.add('modal-open');
     form.classList.remove('hidden');
 
-    uploadPhotoImg.src = uploadPhoto.value;
+    let selectedFile = uploadPhoto.files[0];
+    let fileUrl = URL.createObjectURL(selectedFile);
+
+    uploadPhotoImg.src = fileUrl;
   });
 }
 
@@ -111,8 +114,6 @@ function createEffect() {
 createEffect();
 
 // Проверка формы с помощью Pristine
-// const pristine = new Pristine(form);
-
 const inputHashtag = form.querySelector('.text__hashtags');
 
 form.addEventListener('submit', (evt) => {
@@ -142,74 +143,82 @@ function emailTest(input) {
   return !/^#(?=.*[^0-9])[a-zа-яё0-9]{1,29}$/.test(input.value);
 }
 
-function validateHashtagMinLength (input) {
+function validateHashtagMinLength(input) {
   return input.length <= 1;
 }
 
-function validateHashtagMaxLength (input) {
+function validateHashtagMaxLength(input) {
   return input.length >= 20;
 }
 
-function validateHashtagCamalCase (input) {
+function validateHashtagCamalCase(input) {
   return input == input.toUpperCase();
 }
+
+const pristine = new Pristine(form);
+
+pristine.addValidator(inputHashtag, emailTest, 'Не подходит');
+pristine.addValidator(inputHashtag, validateHashtagMinLength);
+pristine.addValidator(inputHashtag, validateHashtagMaxLength);
+pristine.addValidator(inputHashtag, validateHashtagCamalCase);
+
+form.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+  pristine.validate();
+});
 
 // function validateForm () {
 //   form.addEventListener('submit', () => {
 
-    // // хэш-теги нечувствительны к регистру: #ХэшТег и #хэштег считаются одним и тем же тегом;
-    // function validateHashtagCamalCase (value) {
-    //   return value == value.toUpperCase();
-    // }
+// // хэш-теги нечувствительны к регистру: #ХэшТег и #хэштег считаются одним и тем же тегом;
+// function validateHashtagCamalCase (value) {
+//   return value == value.toUpperCase();
+// }
 
-    // // хэш-теги разделяются пробелами;
-    // // один и тот же хэш-тег не может быть использован дважды;
-    // // let array = [];
+// // хэш-теги разделяются пробелами;
+// // один и тот же хэш-тег не может быть использован дважды;
+// // let array = [];
 
-    // // function validateHashtagNotTwice (value) {
-    // //   array.push(value);
+// // function validateHashtagNotTwice (value) {
+// //   array.push(value);
 
-    // //   if (array.includes(value)) {
-    // //     console.log('У вас 2 одинаковых хэштега');
-    // //   }
-    // // }
+// //   if (array.includes(value)) {
+// //     console.log('У вас 2 одинаковых хэштега');
+// //   }
+// // }
 
-    // // нельзя указать больше пяти хэш-тегов;
-    // // if (array.length == 5) {
-    // //   console.log('Максимальное количество хэштегов = 5');
-    // // }
+// // нельзя указать больше пяти хэш-тегов;
+// // if (array.length == 5) {
+// //   console.log('Максимальное количество хэштегов = 5');
+// // }
 
-    //   // хэш-теги необязательны;
-    //   // console.log(inputHashtag.value);
-    //   // if (array.value = null) {
-    //   //   console.log('Хэштеги необязательны');
-    //   // }
+//   // хэш-теги необязательны;
+//   // console.log(inputHashtag.value);
+//   // if (array.value = null) {
+//   //   console.log('Хэштеги необязательны');
+//   // }
 
-    // // если фокус находится в поле ввода хэш-тега, нажатие на Esc не должно приводить к закрытию формы редактирования изображения.
-    //   function focusOnInput () {
-    //     return inputHashtag.addEventListener('focus', () => {
-    //       document.removeEventListener('keydown', clickHandlerUploadByEsc);
-    //     });
-    //   }
+// // если фокус находится в поле ввода хэш-тега, нажатие на Esc не должно приводить к закрытию формы редактирования изображения.
+//   function focusOnInput () {
+//     return inputHashtag.addEventListener('focus', () => {
+//       document.removeEventListener('keydown', clickHandlerUploadByEsc);
+//     });
+//   }
 
-    //   function validateHashtagTabEsc () {
-    //     if () {
+//   function validateHashtagTabEsc () {
+//     if () {
 
-    //     }
-    //   }
+//     }
+//   }
 
-    //   // Поле хэштег
-    //   // pristine.addValidator(inputHashtag, validateHashtagSymbol);
-    //   pristine.addValidator(inputHashtag, validateHashtagMaxLength);
-    //   pristine.addValidator(inputHashtag, validateHashtagMinLength);
-    //   pristine.addValidator(inputHashtag, validateHashtagCamalCase);
-    //   // pristine.addValidator(inputHashtag, validateHashtagNotTwice);
+//   // Поле хэштег
+//   // pristine.addValidator(inputHashtag, validateHashtagSymbol);
+//   pristine.addValidator(inputHashtag, validateHashtagMaxLength);
+//   pristine.addValidator(inputHashtag, validateHashtagMinLength);
+//   pristine.addValidator(inputHashtag, validateHashtagCamalCase);
+//   // pristine.addValidator(inputHashtag, validateHashtagNotTwice);
 //   });
 // }
 
 // validateForm();
 
-// form.addEventListener('submit', (evt) => {
-//   evt.preventDefault();
-//   pristine.validate();
-// });
