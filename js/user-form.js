@@ -120,36 +120,49 @@ const pristine = new Pristine(form);
 // Проверка поля хэштег
 const inputHashtag = form.querySelector('.text__hashtags');
 
-// function validateHashtagSymbol (value) {
-//   let re = /^#(?=.*[^0-9])[a-zа-яё0-9]{1,29}$/;
-//   let result = str.match
-//   return value <= /^#(?=.*[^0-9])[a-zа-яё0-9]{1,29}$/;
-// }
-
-function validateHashtagMaxLength (value) {
-  return value.length <= 20;
+// хэш-тег начинается с символа # (решётка);
+// строка после решётки должна состоять из букв и чисел и не может содержать пробелы, спецсимволы (#, @, $ и т. п.), символы пунктуации (тире, дефис, запятая и т. п.), эмодзи и т. д.;
+function validateHashtagSymbol (value) {
+  const str = /^#(?=.*[^0-9])[a-zа-яё0-9]{1,29}$/;
+  let result = str.match(value);
+  return result;
 }
 
+// хеш-тег не может состоять только из одной решётки;
 function validateHashtagMinLength (value) {
   return value.length > 1;
 }
 
+// максимальная длина одного хэш-тега 20 символов, включая решётку;
+function validateHashtagMaxLength (value) {
+  return value.length <= 20;
+}
+
+// хэш-теги нечувствительны к регистру: #ХэшТег и #хэштег считаются одним и тем же тегом;
 function validateHashtagCamalCase (value) {
   return value == value.toUpperCase();
 }
 
+// хэш-теги разделяются пробелами;
+// один и тот же хэш-тег не может быть использован дважды;
 let array = [];
 
 function validateHashtagNotTwice (value) {
   array.push(value);
 
-  if (array.includes('value')) {
+  if (array.includes(value)) {
     console.log('У вас 2 одинаковых хэштега');
   }
 }
 
+// нельзя указать больше пяти хэш-тегов;
+// хэш-теги необязательны;
+// если фокус находится в поле ввода хэш-тега, нажатие на Esc не должно приводить к закрытию формы редактирования изображения.
+
+
+
 // Поле хэштег
-// pristine.addValidator(inputHashtag, validateHashtagSymbol);
+pristine.addValidator(inputHashtag, validateHashtagSymbol);
 pristine.addValidator(inputHashtag, validateHashtagMaxLength);
 pristine.addValidator(inputHashtag, validateHashtagMinLength);
 pristine.addValidator(inputHashtag, validateHashtagCamalCase);
