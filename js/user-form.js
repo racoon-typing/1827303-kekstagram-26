@@ -1,6 +1,6 @@
 // Показывает окно загрузки фото
 const form = document.querySelector('.img-upload__overlay');
-form.classList.remove('hidden');
+// form.classList.remove('hidden');
 
 const uploadPhotoImg = document.querySelector('.img-upload__preview img');
 const uploadPhoto = document.querySelector('#upload-file');
@@ -10,11 +10,7 @@ function openUploadPhoto() {
     document.body.classList.add('modal-open');
     form.classList.remove('hidden');
 
-    // Подставляет изображение в инпут
-    // const fileReader = new FileReader();
-    // fileReader.onload = function () {
-    //   uploadPhotoImg.src = fileReader.result;
-    // };
+    uploadPhotoImg.src = uploadPhoto.value;
   });
 }
 
@@ -115,20 +111,43 @@ function createEffect() {
 createEffect();
 
 // Проверка формы с помощью Pristine
-const pristine = new Pristine(form);
+// const pristine = new Pristine(form);
 
 const inputHashtag = form.querySelector('.text__hashtags');
 
-function validateForm () {
-  form.addEventListener('submit', () => {
+form.addEventListener('submit', (evt) => {
+  if (emailTest(inputHashtag)) {
+    evt.preventDefault();
+  }
 
-    let hashtagValue = inputHashtag.value;
+  if (inputHashtag.value === '') {
+    evt.preventDefault();
+  }
 
-    inputHashtag.addEventListener('input', () => {
-      if (hashtagValue === '') {
-        console.log('Форма пустая');
-      }
-    });
+
+});
+
+function emailTest(input) {
+  return !/^#(?=.*[^0-9])[a-zа-яё0-9]{1,29}$/.test(input.value);
+}
+
+function validateHashtagMinLength (input) {
+  return input.length > 1;
+}
+
+function validateHashtagMaxLength (input) {
+  return input.length <= 20;
+}
+
+// function validateForm () {
+//   form.addEventListener('submit', () => {
+
+
+//     inputHashtag.addEventListener('input', () => {
+//       if (hashtagValue === '') {
+//         console.log('Форма пустая');
+//       }
+//     });
 
     // // хэш-тег начинается с символа # (решётка);
 
@@ -196,12 +215,12 @@ function validateForm () {
     //   pristine.addValidator(inputHashtag, validateHashtagMinLength);
     //   pristine.addValidator(inputHashtag, validateHashtagCamalCase);
     //   // pristine.addValidator(inputHashtag, validateHashtagNotTwice);
-  });
-}
+//   });
+// }
 
-validateForm();
+// validateForm();
 
-form.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-  pristine.validate();
-});
+// form.addEventListener('submit', (evt) => {
+//   evt.preventDefault();
+//   pristine.validate();
+// });
