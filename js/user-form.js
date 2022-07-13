@@ -5,7 +5,7 @@ form.classList.remove('hidden');
 const uploadPhotoImg = document.querySelector('.img-upload__preview img');
 const uploadPhoto = document.querySelector('#upload-file');
 
-function openUploadPhoto () {
+function openUploadPhoto() {
   uploadPhoto.addEventListener('change', () => {
     document.body.classList.add('modal-open');
     form.classList.remove('hidden');
@@ -23,8 +23,8 @@ openUploadPhoto();
 // Скрывает окно загрузки фото
 const buttonCloseUpload = document.querySelector('#upload-cancel');
 
-function closenUploadPhoto () {
-  buttonCloseUpload.addEventListener('click', ()=> {
+function closenUploadPhoto() {
+  buttonCloseUpload.addEventListener('click', () => {
     document.body.classList.remove('modal-open');
     form.classList.add('hidden');
   });
@@ -53,7 +53,7 @@ const inputScale = document.querySelector('.scale__control--value');
 let scaleValueNumber = parseInt(inputScale.value, 10);
 const scaleContolStep = 25;
 
-function changeScaleValue () {
+function changeScaleValue() {
   if (scaleValueNumber === 100) {
     buttonScaleBigger.disabled = true;
   }
@@ -97,7 +97,7 @@ function changeScaleValue () {
 changeScaleValue();
 
 // Добавляет эффект на фото
-function createEffect () {
+function createEffect() {
   const effectControlItem = document.querySelectorAll('.effects__radio');
   for (let i = 0; i < effectControlItem.length; i++) {
     effectControlItem[i].addEventListener('click', () => {
@@ -112,91 +112,94 @@ function createEffect () {
   }
 }
 
-createEffect ();
+createEffect();
 
 // Проверка формы с помощью Pristine
 const pristine = new Pristine(form);
 
-// Проверка поля хэштег
 const inputHashtag = form.querySelector('.text__hashtags');
 
-inputHashtag.addEventListener('input', () => {
-// хэш-тег начинается с символа # (решётка);
+function validateForm () {
+  form.addEventListener('submit', () => {
 
-// строка после решётки должна состоять из букв и чисел и не может содержать пробелы, спецсимволы (#, @, $ и т. п.), символы пунктуации (тире, дефис, запятая и т. п.), эмодзи и т. д.;
-// function validateHashtagSymbol (value) {
-//   const str = /^#(?=.*[^0-9])[a-zа-яё0-9]{1,29}$/;
-//   let result = str.match(value);
-//   return result;
-// }
+    let hashtagValue = inputHashtag.value;
 
-// хеш-тег не может состоять только из одной решётки;
-function validateHashtagMinLength (value) {
-  return value.length > 1;
-}
-
-// максимальная длина одного хэш-тега 20 символов, включая решётку;
-function validateHashtagMaxLength (value) {
-  return value.length <= 20;
-}
-
-// хэш-теги нечувствительны к регистру: #ХэшТег и #хэштег считаются одним и тем же тегом;
-function validateHashtagCamalCase (value) {
-  return value == value.toUpperCase();
-}
-
-// хэш-теги разделяются пробелами;
-// один и тот же хэш-тег не может быть использован дважды;
-// let array = [];
-
-// function validateHashtagNotTwice (value) {
-//   array.push(value);
-
-//   if (array.includes(value)) {
-//     console.log('У вас 2 одинаковых хэштега');
-//   }
-// }
-
-// нельзя указать больше пяти хэш-тегов;
-// if (array.length == 5) {
-//   console.log('Максимальное количество хэштегов = 5');
-// }
-
-  // хэш-теги необязательны;
-  // console.log(inputHashtag.value);
-  // if (array.value = null) {
-  //   console.log('Хэштеги необязательны');
-  // }
-
-// если фокус находится в поле ввода хэш-тега, нажатие на Esc не должно приводить к закрытию формы редактирования изображения.
-  function focusOnInput () {
-    return inputHashtag.addEventListener('focus', () => {
-      document.removeEventListener('keydown', clickHandlerUploadByEsc);
+    inputHashtag.addEventListener('input', () => {
+      if (hashtagValue === '') {
+        console.log('Форма пустая');
+      }
     });
-  }
 
-  function validateHashtagTabEsc () {
-    if () {
+    // // хэш-тег начинается с символа # (решётка);
 
-    }
-  }
+    // // строка после решётки должна состоять из букв и чисел и не может содержать пробелы, спецсимволы (#, @, $ и т. п.), символы пунктуации (тире, дефис, запятая и т. п.), эмодзи и т. д.;
+    // // function validateHashtagSymbol (value) {
+    // //   const str = /^#(?=.*[^0-9])[a-zа-яё0-9]{1,29}$/;
+    // //   let result = str.match(value);
+    // //   return result;
+    // // }
 
-  // Поле хэштег
-  // pristine.addValidator(inputHashtag, validateHashtagSymbol);
-  pristine.addValidator(inputHashtag, validateHashtagMaxLength);
-  pristine.addValidator(inputHashtag, validateHashtagMinLength);
-  pristine.addValidator(inputHashtag, validateHashtagCamalCase);
-  // pristine.addValidator(inputHashtag, validateHashtagNotTwice);
-});
+    // // хеш-тег не может состоять только из одной решётки;
+    // function validateHashtagMinLength (value) {
+    //   return value.length > 1;
+    // }
 
-// Поле хэштег
-// pristine.addValidator(inputHashtag, validateHashtagSymbol);
-// pristine.addValidator(inputHashtag, validateHashtagMaxLength);
-// pristine.addValidator(inputHashtag, validateHashtagMinLength);
-// pristine.addValidator(inputHashtag, validateHashtagCamalCase);
-// pristine.addValidator(inputHashtag, validateHashtagNotTwice);
+    // // максимальная длина одного хэш-тега 20 символов, включая решётку;
+    // function validateHashtagMaxLength (value) {
+    //   return value.length <= 20;
+    // }
 
+    // // хэш-теги нечувствительны к регистру: #ХэшТег и #хэштег считаются одним и тем же тегом;
+    // function validateHashtagCamalCase (value) {
+    //   return value == value.toUpperCase();
+    // }
 
+    // // хэш-теги разделяются пробелами;
+    // // один и тот же хэш-тег не может быть использован дважды;
+    // // let array = [];
+
+    // // function validateHashtagNotTwice (value) {
+    // //   array.push(value);
+
+    // //   if (array.includes(value)) {
+    // //     console.log('У вас 2 одинаковых хэштега');
+    // //   }
+    // // }
+
+    // // нельзя указать больше пяти хэш-тегов;
+    // // if (array.length == 5) {
+    // //   console.log('Максимальное количество хэштегов = 5');
+    // // }
+
+    //   // хэш-теги необязательны;
+    //   // console.log(inputHashtag.value);
+    //   // if (array.value = null) {
+    //   //   console.log('Хэштеги необязательны');
+    //   // }
+
+    // // если фокус находится в поле ввода хэш-тега, нажатие на Esc не должно приводить к закрытию формы редактирования изображения.
+    //   function focusOnInput () {
+    //     return inputHashtag.addEventListener('focus', () => {
+    //       document.removeEventListener('keydown', clickHandlerUploadByEsc);
+    //     });
+    //   }
+
+    //   function validateHashtagTabEsc () {
+    //     if () {
+
+    //     }
+    //   }
+
+    //   // Поле хэштег
+    //   // pristine.addValidator(inputHashtag, validateHashtagSymbol);
+    //   pristine.addValidator(inputHashtag, validateHashtagMaxLength);
+    //   pristine.addValidator(inputHashtag, validateHashtagMinLength);
+    //   pristine.addValidator(inputHashtag, validateHashtagCamalCase);
+    //   // pristine.addValidator(inputHashtag, validateHashtagNotTwice);
+  });
+}
+
+validateForm();
 
 form.addEventListener('submit', (evt) => {
   evt.preventDefault();
