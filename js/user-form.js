@@ -124,6 +124,17 @@ form.addEventListener('submit', (evt) => {
     evt.preventDefault();
   }
 
+  if (validateHashtagMinLength(inputHashtag)) {
+    evt.preventDefault();
+  }
+
+  if (validateHashtagMaxLength(inputHashtag)) {
+    evt.preventDefault();
+  }
+
+  if (!validateHashtagCamalCase(inputHashtag)) {
+    evt.preventDefault();
+  }
 
 });
 
@@ -132,41 +143,19 @@ function emailTest(input) {
 }
 
 function validateHashtagMinLength (input) {
-  return input.length > 1;
+  return input.length <= 1;
 }
 
 function validateHashtagMaxLength (input) {
-  return input.length <= 20;
+  return input.length >= 20;
+}
+
+function validateHashtagCamalCase (input) {
+  return input == input.toUpperCase();
 }
 
 // function validateForm () {
 //   form.addEventListener('submit', () => {
-
-
-//     inputHashtag.addEventListener('input', () => {
-//       if (hashtagValue === '') {
-//         console.log('Форма пустая');
-//       }
-//     });
-
-    // // хэш-тег начинается с символа # (решётка);
-
-    // // строка после решётки должна состоять из букв и чисел и не может содержать пробелы, спецсимволы (#, @, $ и т. п.), символы пунктуации (тире, дефис, запятая и т. п.), эмодзи и т. д.;
-    // // function validateHashtagSymbol (value) {
-    // //   const str = /^#(?=.*[^0-9])[a-zа-яё0-9]{1,29}$/;
-    // //   let result = str.match(value);
-    // //   return result;
-    // // }
-
-    // // хеш-тег не может состоять только из одной решётки;
-    // function validateHashtagMinLength (value) {
-    //   return value.length > 1;
-    // }
-
-    // // максимальная длина одного хэш-тега 20 символов, включая решётку;
-    // function validateHashtagMaxLength (value) {
-    //   return value.length <= 20;
-    // }
 
     // // хэш-теги нечувствительны к регистру: #ХэшТег и #хэштег считаются одним и тем же тегом;
     // function validateHashtagCamalCase (value) {
