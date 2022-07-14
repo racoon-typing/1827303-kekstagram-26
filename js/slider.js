@@ -1,8 +1,8 @@
-// const range = document.querySelector('.effect-level__value');
+// const rangeSlider = document.querySelector('.effect-level');
 
-// noUiSlider.create(range, {
+// noUiSlider.create(rangeSlider, {
 //   start: [100],
-//   connect: true,
+//   connect: 'lower',
 //   range: {
 //     'min': 0,
 //     'max': 100

@@ -1,6 +1,6 @@
 // Показывает окно загрузки фото
 const form = document.querySelector('.img-upload__overlay');
-// form.classList.remove('hidden');
+form.classList.remove('hidden');
 
 const uploadPhotoImg = document.querySelector('.img-upload__preview img');
 const uploadPhoto = document.querySelector('#upload-file');
@@ -96,6 +96,8 @@ function changeScaleValue() {
 changeScaleValue();
 
 // Добавляет эффект на фото
+const rangeSlider = document.querySelector('.effect-level');
+
 function createEffect() {
   const effectControlItem = document.querySelectorAll('.effects__radio');
   for (let i = 0; i < effectControlItem.length; i++) {
@@ -106,6 +108,66 @@ function createEffect() {
 
       if (cssEffectByPhoto === 'effects__preview--none') {
         uploadPhotoImg.className = '';
+      }
+
+      if (cssEffectByPhoto === 'effects__preview--chrome') {
+        noUiSlider.create(rangeSlider, {
+          start: [1],
+          connect: 'lower',
+          step: 0.1,
+          range: {
+            'min': 0,
+            'max': 1
+          }
+        });
+      }
+
+      if (cssEffectByPhoto === 'effects__preview--sepia') {
+        noUiSlider.create(rangeSlider, {
+          start: [1],
+          connect: 'lower',
+          step: 0.1,
+          range: {
+            'min': 0,
+            'max': 1
+          }
+        });
+      }
+
+      if (cssEffectByPhoto === 'effects__preview--marvin') {
+        noUiSlider.create(rangeSlider, {
+          start: [100],
+          connect: 'lower',
+          step: 0.1,
+          range: {
+            'min': 0,
+            'max': 100
+          }
+        });
+      }
+
+      if (cssEffectByPhoto === 'effects__preview--phobos') {
+        noUiSlider.create(rangeSlider, {
+          start: [3],
+          connect: 'lower',
+          step: 0.1,
+          range: {
+            'min': 0,
+            'max': 3
+          }
+        });
+      }
+
+      if (cssEffectByPhoto === 'effects__preview--heat') {
+        noUiSlider.create(rangeSlider, {
+          start: [3],
+          connect: 'lower',
+          step: 0.1,
+          range: {
+            'min': 0,
+            'max': 3
+          }
+        });
       }
     });
   }
