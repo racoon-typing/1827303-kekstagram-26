@@ -124,7 +124,7 @@ function createEffect() {
         });
 
         rangeSlider.noUiSlider.on('update', (values) => {
-          let valueSlider = `зна(${values})`;
+          let valueSlider = `grayscale(${values})`;
           console.log(valueSlider);
           uploadPhotoImg.style.filter = valueSlider;
         });
