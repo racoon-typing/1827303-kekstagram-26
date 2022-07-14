@@ -111,6 +111,8 @@ function createEffect() {
       }
 
       if (cssEffectByPhoto === 'effects__preview--chrome') {
+        // rangeSlider.noUiSlider.off();
+
         noUiSlider.create(rangeSlider, {
           start: [1],
           connect: 'lower',
@@ -119,6 +121,12 @@ function createEffect() {
             'min': 0,
             'max': 1
           }
+        });
+
+        rangeSlider.noUiSlider.on('update', (values) => {
+          let valueSlider = `grayscale(${values})`;
+          console.log(valueSlider);
+          uploadPhotoImg.style.filter = valueSlider;
         });
       }
 
@@ -132,6 +140,12 @@ function createEffect() {
             'max': 1
           }
         });
+
+        rangeSlider.noUiSlider.on('update', (values) => {
+          let valueSlider = `grayscale(${values})`;
+          console.log(valueSlider);
+          uploadPhotoImg.style.filter = valueSlider;
+        });
       }
 
       if (cssEffectByPhoto === 'effects__preview--marvin') {
@@ -143,6 +157,12 @@ function createEffect() {
             'min': 0,
             'max': 100
           }
+        });
+
+        rangeSlider.noUiSlider.on('update', (values) => {
+          let valueSlider = `grayscale(${values})`;
+          console.log(valueSlider);
+          uploadPhotoImg.style.filter = valueSlider;
         });
       }
 
@@ -156,6 +176,12 @@ function createEffect() {
             'max': 3
           }
         });
+
+        rangeSlider.noUiSlider.on('update', (values) => {
+          let valueSlider = `grayscale(${values})`;
+          console.log(valueSlider);
+          uploadPhotoImg.style.filter = valueSlider;
+        });
       }
 
       if (cssEffectByPhoto === 'effects__preview--heat') {
@@ -164,9 +190,15 @@ function createEffect() {
           connect: 'lower',
           step: 0.1,
           range: {
-            'min': 0,
+            'min': 1,
             'max': 3
           }
+        });
+
+        rangeSlider.noUiSlider.on('update', (values) => {
+          let valueSlider = `grayscale(${values})`;
+          console.log(valueSlider);
+          uploadPhotoImg.style.filter = valueSlider;
         });
       }
     });
