@@ -110,18 +110,30 @@ function createEffect() {
         uploadPhotoImg.className = '';
       }
 
+      const settingOfRangeTen = {
+        start: [1],
+        connect: 'lower',
+        step: 0.1,
+        range: {
+          'min': 0,
+          'max': 1
+        }
+      };
+
+      const settingOfRangethirty = {
+        start: [3],
+        connect: 'lower',
+        step: 0.1,
+        range: {
+          'min': 0,
+          'max': 3
+        }
+      };
+
       if (cssEffectByPhoto === 'effects__preview--chrome') {
         // rangeSlider.noUiSlider.off();
 
-        noUiSlider.create(rangeSlider, {
-          start: [1],
-          connect: 'lower',
-          step: 0.1,
-          range: {
-            'min': 0,
-            'max': 1
-          }
-        });
+        noUiSlider.create(rangeSlider, settingOfRangeTen);
 
         rangeSlider.noUiSlider.on('update', (values) => {
           let valueSlider = `grayscale(${values})`;
@@ -131,15 +143,7 @@ function createEffect() {
       }
 
       if (cssEffectByPhoto === 'effects__preview--sepia') {
-        noUiSlider.create(rangeSlider, {
-          start: [1],
-          connect: 'lower',
-          step: 0.1,
-          range: {
-            'min': 0,
-            'max': 1
-          }
-        });
+        noUiSlider.create(rangeSlider, settingOfRangeTen);
 
         rangeSlider.noUiSlider.on('update', (values) => {
           let valueSlider = `sepia(${values})`;
@@ -167,15 +171,7 @@ function createEffect() {
       }
 
       if (cssEffectByPhoto === 'effects__preview--phobos') {
-        noUiSlider.create(rangeSlider, {
-          start: [3],
-          connect: 'lower',
-          step: 0.1,
-          range: {
-            'min': 0,
-            'max': 3
-          }
-        });
+        noUiSlider.create(rangeSlider, settingOfRangethirty);
 
         rangeSlider.noUiSlider.on('update', (values) => {
           let valueSlider = `blur(${values})`;
@@ -185,15 +181,7 @@ function createEffect() {
       }
 
       if (cssEffectByPhoto === 'effects__preview--heat') {
-        noUiSlider.create(rangeSlider, {
-          start: [3],
-          connect: 'lower',
-          step: 0.1,
-          range: {
-            'min': 1,
-            'max': 3
-          }
-        });
+        noUiSlider.create(rangeSlider, settingOfRangethirty);
 
         rangeSlider.noUiSlider.on('update', (values) => {
           let valueSlider = `brightness(${values})`;
