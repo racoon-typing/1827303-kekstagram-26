@@ -124,7 +124,7 @@ function createEffect() {
         });
 
         rangeSlider.noUiSlider.on('update', (values) => {
-          let valueSlider = `grayscale(${values})`;
+          let valueSlider = `зна(${values})`;
           console.log(valueSlider);
           uploadPhotoImg.style.filter = valueSlider;
         });
@@ -142,7 +142,7 @@ function createEffect() {
         });
 
         rangeSlider.noUiSlider.on('update', (values) => {
-          let valueSlider = `grayscale(${values})`;
+          let valueSlider = `sepia(${values})`;
           console.log(valueSlider);
           uploadPhotoImg.style.filter = valueSlider;
         });
@@ -160,7 +160,7 @@ function createEffect() {
         });
 
         rangeSlider.noUiSlider.on('update', (values) => {
-          let valueSlider = `grayscale(${values})`;
+          let valueSlider = `invert(${values})`;
           console.log(valueSlider);
           uploadPhotoImg.style.filter = valueSlider;
         });
@@ -178,7 +178,7 @@ function createEffect() {
         });
 
         rangeSlider.noUiSlider.on('update', (values) => {
-          let valueSlider = `grayscale(${values})`;
+          let valueSlider = `blur(${values})`;
           console.log(valueSlider);
           uploadPhotoImg.style.filter = valueSlider;
         });
@@ -196,7 +196,7 @@ function createEffect() {
         });
 
         rangeSlider.noUiSlider.on('update', (values) => {
-          let valueSlider = `grayscale(${values})`;
+          let valueSlider = `brightness(${values})`;
           console.log(valueSlider);
           uploadPhotoImg.style.filter = valueSlider;
         });
