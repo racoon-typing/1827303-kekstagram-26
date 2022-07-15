@@ -1,6 +1,6 @@
 // Показывает окно загрузки фото
 const form = document.querySelector('.img-upload__overlay');
-// form.classList.remove('hidden');
+form.classList.remove('hidden');
 
 const uploadPhotoImg = document.querySelector('.img-upload__preview img');
 const uploadPhoto = document.querySelector('#upload-file');
@@ -21,12 +21,19 @@ openUploadPhoto();
 
 // Скрывает окно загрузки фото
 const buttonCloseUpload = document.querySelector('#upload-cancel');
+const inputHashtag = form.querySelector('.text__hashtags');
 
 function closenUploadPhoto() {
   buttonCloseUpload.addEventListener('click', () => {
     document.body.classList.remove('modal-open');
     form.classList.add('hidden');
   });
+
+  uploadPhoto.value = '';
+
+  if (document.activeElement === inputHashtag) {
+    return;
+  }
 
   function clickHandlerUploadByEsc(e) {
     if (e.key === 'Escape') {
@@ -39,15 +46,6 @@ function closenUploadPhoto() {
   }
 
   document.addEventListener('keydown', clickHandlerUploadByEsc);
-
-  let activeElement = document.activeElement.tagName;
-
-  if (activeElement == 'INPUT') {
-    console.log(activeElement);
-    clickHandlerUploadByEsc.stopPropagation();
-  }
-
-  uploadPhoto.value = '';
 }
 
 closenUploadPhoto();
@@ -218,7 +216,7 @@ function createEffect() {
 createEffect();
 
 // Проверка формы с помощью Pristine
-const inputHashtag = form.querySelector('.text__hashtags');
+// const inputHashtag = form.querySelector('.text__hashtags');
 
 const HASHTAG_REGEX = /^#(?=.*[^0-9])[a-zа-яё0-9]{1,20}$/;
 
