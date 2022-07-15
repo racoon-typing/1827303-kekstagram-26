@@ -42,9 +42,8 @@ function closenUploadPhoto() {
 
   let activeElement = document.activeElement.tagName;
 
-  console.log(activeElement);
-
-  if (activeElement == 'Input') {
+  if (activeElement == 'INPUT') {
+    console.log(activeElement);
     clickHandlerUploadByEsc.stopPropagation();
   }
 
@@ -106,6 +105,8 @@ changeScaleValue();
 // Добавляет эффект на фото
 const rangeSlider = document.querySelector('.effect-level');
 
+let currentEffect;
+
 function createEffect() {
   const effectControlItem = document.querySelectorAll('.effects__radio');
   for (let i = 0; i < effectControlItem.length; i++) {
@@ -143,11 +144,13 @@ function createEffect() {
 
         noUiSlider.create(rangeSlider, settingOfRangeTen);
 
-        rangeSlider.noUiSlider.on('update', (values) => {
-          let valueSlider = `grayscale(${values})`;
-          console.log(valueSlider);
-          uploadPhotoImg.style.filter = valueSlider;
-        });
+        currentEffect = (values) => `grayscale(${values})`;
+        // rangeSlider.noUiSlider.on('update', (values) => {
+        //   let valueSlider = `grayscale(${values})`;
+        //   console.log(valueSlider);
+        //   console.log(values);
+        //   uploadPhotoImg.style.filter = valueSlider;
+        // });
       }
 
       if (cssEffectByPhoto === 'effects__preview--sepia') {
@@ -164,7 +167,7 @@ function createEffect() {
         noUiSlider.create(rangeSlider, {
           start: [100],
           connect: 'lower',
-          step: 0.1,
+          step: 1,
           range: {
             'min': 0,
             'max': 100
@@ -199,6 +202,12 @@ function createEffect() {
       }
     });
   }
+}
+
+function getFilter () {
+  rangeSlider.noUiSlider.on('update', () => {
+    uploadPhotoImg.style.filter = currentEffect;
+  });
 }
 
 createEffect();
