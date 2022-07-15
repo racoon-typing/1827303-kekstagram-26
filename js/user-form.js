@@ -144,7 +144,12 @@ function createEffect() {
 
         noUiSlider.create(rangeSlider, settingOfRangeTen);
 
-        currentEffect = (values) => `grayscale(${values})`;
+
+//  ДОДЕЛАТЬ
+
+
+        // currentEffect = (values) => `grayscale(${values})`;
+
         // rangeSlider.noUiSlider.on('update', (values) => {
         //   let valueSlider = `grayscale(${values})`;
         //   console.log(valueSlider);
@@ -204,11 +209,11 @@ function createEffect() {
   }
 }
 
-function getFilter () {
-  rangeSlider.noUiSlider.on('update', () => {
-    uploadPhotoImg.style.filter = currentEffect;
-  });
-}
+// function getFilter () {
+//   rangeSlider.noUiSlider.on('update', () => {
+//     uploadPhotoImg.style.filter = currentEffect;
+//   });
+// }
 
 createEffect();
 
