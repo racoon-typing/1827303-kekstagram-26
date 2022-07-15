@@ -1,6 +1,6 @@
 // Показывает окно загрузки фото
 const form = document.querySelector('.img-upload__overlay');
-form.classList.remove('hidden');
+// form.classList.remove('hidden');
 
 const uploadPhotoImg = document.querySelector('.img-upload__preview img');
 const uploadPhoto = document.querySelector('#upload-file');
@@ -198,109 +198,52 @@ createEffect();
 // Проверка формы с помощью Pristine
 const inputHashtag = form.querySelector('.text__hashtags');
 
-form.addEventListener('submit', (evt) => {
-  if (emailTest(inputHashtag)) {
-    evt.preventDefault();
-  }
+const HASHTAG_REGEX = /^#(?=.*[^0-9])[a-zа-яё0-9]{1,20}$/;
 
-  if (inputHashtag.value === '') {
-    evt.preventDefault();
-  }
+function emailTest(value) {
+  const hashtags = value.split(' ');
 
-  if (validateHashtagMinLength(inputHashtag)) {
-    evt.preventDefault();
-  }
-
-  if (validateHashtagMaxLength(inputHashtag)) {
-    evt.preventDefault();
-  }
-
-  if (!validateHashtagCamalCase(inputHashtag)) {
-    evt.preventDefault();
-  }
-
-});
-
-function emailTest(input) {
-  return !/^#(?=.*[^0-9])[a-zа-яё0-9]{1,29}$/.test(input.value);
+  return hashtags.every((hashtag) => HASHTAG_REGEX.test(hashtag));
 }
 
-function validateHashtagMinLength(input) {
-  return input.length <= 1;
+function validateHashtagMinLength(value) {
+  const hashtags = value.split(' ');
+
+  return hashtags.length >= 1;
 }
 
-function validateHashtagMaxLength(input) {
-  return input.length >= 20;
+function validateHashtagMaxLength(value) {
+  const hashtags = value.split(' ');
+
+  return hashtags.length <= 5;
 }
 
-function validateHashtagCamalCase(input) {
-  return input == input.toUpperCase();
+function validateHashtagIsUnique(value) {
+  const hashtags = value.split(' ');
+  const hashtagSet = new Set(hashtags);
+
+  return hashtags.length == hashtagSet.size;
 }
+
+// Кэмел кэйс
+// function validateHashtagCamalCase(input) {
+//   return input == input.toUpperCase();
+// }
+
+// Закрытие формы Esc
+
+
 
 const pristine = new Pristine(form);
 
-pristine.addValidator(inputHashtag, emailTest, 'Не подходит');
+pristine.addValidator(inputHashtag, emailTest);
 pristine.addValidator(inputHashtag, validateHashtagMinLength);
 pristine.addValidator(inputHashtag, validateHashtagMaxLength);
-pristine.addValidator(inputHashtag, validateHashtagCamalCase);
+pristine.addValidator(inputHashtag, validateHashtagIsUnique);
 
 form.addEventListener('submit', (evt) => {
   evt.preventDefault();
   pristine.validate();
 });
 
-// function validateForm () {
-//   form.addEventListener('submit', () => {
-
-// // хэш-теги нечувствительны к регистру: #ХэшТег и #хэштег считаются одним и тем же тегом;
-// function validateHashtagCamalCase (value) {
-//   return value == value.toUpperCase();
-// }
-
-// // хэш-теги разделяются пробелами;
-// // один и тот же хэш-тег не может быть использован дважды;
-// // let array = [];
-
-// // function validateHashtagNotTwice (value) {
-// //   array.push(value);
-
-// //   if (array.includes(value)) {
-// //     console.log('У вас 2 одинаковых хэштега');
-// //   }
-// // }
-
-// // нельзя указать больше пяти хэш-тегов;
-// // if (array.length == 5) {
-// //   console.log('Максимальное количество хэштегов = 5');
-// // }
-
-//   // хэш-теги необязательны;
-//   // console.log(inputHashtag.value);
-//   // if (array.value = null) {
-//   //   console.log('Хэштеги необязательны');
-//   // }
-
-// // если фокус находится в поле ввода хэш-тега, нажатие на Esc не должно приводить к закрытию формы редактирования изображения.
-//   function focusOnInput () {
-//     return inputHashtag.addEventListener('focus', () => {
-//       document.removeEventListener('keydown', clickHandlerUploadByEsc);
-//     });
-//   }
-
-//   function validateHashtagTabEsc () {
-//     if () {
-
-//     }
-//   }
-
-//   // Поле хэштег
-//   // pristine.addValidator(inputHashtag, validateHashtagSymbol);
-//   pristine.addValidator(inputHashtag, validateHashtagMaxLength);
-//   pristine.addValidator(inputHashtag, validateHashtagMinLength);
-//   pristine.addValidator(inputHashtag, validateHashtagCamalCase);
-//   // pristine.addValidator(inputHashtag, validateHashtagNotTwice);
-//   });
-// }
-
-// validateForm();
 
