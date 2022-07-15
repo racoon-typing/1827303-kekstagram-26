@@ -40,6 +40,14 @@ function closenUploadPhoto() {
 
   document.addEventListener('keydown', clickHandlerUploadByEsc);
 
+  let activeElement = document.activeElement.tagName;
+
+  console.log(activeElement);
+
+  if (activeElement == 'Input') {
+    clickHandlerUploadByEsc.stopPropagation();
+  }
+
   uploadPhoto.value = '';
 }
 
