@@ -10,11 +10,7 @@ const tempalteCommentItem = document.querySelector('#comment-item')
 
 
 const likesCounter = document.querySelector('.social__comment-count');
-likesCounter.classList.add('hidden');
-
-const uploadComment = document.querySelector('.comments-loader');
-uploadComment.classList.add('hidden');
-
+// likesCounter.classList.add('hidden');
 
 // Открывает модальное окно
 function openModalWindow(url, likes, comments, description) {
