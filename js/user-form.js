@@ -31,12 +31,12 @@ function closenUploadPhoto() {
 
   uploadPhoto.value = '';
 
-  if (document.activeElement === inputHashtag) {
-    return;
-  }
-
   function clickHandlerUploadByEsc(e) {
     if (e.key === 'Escape') {
+      if (document.activeElement === inputHashtag) {
+        return;
+      }
+
       form.classList.add('hidden');
     }
   }
@@ -218,6 +218,7 @@ createEffect();
 // Проверка формы с помощью Pristine
 // const inputHashtag = form.querySelector('.text__hashtags');
 
+// Хэштег
 const HASHTAG_REGEX = /^#(?=.*[^0-9])[a-zа-яё0-9]{1,20}$/;
 
 function emailTest(value) {
@@ -250,9 +251,12 @@ function validateHashtagIsUnique(value) {
 //   return input == input.toUpperCase();
 // }
 
-// Закрытие формы Esc
+// Комментарий
+const inputComment = document.querySelector('.text__description');
 
-
+function validateCommentMaxLength(value) {
+  return value.length <= 140;
+}
 
 const pristine = new Pristine(form);
 
@@ -260,6 +264,8 @@ pristine.addValidator(inputHashtag, emailTest);
 pristine.addValidator(inputHashtag, validateHashtagMinLength);
 pristine.addValidator(inputHashtag, validateHashtagMaxLength);
 pristine.addValidator(inputHashtag, validateHashtagIsUnique);
+
+pristine.addValidator(inputComment, validateCommentMaxLength);
 
 form.addEventListener('submit', (evt) => {
   evt.preventDefault();
