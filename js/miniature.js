@@ -52,7 +52,7 @@ function createSimilarPhoto ({url, likes, comments, description}) {
   simylarElement.addEventListener('click', (evt) => {
     evt.preventDefault();
     openModalWindow(url, likes, comments, description);
-    getInvsibleComment();
+    // getInvsibleComment();
     getVisibleComment();
   });
 
