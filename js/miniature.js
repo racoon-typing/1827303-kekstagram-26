@@ -12,7 +12,7 @@ const miniatureList = document.createDocumentFragment();
 
 const buttonLoadComment = document.querySelector('.comments-loader');
 let commentList = document.querySelector('.social__comments').children;
-
+let invisibleNumber = 0;
 
 function getInvsibleComment () {
   let j = 5;
@@ -22,25 +22,34 @@ function getInvsibleComment () {
       commentList[j].classList.add('hidden');
       j++;
     }
-  }
-  // commentList.forEach(hideComment(commentList));
 
-  // if (commentList.length === comments.length) {
-  //   uploadComment.classList.add('hidden');
-  // }
+    if (commentList[i].classList.contains('hidden')) {
+      invisibleNumber++;
+      console.log(invisibleNumber);
+    }
+  }
+
 }
 
 function getVisibleComment () {
   buttonLoadComment.addEventListener('click', () => {
-    console.log('click');
 
-    for (let i = 6; i <= commentList.length; i++) {
-      console.log(i);
+    for (let i = 0; i <= commentList.length; i++) {
       commentList[i].classList.remove('hidden');
-      console.log(commentList[i]);
+    }
 
+    if (commentList[i].classList.contains('hidden')) {
+      invisibleNumber++;
+      console.log(invisibleNumber);
     }
   });
+}
+
+getVisibleComment();
+
+const commentVisible = document.querySelector('.comments-visible');
+function commentCountVisible () {
+  commentVisible.textContent = commentList.length - invisibleNumber;
 }
 
 function createSimilarPhoto ({url, likes, comments, description}) {
@@ -52,8 +61,8 @@ function createSimilarPhoto ({url, likes, comments, description}) {
   simylarElement.addEventListener('click', (evt) => {
     evt.preventDefault();
     openModalWindow(url, likes, comments, description);
-    // getInvsibleComment();
-    getVisibleComment();
+    getInvsibleComment();
+    commentCountVisible();
   });
 
   miniatureList.appendChild(simylarElement);
