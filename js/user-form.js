@@ -244,7 +244,7 @@ function validateHashtagIsUnique(value) {
   const hashtags = value.split(' ');
   const hashtagSet = new Set(hashtags);
 
-  return hashtags.length == hashtagSet.size;
+  return hashtags.length === hashtagSet.size;
 }
 
 // Кэмел кэйс

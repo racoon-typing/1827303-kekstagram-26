@@ -11,10 +11,10 @@ const similarPhoto = simylarData();
 const miniatureList = document.createDocumentFragment();
 
 const buttonLoadComment = document.querySelector('.comments-loader');
+let commentList = document.querySelector('.social__comments').children;
 
-function getVsibleComment (comments) {
-  let commentList = document.querySelector('.social__comments').children;
 
+function getInvsibleComment () {
   let j = 5;
   for (let i = 0; i <= commentList.length; i++) {
 
@@ -23,17 +23,24 @@ function getVsibleComment (comments) {
       j++;
     }
   }
-
-  buttonLoadComment.addEventListener('click', () => {
-    console.log('click');
-    commentList[j].classList.remove('hidden');
-  });
-
   // commentList.forEach(hideComment(commentList));
 
   // if (commentList.length === comments.length) {
   //   uploadComment.classList.add('hidden');
   // }
+}
+
+function getVisibleComment () {
+  buttonLoadComment.addEventListener('click', () => {
+    console.log('click');
+
+    for (let i = 6; i <= commentList.length; i++) {
+      console.log(i);
+      commentList[i].classList.remove('hidden');
+      console.log(commentList[i]);
+
+    }
+  });
 }
 
 function createSimilarPhoto ({url, likes, comments, description}) {
@@ -45,7 +52,8 @@ function createSimilarPhoto ({url, likes, comments, description}) {
   simylarElement.addEventListener('click', (evt) => {
     evt.preventDefault();
     openModalWindow(url, likes, comments, description);
-    getVsibleComment(comments);
+    getInvsibleComment();
+    getVisibleComment();
   });
 
   miniatureList.appendChild(simylarElement);

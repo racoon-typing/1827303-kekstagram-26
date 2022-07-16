@@ -9,7 +9,7 @@ const tempalteCommentItem = document.querySelector('#comment-item')
   .querySelector('.social__comment');
 
 
-const likesCounter = document.querySelector('.social__comment-count');
+// const likesCounter = document.querySelector('.social__comment-count');
 // likesCounter.classList.add('hidden');
 
 // Открывает модальное окно
