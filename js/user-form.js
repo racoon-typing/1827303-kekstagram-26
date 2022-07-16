@@ -22,6 +22,7 @@ openUploadPhoto();
 // Скрывает окно загрузки фото
 const buttonCloseUpload = document.querySelector('#upload-cancel');
 const inputHashtag = form.querySelector('.text__hashtags');
+const inputComment = document.querySelector('.text__description');
 
 function closenUploadPhoto() {
   buttonCloseUpload.addEventListener('click', () => {
@@ -33,7 +34,7 @@ function closenUploadPhoto() {
 
   function clickHandlerUploadByEsc(e) {
     if (e.key === 'Escape') {
-      if (document.activeElement === inputHashtag) {
+      if (document.activeElement === inputHashtag || document.activeElement === inputComment) {
         return;
       }
 
@@ -252,8 +253,6 @@ function validateHashtagIsUnique(value) {
 // }
 
 // Комментарий
-const inputComment = document.querySelector('.text__description');
-
 function validateCommentMaxLength(value) {
   return value.length <= 140;
 }
