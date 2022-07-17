@@ -60,6 +60,7 @@ const scaleContolStep = 25;
 
 function changeScaleValue() {
   if (scaleValueNumber === 100) {
+    // return;
     buttonScaleBigger.disabled = true;
   }
 

@@ -48,16 +48,17 @@ function createSimilarPhoto({ url, likes, comments, description }) {
   miniatureList.appendChild(simylarElement);
 }
 
-// function getVisibleComment() {
-//   buttonLoadComment.addEventListener('click', () => {
+function getVisibleComment() {
+  buttonLoadComment.addEventListener('click', () => {
 
-//     for (let i = 0; i <= commentList.length; i++) {
-//       commentList[i].classList.remove('hidden');
-//     }
-//   });
-// }
+    for (let i = 0; i <= commentList.length; i++) {
+      commentList[i].classList.remove('hidden');
+    }
 
-// getVisibleComment();
+  });
+}
+
+getVisibleComment();
 
 similarPhoto.forEach(createSimilarPhoto);
 
