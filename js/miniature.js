@@ -20,12 +20,16 @@ function getInvsibleComment() {
 
     if (commentList.length > 5) {
       for (let j = 5; j <= commentList.length; j++) {
-        commentList[j].classList.add('hidden');
+        if (commentList[j]) {
+          commentList[j].classList.add('hidden');
+        }
       }
     }
 
-    if (commentList[i].classList.contains('hidden')) {
-      invisibleNumber++;
+    if (commentList[i]) {
+      if (commentList[i].classList.contains('hidden')) {
+        invisibleNumber++;
+      }
     }
 
     commentVisible.textContent = commentList.length - invisibleNumber;
@@ -51,7 +55,9 @@ function getVisibleComment() {
   buttonLoadComment.addEventListener('click', () => {
 
     for (let i = 0; i <= commentList.length; i++) {
-      commentList[i].classList.remove('hidden');
+      if (commentList[i]) {
+        commentList[i].classList.remove('hidden');
+      }
     }
 
   });
