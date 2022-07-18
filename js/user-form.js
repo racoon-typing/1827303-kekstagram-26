@@ -59,40 +59,25 @@ let scaleValueNumber = parseInt(inputScale.value, 10);
 const scaleContolStep = 25;
 
 function changeScaleValue() {
-  if (scaleValueNumber === 100) {
-    // return;
-    buttonScaleBigger.disabled = true;
-  }
-
   buttonScaleSmaller.addEventListener('click', () => {
+    if (scaleValueNumber === 25) {
+      return;
+    }
+
     scaleValueNumber = scaleValueNumber - scaleContolStep;
     inputScale.value = `${scaleValueNumber}%`;
-
-    // Проверка соответсвия условию от 25% до 100%
-    if (scaleValueNumber === 25) {
-      buttonScaleSmaller.disabled = true;
-    }
-
-    if (scaleValueNumber < 100) {
-      buttonScaleBigger.disabled = false;
-    }
 
     uploadPhotoImg.style.transform = `scale(${scaleValueNumber / 100})`;
     return inputScale.value;
   });
 
   buttonScaleBigger.addEventListener('click', () => {
+    if (scaleValueNumber === 100) {
+      return;
+    }
+
     scaleValueNumber = scaleValueNumber + scaleContolStep;
     inputScale.value = `${scaleValueNumber}%`;
-
-    // Проверка соответсвия условию от 25% до 100%
-    if (scaleValueNumber === 100) {
-      buttonScaleBigger.disabled = true;
-    }
-
-    if (scaleValueNumber > 25) {
-      buttonScaleSmaller.disabled = false;
-    }
 
     uploadPhotoImg.style.transform = `scale(${scaleValueNumber / 100})`;
     return inputScale.value;
