@@ -26,7 +26,6 @@ function getInvsibleComment() {
 
     if (commentList[i].classList.contains('hidden')) {
       invisibleNumber++;
-      console.log(invisibleNumber);
     }
 
     commentVisible.textContent = commentList.length - invisibleNumber;

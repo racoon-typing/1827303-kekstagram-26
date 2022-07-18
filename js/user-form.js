@@ -90,7 +90,7 @@ changeScaleValue();
 // Добавляет эффект на фото
 const rangeSlider = document.querySelector('.effect-level');
 
-let currentEffect;
+// let currentEffect;
 
 function createEffect() {
   const effectControlItem = document.querySelectorAll('.effects__radio');
@@ -135,12 +135,10 @@ function createEffect() {
 
         // currentEffect = (values) => `grayscale(${values})`;
 
-        // rangeSlider.noUiSlider.on('update', (values) => {
-        //   let valueSlider = `grayscale(${values})`;
-        //   console.log(valueSlider);
-        //   console.log(values);
-        //   uploadPhotoImg.style.filter = valueSlider;
-        // });
+        rangeSlider.noUiSlider.on('update', (values) => {
+          let valueSlider = `grayscale(${values})`;
+          uploadPhotoImg.style.filter = valueSlider;
+        });
       }
 
       if (cssEffectByPhoto === 'effects__preview--sepia') {
@@ -203,9 +201,6 @@ function createEffect() {
 createEffect();
 
 // Проверка формы с помощью Pristine
-// const inputHashtag = form.querySelector('.text__hashtags');
-
-// Хэштег
 const HASHTAG_REGEX = /^#(?=.*[^0-9])[a-zа-яё0-9]{1,20}$/;
 
 function emailTest(value) {
@@ -233,6 +228,10 @@ function validateHashtagIsUnique(value) {
   return hashtags.length === hashtagSet.size;
 }
 
+function validateHashtagIsEmpty(value) {
+  return (value === '');
+}
+
 // Кэмел кэйс
 // function validateHashtagCamalCase(input) {
 //   return input == input.toUpperCase();
@@ -245,16 +244,20 @@ function validateCommentMaxLength(value) {
 
 const pristine = new Pristine(form);
 
+// Поле хэштега
 pristine.addValidator(inputHashtag, emailTest);
 pristine.addValidator(inputHashtag, validateHashtagMinLength);
 pristine.addValidator(inputHashtag, validateHashtagMaxLength);
 pristine.addValidator(inputHashtag, validateHashtagIsUnique);
+pristine.addValidator(inputHashtag, validateHashtagIsEmpty);
 
+// Поле комментария
 pristine.addValidator(inputComment, validateCommentMaxLength);
 
 form.addEventListener('submit', (evt) => {
   evt.preventDefault();
-  pristine.validate();
+  const valid = pristine.validate();
+  return valid;
 });
 
 
