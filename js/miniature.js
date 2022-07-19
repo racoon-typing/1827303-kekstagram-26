@@ -25,11 +25,11 @@ function getInvsibleComment() {
       }
     }
 
-    if (commentList.length < 5) {
+    if (commentList.length <= 5) {
       buttonLoadComment.classList.add('hidden');
     }
 
-    if (commentList.length >= 5) {
+    if (commentList.length > 5) {
       buttonLoadComment.classList.remove('hidden');
     }
   }
@@ -47,11 +47,7 @@ function countvisibleComment() {
   }
 
   commentVisible.textContent = commentList.length - invisibleNumber;
-  // console.log(commentVisible.textContent);
-
 }
-
-let visibleNumber = commentVisible.textContent;
 
 function getVisibleComment() {
   buttonLoadComment.addEventListener('click', () => {
@@ -63,14 +59,15 @@ function getVisibleComment() {
     }
 
     commentVisible.textContent = commentList.length;
+
+    let visibleNumber = parseInt(commentVisible.textContent, 10);
+
+    if (visibleNumber === commentList.length) {
+      buttonLoadComment.classList.add('hidden');
+    }
   });
 }
 
-function hideButtonLoadComment() {
-  if (visibleNumber === commentList.length) {
-    buttonLoadComment.classList.add('hidden');
-  }
-}
 
 function createSimilarPhoto({ url, likes, comments, description }) {
   const simylarElement = simylarPhotoTempalate.cloneNode(true);
@@ -84,12 +81,10 @@ function createSimilarPhoto({ url, likes, comments, description }) {
     getInvsibleComment();
     countvisibleComment();
     getVisibleComment();
-    hideButtonLoadComment(comments);
   });
 
   miniatureList.appendChild(simylarElement);
 }
-
 
 similarPhoto.forEach(createSimilarPhoto);
 
