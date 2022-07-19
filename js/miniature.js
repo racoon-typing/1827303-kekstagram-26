@@ -68,7 +68,6 @@ function getVisibleComment() {
   });
 }
 
-
 function createSimilarPhoto({ url, likes, comments, description }) {
   const simylarElement = simylarPhotoTempalate.cloneNode(true);
   simylarElement.querySelector('.picture__img').src = url;

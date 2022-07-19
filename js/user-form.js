@@ -255,9 +255,13 @@ pristine.addValidator(inputHashtag, validateHashtagIsEmpty);
 pristine.addValidator(inputComment, validateCommentMaxLength);
 
 form.addEventListener('submit', (evt) => {
-  evt.preventDefault();
   const valid = pristine.validate();
-  return valid;
+
+  console.log(valid);
+
+  if (valid) {
+    evt.preventDefault();
+  }
 });
 
 
