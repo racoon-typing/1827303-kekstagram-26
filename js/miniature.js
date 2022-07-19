@@ -13,7 +13,6 @@ const miniatureList = document.createDocumentFragment();
 const buttonLoadComment = document.querySelector('.comments-loader');
 const commentList = document.querySelector('.social__comments').children;
 const commentVisible = document.querySelector('.comments-visible');
-let invisibleNumber = 0;
 
 function getInvsibleComment() {
   for (let i = 0; i <= commentList.length; i++) {
@@ -25,30 +24,22 @@ function getInvsibleComment() {
         }
       }
     }
+  }
+}
 
+function countvisibleComment() {
+  let invisibleNumber = 0;
+
+  for (let i = 0; i <= commentList.length; i++) {
     if (commentList[i]) {
       if (commentList[i].classList.contains('hidden')) {
         invisibleNumber++;
       }
     }
-
-    commentVisible.textContent = commentList.length - invisibleNumber;
   }
-}
 
-function createSimilarPhoto({ url, likes, comments, description }) {
-  const simylarElement = simylarPhotoTempalate.cloneNode(true);
-  simylarElement.querySelector('.picture__img').src = url;
-  simylarElement.querySelector('.picture__likes').textContent = likes;
-  simylarElement.querySelector('.picture__comments').textContent = comments.length;
+  commentVisible.textContent = commentList.length - invisibleNumber;
 
-  simylarElement.addEventListener('click', (evt) => {
-    evt.preventDefault();
-    openModalWindow(url, likes, comments, description);
-    getInvsibleComment();
-  });
-
-  miniatureList.appendChild(simylarElement);
 }
 
 function getVisibleComment() {
@@ -60,10 +51,39 @@ function getVisibleComment() {
       }
     }
 
+    commentVisible.textContent = commentList.length;
   });
 }
 
-getVisibleComment();
+// function hideButtonLoadComment() {
+//   for (let i = 0; i <= commentList.length; i++) {
+//     if (commentList[i]) {
+//       if (!commentList[i].classList.contains('hidden')) {
+//         buttonLoadComment.classList.add('hidden');
+//       }
+//     }
+//   }
+// }
+
+// hideButtonLoadComment();
+
+function createSimilarPhoto({ url, likes, comments, description }) {
+  const simylarElement = simylarPhotoTempalate.cloneNode(true);
+  simylarElement.querySelector('.picture__img').src = url;
+  simylarElement.querySelector('.picture__likes').textContent = likes;
+  simylarElement.querySelector('.picture__comments').textContent = comments.length;
+
+  simylarElement.addEventListener('click', (evt) => {
+    evt.preventDefault();
+    openModalWindow(url, likes, comments, description);
+    getInvsibleComment();
+    countvisibleComment();
+    // hideButtonLoadComment();
+    getVisibleComment();
+  });
+
+  miniatureList.appendChild(simylarElement);
+}
 
 similarPhoto.forEach(createSimilarPhoto);
 
