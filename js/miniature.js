@@ -24,6 +24,14 @@ function getInvsibleComment() {
         }
       }
     }
+
+    if (commentList.length < 5) {
+      buttonLoadComment.classList.add('hidden');
+    }
+
+    if (commentList.length >= 5) {
+      buttonLoadComment.classList.remove('hidden');
+    }
   }
 }
 
@@ -39,8 +47,11 @@ function countvisibleComment() {
   }
 
   commentVisible.textContent = commentList.length - invisibleNumber;
+  // console.log(commentVisible.textContent);
 
 }
+
+let visibleNumber = commentVisible.textContent;
 
 function getVisibleComment() {
   buttonLoadComment.addEventListener('click', () => {
@@ -55,17 +66,11 @@ function getVisibleComment() {
   });
 }
 
-// function hideButtonLoadComment() {
-//   for (let i = 0; i <= commentList.length; i++) {
-//     if (commentList[i]) {
-//       if (!commentList[i].classList.contains('hidden')) {
-//         buttonLoadComment.classList.add('hidden');
-//       }
-//     }
-//   }
-// }
-
-// hideButtonLoadComment();
+function hideButtonLoadComment() {
+  if (visibleNumber === commentList.length) {
+    buttonLoadComment.classList.add('hidden');
+  }
+}
 
 function createSimilarPhoto({ url, likes, comments, description }) {
   const simylarElement = simylarPhotoTempalate.cloneNode(true);
@@ -78,12 +83,13 @@ function createSimilarPhoto({ url, likes, comments, description }) {
     openModalWindow(url, likes, comments, description);
     getInvsibleComment();
     countvisibleComment();
-    // hideButtonLoadComment();
     getVisibleComment();
+    hideButtonLoadComment(comments);
   });
 
   miniatureList.appendChild(simylarElement);
 }
+
 
 similarPhoto.forEach(createSimilarPhoto);
 
