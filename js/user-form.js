@@ -1,5 +1,5 @@
 // Показывает окно загрузки фото
-const form = document.querySelector('.img-upload__overlay');
+const form = document.querySelector('.img-upload__form');
 // form.classList.remove('hidden');
 
 const uploadPhotoImg = document.querySelector('.img-upload__preview img');
@@ -201,18 +201,12 @@ function createEffect() {
 createEffect();
 
 // Проверка формы с помощью Pristine
-const HASHTAG_REGEX = /^#(?=.*[^0-9])[a-zа-яё0-9]{1,20}$/;
+const HASHTAG_REGEX =/^#[A-Za-zА-Яа-яЁё0-9]{1,20}$/;
 
 function emailTest(value) {
   const hashtags = value.split(' ');
 
   return hashtags.every((hashtag) => HASHTAG_REGEX.test(hashtag));
-}
-
-function validateHashtagMinLength(value) {
-  const hashtags = value.split(' ');
-
-  return hashtags.length >= 1;
 }
 
 function validateHashtagMaxLength(value) {
@@ -226,10 +220,6 @@ function validateHashtagIsUnique(value) {
   const hashtagSet = new Set(hashtags);
 
   return hashtags.length === hashtagSet.size;
-}
-
-function validateHashtagIsEmpty(value) {
-  return (value === '');
 }
 
 // Кэмел кэйс
@@ -246,10 +236,8 @@ const pristine = new Pristine(form);
 
 // Поле хэштега
 pristine.addValidator(inputHashtag, emailTest);
-pristine.addValidator(inputHashtag, validateHashtagMinLength);
 pristine.addValidator(inputHashtag, validateHashtagMaxLength);
 pristine.addValidator(inputHashtag, validateHashtagIsUnique);
-pristine.addValidator(inputHashtag, validateHashtagIsEmpty);
 
 // Поле комментария
 pristine.addValidator(inputComment, validateCommentMaxLength);
@@ -257,9 +245,7 @@ pristine.addValidator(inputComment, validateCommentMaxLength);
 form.addEventListener('submit', (evt) => {
   const valid = pristine.validate();
 
-  console.log(valid);
-
-  if (valid) {
+  if (!valid) {
     evt.preventDefault();
   }
 });
