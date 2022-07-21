@@ -88,7 +88,7 @@ function changeScaleValue() {
 changeScaleValue();
 
 // Добавляет эффект на фото
-// const rangeSlider = document.querySelector('.effect-level');
+const rangeSlider = document.querySelector('.effect-level');
 
 // let currentEffect;
 
@@ -231,12 +231,12 @@ function validateCommentMaxLength(value) {
 
 const pristine = new Pristine(form);
 
-// Поле хэштега
+// Валидаторы поля хэштега
 pristine.addValidator(inputHashtag, emailTest);
 pristine.addValidator(inputHashtag, validateHashtagMaxLength);
 pristine.addValidator(inputHashtag, validateHashtagIsUnique);
 
-// Поле комментария
+// Валидаторы поля комментария
 pristine.addValidator(inputComment, validateCommentMaxLength);
 
 form.addEventListener('submit', (evt) => {
