@@ -88,6 +88,7 @@ function changeScaleValue() {
 changeScaleValue();
 
 // Добавляет эффект на фото
+
 const rangeSlider = document.querySelector('.effect-level');
 
 let currentEffect;
