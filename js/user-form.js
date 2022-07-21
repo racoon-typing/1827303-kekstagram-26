@@ -127,18 +127,15 @@ changeScaleValue();
 //       if (cssEffectByPhoto === 'effects__preview--chrome') {
 //         // rangeSlider.noUiSlider.off();
 
-//         noUiSlider.create(rangeSlider, settingOfRangeTen);
-
-
-// //  ДОДЕЛАТЬ
-
-
+//         // debugger;
+//         // noUiSlider.create(rangeSlider, settingOfRangeTen);
 //         // currentEffect = (values) => `grayscale(${values})`;
+//         // getFilter();
 
-//         rangeSlider.noUiSlider.on('update', (values) => {
-//           let valueSlider = `grayscale(${values})`;
-//           uploadPhotoImg.style.filter = valueSlider;
-//         });
+//         // rangeSlider.noUiSlider.on('update', (values) => {
+//         //   let valueSlider = `grayscale(${values})`;
+//         //   uploadPhotoImg.style.filter = valueSlider;
+//         // });
 //       }
 
 //       if (cssEffectByPhoto === 'effects__preview--sepia') {
@@ -192,7 +189,7 @@ changeScaleValue();
 //   }
 // }
 
-// function getFilter () {
+// function getFilter() {
 //   rangeSlider.noUiSlider.on('update', () => {
 //     uploadPhotoImg.style.filter = currentEffect;
 //   });
@@ -201,7 +198,7 @@ changeScaleValue();
 // createEffect();
 
 // Проверка формы с помощью Pristine
-const HASHTAG_REGEX =/^#[A-Za-zА-Яа-яЁё0-9]{1,20}$/;
+const HASHTAG_REGEX = /^#[A-Za-zА-Яа-яЁё0-9]{1,20}$/;
 
 function emailTest(value) {
   const hashtags = value.split(' ');
