@@ -126,6 +126,7 @@ function createEffect() {
 
       if (cssEffectByPhoto === 'effects__preview--chrome') {
         // rangeSlider.noUiSlider.off();
+
         // debugger;
         // noUiSlider.create(rangeSlider, settingOfRangeTen);
         // currentEffect = (values) => `grayscale(${values})`;
