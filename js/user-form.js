@@ -88,7 +88,6 @@ function changeScaleValue() {
 changeScaleValue();
 
 // Добавляет эффект на фото
-
 const rangeSlider = document.querySelector('.effect-level');
 
 let currentEffect;
@@ -127,10 +126,11 @@ function createEffect() {
 
       if (cssEffectByPhoto === 'effects__preview--chrome') {
         // rangeSlider.noUiSlider.off();
-        debugger;
-        noUiSlider.create(rangeSlider, settingOfRangeTen);
-        currentEffect = (values) => `grayscale(${values})`;
-        getFilter();
+
+        // debugger;
+        // noUiSlider.create(rangeSlider, settingOfRangeTen);
+        // currentEffect = (values) => `grayscale(${values})`;
+        // getFilter();
 
         // rangeSlider.noUiSlider.on('update', (values) => {
         //   let valueSlider = `grayscale(${values})`;
