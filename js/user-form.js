@@ -1,6 +1,8 @@
 // Показывает окно загрузки фото
 const formOverlay = document.querySelector('.img-upload__overlay');
 const form = document.querySelector('.img-upload__form');
+formOverlay.classList.remove('hidden');
+
 
 const uploadPhotoImg = document.querySelector('.img-upload__preview img');
 const uploadPhoto = document.querySelector('#upload-file');
@@ -90,13 +92,51 @@ changeScaleValue();
 // Добавляет эффект на фото
 const rangeSlider = document.querySelector('.effect-level');
 
-// let currentEffect;
+// Делегирование
+// const effectListElement = document.querySelectorAll('.effects__list');
 
-// function createEffect() {
-//   const effectControlItem = document.querySelectorAll('.effects__radio');
-//   for (let i = 0; i < effectControlItem.length; i++) {
-//     effectControlItem[i].addEventListener('click', () => {
-//       uploadPhotoImg.className = '';
+// function onEffect(evt) {
+//   if (evt.target.nodeName === 'INPUT') {
+//     console.log(evt.target);
+//   }
+// }
+
+// onEffect();
+
+let currentEffect;
+
+function createEffect() {
+  const effectControlItem = document.querySelectorAll('.effects__radio');
+  for (let i = 0; i < effectControlItem.length; i++) {
+
+    effectControlItem[i].addEventListener('click', () => {
+      const cssEffectByPhoto = `effects__preview--${effectControlItem[i].value}`;
+      uploadPhotoImg.classList.add(cssEffectByPhoto);
+
+      noUiSlider.create(rangeSlider, {
+        range: {
+          'min': 0,
+          'max': 10
+        },
+        start: 10,
+        step: 0.1,
+        connect: 'lower',
+      });
+
+      rangeSlider.noUiSlider.on('update', (values) => {
+        let valueSlider = `grayscale(${values})`;
+        uploadPhotoImg.style.filter = valueSlider;
+      });
+
+      if (cssEffectByPhoto === 'effects__preview--none') {
+        
+      }
+
+    });
+  }
+}
+
+// uploadPhotoImg.className = '';
 //       const cssEffectByPhoto = `effects__preview--${effectControlItem[i].value}`;
 //       uploadPhotoImg.classList.add(cssEffectByPhoto);
 
@@ -195,7 +235,7 @@ const rangeSlider = document.querySelector('.effect-level');
 //   });
 // }
 
-// createEffect();
+createEffect();
 
 // Проверка формы с помощью Pristine
 const HASHTAG_REGEX = /^#[A-Za-zА-Яа-яЁё0-9]{1,20}$/;
@@ -246,5 +286,3 @@ form.addEventListener('submit', (evt) => {
     evt.preventDefault();
   }
 });
-
-
