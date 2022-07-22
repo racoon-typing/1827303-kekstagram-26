@@ -3,7 +3,6 @@ const formOverlay = document.querySelector('.img-upload__overlay');
 const form = document.querySelector('.img-upload__form');
 formOverlay.classList.remove('hidden');
 
-
 const uploadPhotoImg = document.querySelector('.img-upload__preview img');
 const uploadPhoto = document.querySelector('#upload-file');
 
@@ -93,149 +92,135 @@ changeScaleValue();
 const rangeSlider = document.querySelector('.effect-level');
 
 // Делегирование
-// const effectListElement = document.querySelectorAll('.effects__list');
-
-// function onEffect(evt) {
-//   if (evt.target.nodeName === 'INPUT') {
-//     console.log(evt.target);
-//   }
+// function createEffect() {
+//   form.addEventListener('change', (evt) => {
+//     if (evt.target.name === 'effect') {
+//       console.log(evt.target);
+//     }
+//   });
 // }
 
-// onEffect();
+// createEffect();
 
-let currentEffect;
-
+// Прошлый вариант
 function createEffect() {
   const effectControlItem = document.querySelectorAll('.effects__radio');
   for (let i = 0; i < effectControlItem.length; i++) {
-
     effectControlItem[i].addEventListener('click', () => {
+      uploadPhotoImg.className = '';
       const cssEffectByPhoto = `effects__preview--${effectControlItem[i].value}`;
       uploadPhotoImg.classList.add(cssEffectByPhoto);
 
       noUiSlider.create(rangeSlider, {
         range: {
           'min': 0,
-          'max': 10
+          'max': 1
         },
-        start: 10,
+        start: 1,
         step: 0.1,
         connect: 'lower',
       });
 
-      rangeSlider.noUiSlider.on('update', (values) => {
-        let valueSlider = `grayscale(${values})`;
-        uploadPhotoImg.style.filter = valueSlider;
-      });
-
       if (cssEffectByPhoto === 'effects__preview--none') {
-        
+        rangeSlider.noUiSlider.destroy();
       }
 
+      if (cssEffectByPhoto === 'effects__preview--chrome') {
+        rangeSlider.noUiSlider.updateOptions({
+          range: {
+            'min': 0,
+            'max': 1
+          },
+          start: 1,
+          step: 0.1,
+          connect: 'lower',
+        });
+
+        rangeSlider.noUiSlider.on('update', (values) => {
+          let valueSlider = `grayscale(${values})`;
+          uploadPhotoImg.style.filter = valueSlider;
+        });
+      }
+
+      if (cssEffectByPhoto === 'effects__preview--sepia') {
+        rangeSlider.noUiSlider.updateOptions({
+          range: {
+            'min': 0,
+            'max': 1
+          },
+          start: 1,
+          step: 0.1,
+          connect: 'lower',
+        });
+
+        rangeSlider.noUiSlider.on('update', (values) => {
+          let valueSlider = `sepia(${values})`;
+          uploadPhotoImg.style.filter = valueSlider;
+        });
+      }
+
+      if (cssEffectByPhoto === 'effects__preview--marvin') {
+        rangeSlider.noUiSlider.updateOptions({
+          range: {
+            'min': 0,
+            'max': 100
+          },
+          start: 100,
+          step: 1,
+          connect: 'lower',
+        });
+
+        rangeSlider.noUiSlider.on('update', (values) => {
+          let valueSlider = `invert(${values})`;
+          console.log(valueSlider);
+          uploadPhotoImg.style.filter = valueSlider;
+        });
+      }
+
+      if (cssEffectByPhoto === 'effects__preview--phobos') {
+        rangeSlider.noUiSlider.updateOptions({
+          range: {
+            'min': 0,
+            'max': 3
+          },
+          start: 3,
+          step: 0.1,
+          connect: 'lower',
+        });
+
+        rangeSlider.noUiSlider.on('update', (values) => {
+          let valueSlider = `blur(${values})`;
+          console.log(valueSlider);
+          uploadPhotoImg.style.filter = valueSlider;
+        });
+      }
+
+      if (cssEffectByPhoto === 'effects__preview--heat') {
+        rangeSlider.noUiSlider.updateOptions({
+          range: {
+            'min': 1,
+            'max': 3
+          },
+          start: 3,
+          step: 0.1,
+          connect: 'lower',
+        });
+
+        rangeSlider.noUiSlider.on('update', (values) => {
+          let valueSlider = `brightness(${values})`;
+          console.log(valueSlider);
+          uploadPhotoImg.style.filter = valueSlider;
+        });
+      }
     });
   }
 }
 
-// uploadPhotoImg.className = '';
-//       const cssEffectByPhoto = `effects__preview--${effectControlItem[i].value}`;
-//       uploadPhotoImg.classList.add(cssEffectByPhoto);
-
-//       if (cssEffectByPhoto === 'effects__preview--none') {
-//         uploadPhotoImg.className = '';
-//       }
-
-//       const settingOfRangeTen = {
-//         start: [1],
-//         connect: 'lower',
-//         step: 0.1,
-//         range: {
-//           'min': 0,
-//           'max': 1
-//         }
-//       };
-
-//       const settingOfRangethirty = {
-//         start: [3],
-//         connect: 'lower',
-//         step: 0.1,
-//         range: {
-//           'min': 0,
-//           'max': 3
-//         }
-//       };
-
-//       if (cssEffectByPhoto === 'effects__preview--chrome') {
-//         // rangeSlider.noUiSlider.off();
-
-//         // debugger;
-//         // noUiSlider.create(rangeSlider, settingOfRangeTen);
-//         // currentEffect = (values) => `grayscale(${values})`;
-//         // getFilter();
-
-//         // rangeSlider.noUiSlider.on('update', (values) => {
-//         //   let valueSlider = `grayscale(${values})`;
-//         //   uploadPhotoImg.style.filter = valueSlider;
-//         // });
-//       }
-
-//       if (cssEffectByPhoto === 'effects__preview--sepia') {
-//         noUiSlider.create(rangeSlider, settingOfRangeTen);
-
-//         rangeSlider.noUiSlider.on('update', (values) => {
-//           let valueSlider = `sepia(${values})`;
-//           console.log(valueSlider);
-//           uploadPhotoImg.style.filter = valueSlider;
-//         });
-//       }
-
-//       if (cssEffectByPhoto === 'effects__preview--marvin') {
-//         noUiSlider.create(rangeSlider, {
-//           start: [100],
-//           connect: 'lower',
-//           step: 1,
-//           range: {
-//             'min': 0,
-//             'max': 100
-//           }
-//         });
-
-//         rangeSlider.noUiSlider.on('update', (values) => {
-//           let valueSlider = `invert(${values})`;
-//           console.log(valueSlider);
-//           uploadPhotoImg.style.filter = valueSlider;
-//         });
-//       }
-
-//       if (cssEffectByPhoto === 'effects__preview--phobos') {
-//         noUiSlider.create(rangeSlider, settingOfRangethirty);
-
-//         rangeSlider.noUiSlider.on('update', (values) => {
-//           let valueSlider = `blur(${values})`;
-//           console.log(valueSlider);
-//           uploadPhotoImg.style.filter = valueSlider;
-//         });
-//       }
-
-//       if (cssEffectByPhoto === 'effects__preview--heat') {
-//         noUiSlider.create(rangeSlider, settingOfRangethirty);
-
-//         rangeSlider.noUiSlider.on('update', (values) => {
-//           let valueSlider = `brightness(${values})`;
-//           console.log(valueSlider);
-//           uploadPhotoImg.style.filter = valueSlider;
-//         });
-//       }
-//     });
-//   }
-// }
+createEffect();
 
 // function getFilter() {
-//   rangeSlider.noUiSlider.on('update', () => {
-//     uploadPhotoImg.style.filter = currentEffect;
-//   });
+//   uploadPhotoImg.style.filter = currentEffect;
 // }
-
-createEffect();
 
 // Проверка формы с помощью Pristine
 const HASHTAG_REGEX = /^#[A-Za-zА-Яа-яЁё0-9]{1,20}$/;
