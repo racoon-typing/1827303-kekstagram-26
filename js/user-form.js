@@ -105,24 +105,26 @@ const rangeSlider = document.querySelector('.effect-level');
 // Прошлый вариант
 function createEffect() {
   const effectControlItem = document.querySelectorAll('.effects__radio');
+
+  noUiSlider.create(rangeSlider, {
+    range: {
+      'min': 0,
+      'max': 1
+    },
+    start: 1,
+    step: 0.1,
+    connect: 'lower',
+  });
+
   for (let i = 0; i < effectControlItem.length; i++) {
     effectControlItem[i].addEventListener('click', () => {
       uploadPhotoImg.className = '';
       const cssEffectByPhoto = `effects__preview--${effectControlItem[i].value}`;
       uploadPhotoImg.classList.add(cssEffectByPhoto);
 
-      noUiSlider.create(rangeSlider, {
-        range: {
-          'min': 0,
-          'max': 1
-        },
-        start: 1,
-        step: 0.1,
-        connect: 'lower',
-      });
 
       if (cssEffectByPhoto === 'effects__preview--none') {
-        rangeSlider.noUiSlider.destroy();
+        // rangeSlider.noUiSlider.destroy();
       }
 
       if (cssEffectByPhoto === 'effects__preview--chrome') {
