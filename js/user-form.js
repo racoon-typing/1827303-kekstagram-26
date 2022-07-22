@@ -218,10 +218,6 @@ function createEffect() {
 
 createEffect();
 
-// function getFilter() {
-//   uploadPhotoImg.style.filter = currentEffect;
-// }
-
 // Проверка формы с помощью Pristine
 const HASHTAG_REGEX = /^#[A-Za-zА-Яа-яЁё0-9]{1,20}$/;
 
