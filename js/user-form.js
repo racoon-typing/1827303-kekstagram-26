@@ -130,6 +130,17 @@ function createEffect() {
     start: 1,
     step: 0.1,
     connect: 'lower',
+    format: {
+      to: function (value) {
+        if (Number.isInteger(value)) {
+          return value.toFixed(0);
+        }
+        return value.toFixed(1);
+      },
+      from: function (value) {
+        return parseFloat(value);
+      },
+    },
   });
 
   for (let i = 0; i < effectControlItem.length; i++) {
@@ -207,7 +218,7 @@ function createEffect() {
         });
 
         rangeSlider.noUiSlider.on('update', (values) => {
-          const valueSlider = `invert(${values})`;
+          const valueSlider = `invert(${values}%)`;
           console.log(valueSlider);
           uploadPhotoImg.style.filter = valueSlider;
         });
@@ -229,7 +240,7 @@ function createEffect() {
         });
 
         rangeSlider.noUiSlider.on('update', (values) => {
-          const valueSlider = `blur(${values})`;
+          const valueSlider = `blur(${values}px)`;
           console.log(valueSlider);
           uploadPhotoImg.style.filter = valueSlider;
         });
