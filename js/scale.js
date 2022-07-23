@@ -1,4 +1,5 @@
 // Изменеят значение Scale
+const uploadPhotoImg = document.querySelector('.img-upload__preview img');
 const buttonScaleSmaller = document.querySelector('.scale__control--smaller');
 const buttonScaleBigger = document.querySelector('.scale__control--bigger');
 const inputScale = document.querySelector('.scale__control--value');
