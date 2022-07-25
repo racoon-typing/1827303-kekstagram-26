@@ -1,4 +1,5 @@
-// import { showAlert } from './api.js';
+import { showAlert } from './util.js';
+import { sendData } from './api.js';
 
 // Показывает окно загрузки фото
 const formOverlay = document.querySelector('.img-upload__overlay');
@@ -124,14 +125,48 @@ pristine.addValidator(inputHashtag, validateHashtagIsUnique);
 // Валидаторы поля комментария
 pristine.addValidator(inputComment, validateCommentMaxLength);
 
-form.addEventListener('submit', (evt) => {
-  const isValid = pristine.validate();
+const submitButton = document.querySelector('.img-upload__submit');
 
-  if (!isValid) {
+const blockSubmitButton = () => {
+  submitButton.disabled = true;
+  submitButton.textContent = 'Сохраняю...';
+};
+
+const unblockSubmitButton = () => {
+  submitButton.disabled = false;
+  submitButton.textContent = 'Сохранить';
+};
+
+// const setUserForm = (onSuccess) => {
+  form.addEventListener('submit', (evt) => {
     evt.preventDefault();
-  } else if (isValid) {
-    const formData = new FormData(evt.target);
 
-    
-  }
-});
+    const isValid = pristine.validate();
+
+    if (isValid) {
+      const formData = new FormData(evt.target);
+
+      fetch(
+        'https://26.javascript.pages.academy/kekstagram',
+        {
+          method: 'POST',
+          body: formData,
+        },
+      );
+      // blockSubmitButton();
+      // sendData(
+      //   () => {
+      //     onSuccess();
+      //     unblockSubmitButton();
+      //   },
+      //   () => {
+      //     showAlert('Не удалось отправить форму. Попробуйте ещё раз');
+      //     unblockSubmitButton();
+      //   },
+      //   new FormData(evt.target),
+      // );
+    }
+  });
+// };
+
+// export { setUserForm };

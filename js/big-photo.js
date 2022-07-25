@@ -58,5 +58,5 @@ function closeModalWindow() {
 
 closeModalWindow();
 
-export {openModalWindow};
+export {openModalWindow, closeModalWindow};
 

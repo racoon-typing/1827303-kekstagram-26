@@ -20,7 +20,7 @@ const sendData = (onSuccess, onFail, body) => () => {
     'https://26.javascript.pages.academy/kekstagram',
     {
       method: 'POST',
-      'Content-Type': 'multipart/form-data',
+      // 'Content-Type': 'multipart/form-data',
       body,
     })
     .then((response) => {
