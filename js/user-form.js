@@ -203,7 +203,7 @@ const setUserFormSubmit = (onSuccess, onFail) => {
         {
           method: 'POST',
           headers: {
-            'Content-Type': 'mulripart/form-data'
+            'Content-Type': 'multipart/form-data'
           },
           body: formData,
         },
