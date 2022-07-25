@@ -7,11 +7,7 @@ const commentListItem = document.querySelector('.social__comments');
 const tempalteCommentItem = document.querySelector('#comment-item')
   .content
   .querySelector('.social__comment');
-
-
-// const likesCounter = document.querySelector('.social__comment-count');
-// likesCounter.classList.add('hidden');
-
+  
 // Открывает модальное окно
 function openModalWindow(url, likes, comments, description) {
   document.body.classList.add('modal-open');

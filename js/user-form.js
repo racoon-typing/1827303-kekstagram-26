@@ -1,8 +1,6 @@
 // Показывает окно загрузки фото
 const formOverlay = document.querySelector('.img-upload__overlay');
 const form = document.querySelector('.img-upload__form');
-formOverlay.classList.remove('hidden');
-
 const uploadPhotoImg = document.querySelector('.img-upload__preview img');
 const uploadPhoto = document.querySelector('#upload-file');
 
