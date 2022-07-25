@@ -126,11 +126,13 @@ function resetSettings() {
   const onSuccessButton = document.querySelector('.success__button');
   onSuccessButton.addEventListener('click', () => {
     sectionSuccessElement.classList.add('hidden');
+    successMessage.remove();
   });
 
   function clickHandlerByEsc(e) {
     if (e.key === 'Escape') {
       sectionSuccessElement.classList.add('hidden');
+      successMessage.remove();
     }
   }
 
@@ -139,6 +141,13 @@ function resetSettings() {
   }
 
   document.addEventListener('keydown', clickHandlerByEsc);
+
+  window.addEventListener('click', (e) => {
+    const target = e.target;
+    if (!target.closest('.success__inner')) {
+      sectionSuccessElement.classList.add('hidden');
+    }
+  });
 }
 
 const setUserFormSubmit = (onSuccess) => {
