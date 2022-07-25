@@ -104,6 +104,30 @@ pristine.addValidator(inputComment, validateCommentMaxLength);
 //   submitButton.textContent = 'Сохранить';
 // };
 
+const inputScale = document.querySelector('.scale__control--value');
+const tempalteSuccessMessage = document.querySelector('#success')
+  .content
+  .querySelector('.success');
+
+function resetSettings() {
+  inputScale.value = '100%';
+  uploadPhotoImg.classList.remove();
+  inputHashtag.value = '';
+  inputComment.value = '';
+  uploadPhoto.value = '';
+  formOverlay.classList.add('hidden');
+
+  const successMessage = tempalteSuccessMessage.cloneNode(true);
+
+  document.body.append(successMessage);
+}
+
+const onSuccessButton = document.querySelector('.success__button');
+onSuccessButton.addEventListener('click', () => {
+
+});
+
+
 const setUserFormSubmit = (onSuccess) => {
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
@@ -140,4 +164,4 @@ const setUserFormSubmit = (onSuccess) => {
   });
 };
 
-export { setUserFormSubmit};
+export { setUserFormSubmit, resetSettings};
