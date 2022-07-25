@@ -158,6 +158,35 @@ function getErrorMessage() {
   const errorMessage = tempalteErrorMessage.cloneNode(true);
   document.body.append(errorMessage);
 
+  const sectionErrorElement = document.querySelector('.error');
+  sectionErrorElement.classList.remove('hidden');
+  formOverlay.classList.add('hidden');
+
+  const onErrorButton = document.querySelector('.error__button');
+  onErrorButton.addEventListener('click', () => {
+    onErrorButton.classList.add('hidden');
+    errorMessage.remove();
+  });
+
+  function clickHandlerByEsc(e) {
+    if (e.key === 'Escape') {
+      sectionErrorElement.classList.add('hidden');
+      errorMessage.remove();
+    }
+  }
+
+  if (sectionErrorElement.classList.contains('hidden') === true) {
+    document.removeEventListener('keydown', clickHandlerByEsc);
+  }
+
+  document.addEventListener('keydown', clickHandlerByEsc);
+
+  window.addEventListener('click', (e) => {
+    const target = e.target;
+    if (!target.closest('.success__inner')) {
+      sectionErrorElement.classList.add('hidden');
+    }
+  });
 }
 
 const setUserFormSubmit = (onSuccess, onFail) => {
