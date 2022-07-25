@@ -1,5 +1,5 @@
-import { showAlert } from './util.js';
-import { sendData } from './api.js';
+// import { showAlert } from './util.js';
+// import { sendData } from './api.js';
 
 // Показывает окно загрузки фото
 const formOverlay = document.querySelector('.img-upload__overlay');
@@ -51,37 +51,7 @@ function closenUploadPhoto() {
   document.addEventListener('keydown', clickHandlerUploadByEsc);
 }
 
-closenUploadPhoto();
-
-// Добавляет эффект на фото
-// const rangeSlider = document.querySelector('.effect-level');
-
-// Делегирование
-// function createEffect() {
-//   form.addEventListener('change', (evt) => {
-//     if (evt.target.name === 'effect') {
-//       const { value } = evt.target;
-
-//       console.log(evt.target);
-//       console.log(value);
-//       const cssEffectByPhoto = `effects__preview--${value}`;
-//       console.log(cssEffectByPhoto);
-
-//       switch (value) {
-//         case 'chrome':
-//           evt.target.classList.add(cssEffectByPhoto);
-//           // логика для chrome
-//           break;
-//         case 'sepia':
-//           // логика для sepia
-//           break;
-//       }
-
-//     }
-//   });
-// }
-
-// createEffect();
+// closenUploadPhoto();
 
 // Проверка формы с помощью Pristine
 const HASHTAG_REGEX = /^#[A-Za-zА-Яа-яЁё0-9]{1,20}$/;
@@ -125,17 +95,17 @@ pristine.addValidator(inputHashtag, validateHashtagIsUnique);
 // Валидаторы поля комментария
 pristine.addValidator(inputComment, validateCommentMaxLength);
 
-const submitButton = document.querySelector('.img-upload__submit');
+// const submitButton = document.querySelector('.img-upload__submit');
 
-const blockSubmitButton = () => {
-  submitButton.disabled = true;
-  submitButton.textContent = 'Сохраняю...';
-};
+// const blockSubmitButton = () => {
+//   submitButton.disabled = true;
+//   submitButton.textContent = 'Сохраняю...';
+// };
 
-const unblockSubmitButton = () => {
-  submitButton.disabled = false;
-  submitButton.textContent = 'Сохранить';
-};
+// const unblockSubmitButton = () => {
+//   submitButton.disabled = false;
+//   submitButton.textContent = 'Сохранить';
+// };
 
 const setUserFormSubmit = (onSuccess) => {
   form.addEventListener('submit', (evt) => {
@@ -150,9 +120,11 @@ const setUserFormSubmit = (onSuccess) => {
         'https://26.javascript.pages.academy/kekstagram',
         {
           method: 'POST',
+          // Content-Type; multipart/form-data,
           body: formData,
         },
-      );
+      ).then(() => onSuccess());
+
       // blockSubmitButton();
       // sendData(
       //   () => {
@@ -169,4 +141,4 @@ const setUserFormSubmit = (onSuccess) => {
   });
 };
 
-export { setUserFormSubmit };
+export { setUserFormSubmit, closenUploadPhoto};
