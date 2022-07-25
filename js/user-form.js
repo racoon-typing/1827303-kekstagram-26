@@ -1,6 +1,3 @@
-// import { showAlert } from './util.js';
-// import { sendData } from './api.js';
-
 // Показывает окно загрузки фото
 const formOverlay = document.querySelector('.img-upload__overlay');
 const form = document.querySelector('.img-upload__form');
@@ -26,7 +23,7 @@ const buttonCloseUpload = document.querySelector('#upload-cancel');
 const inputHashtag = form.querySelector('.text__hashtags');
 const inputComment = document.querySelector('.text__description');
 
-function closenUploadPhoto() {
+function closeUploadPhoto() {
   buttonCloseUpload.addEventListener('click', () => {
     document.body.classList.remove('modal-open');
     formOverlay.classList.add('hidden');
@@ -51,7 +48,7 @@ function closenUploadPhoto() {
   document.addEventListener('keydown', clickHandlerUploadByEsc);
 }
 
-// closenUploadPhoto();
+closeUploadPhoto();
 
 // Проверка формы с помощью Pristine
 const HASHTAG_REGEX = /^#[A-Za-zА-Яа-яЁё0-9]{1,20}$/;
@@ -120,7 +117,9 @@ const setUserFormSubmit = (onSuccess) => {
         'https://26.javascript.pages.academy/kekstagram',
         {
           method: 'POST',
-          // Content-Type; multipart/form-data,
+          headers: {
+            'Content-Type': 'mulripart/form-data'
+          },
           body: formData,
         },
       ).then(() => onSuccess());
@@ -141,4 +140,4 @@ const setUserFormSubmit = (onSuccess) => {
   });
 };
 
-export { setUserFormSubmit, closenUploadPhoto};
+export { setUserFormSubmit};

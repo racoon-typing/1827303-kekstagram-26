@@ -40,7 +40,7 @@ function countvisibleComment() {
 function getVisibleComment() {
   buttonLoadComment.addEventListener('click', () => {
 
-    for (let i = 0; i <= commentList.length; i++) {
+    for (let i = 5; i <= commentList.length; i++) {
       if (commentList[i]) {
         commentList[i].classList.remove('hidden');
       }
@@ -56,15 +56,20 @@ function getVisibleComment() {
   });
 }
 
-//  Метод slice
+// Новый вариант по 5 штук
+// function getVisibleComment() {
 
-// console.log(commentList);
+//   const countComment = 5;
 
-// const COMMENT_COUNT = 5;
-// let commentArray = [];
 
-// if (commentList.length <= 5) {
-//   commentArray = commentList.slice(0, COMMENT_COUNT);
+//   buttonLoadComment.addEventListener('click', () => {
+//     for (let i = 0; i <= n + 5; i++) {
+//       if (commentList[i]) {
+//         commentList[i].classList.remove('hidden');
+//         n = n + 5;
+//       }
+//     }
+//   });
 // }
 
-export {getInvsibleComment, countvisibleComment, getVisibleComment};
+export { getInvsibleComment, countvisibleComment, getVisibleComment };
