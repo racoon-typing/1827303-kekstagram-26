@@ -109,7 +109,7 @@ const tempalteSuccessMessage = document.querySelector('#success')
   .content
   .querySelector('.success');
 
-function resetSettings() {
+function getSuccessMessage() {
   inputScale.value = '100%';
   uploadPhotoImg.classList.remove();
   inputHashtag.value = '';
@@ -150,7 +150,17 @@ function resetSettings() {
   });
 }
 
-const setUserFormSubmit = (onSuccess) => {
+const tempalteErrorMessage = document.querySelector('#error')
+  .content
+  .querySelector('.error');
+
+function getErrorMessage() {
+  const errorMessage = tempalteErrorMessage.cloneNode(true);
+  document.body.append(errorMessage);
+
+}
+
+const setUserFormSubmit = (onSuccess, onFail) => {
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
 
@@ -168,7 +178,16 @@ const setUserFormSubmit = (onSuccess) => {
           },
           body: formData,
         },
-      ).then(() => onSuccess());
+      ).then((response) => {
+        if (response.ok) {
+          onSuccess();
+        } else {
+          onFail();
+        }
+      }
+      ).catch(() => {
+        onFail();
+      });
 
       // blockSubmitButton();
       // sendData(
@@ -186,4 +205,4 @@ const setUserFormSubmit = (onSuccess) => {
   });
 };
 
-export { setUserFormSubmit, resetSettings};
+export { setUserFormSubmit, getSuccessMessage, getErrorMessage};
