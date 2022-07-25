@@ -1,15 +1,6 @@
 import { simylarData } from './data.js';
 import { openModalWindow } from './big-photo.js';
 
-const simylarListElement = document.querySelector('.pictures');
-const simylarPhotoTempalate = document.querySelector('#picture')
-  .content
-  .querySelector('.picture');
-
-const similarPhoto = simylarData();
-
-const miniatureList = document.createDocumentFragment();
-
 const buttonLoadComment = document.querySelector('.comments-loader');
 const commentList = document.querySelector('.social__comments').children;
 const commentVisible = document.querySelector('.comments-visible');
@@ -60,13 +51,21 @@ function getVisibleComment() {
 
     commentVisible.textContent = commentList.length;
 
-    let visibleNumber = parseInt(commentVisible.textContent, 10);
+    const visibleNumber = parseInt(commentVisible.textContent, 10);
 
     if (visibleNumber === commentList.length) {
       buttonLoadComment.classList.add('hidden');
     }
   });
 }
+
+const simylarListElement = document.querySelector('.pictures');
+const simylarPhotoTempalate = document.querySelector('#picture')
+  .content
+  .querySelector('.picture');
+
+const similarPhoto = simylarData();
+const miniatureList = document.createDocumentFragment();
 
 function createSimilarPhoto({ url, likes, comments, description }) {
   const simylarElement = simylarPhotoTempalate.cloneNode(true);
