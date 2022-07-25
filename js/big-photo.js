@@ -56,7 +56,8 @@ function closeModalWindow() {
   document.addEventListener('keydown', clickHandlerByEsc);
 }
 
+// Экспортировать функцию и подставить в OnSucsess
 closeModalWindow();
 
-export {openModalWindow, closeModalWindow};
+export {openModalWindow};
 

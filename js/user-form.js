@@ -137,7 +137,7 @@ const unblockSubmitButton = () => {
   submitButton.textContent = 'Сохранить';
 };
 
-// const setUserForm = (onSuccess) => {
+const setUserFormSubmit = (onSuccess) => {
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
 
@@ -167,6 +167,6 @@ const unblockSubmitButton = () => {
       // );
     }
   });
-// };
+};
 
-// export { setUserForm };
+export { setUserFormSubmit };
