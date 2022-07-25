@@ -1,6 +1,7 @@
 // Показывает окно загрузки фото
 const formOverlay = document.querySelector('.img-upload__overlay');
 const form = document.querySelector('.img-upload__form');
+formOverlay.classList.remove('hidden');
 
 const uploadPhotoImg = document.querySelector('.img-upload__preview img');
 const uploadPhoto = document.querySelector('#upload-file');
@@ -51,147 +52,31 @@ function closenUploadPhoto() {
 
 closenUploadPhoto();
 
-// Изменеят значение Scale
-const buttonScaleSmaller = document.querySelector('.scale__control--smaller');
-const buttonScaleBigger = document.querySelector('.scale__control--bigger');
-const inputScale = document.querySelector('.scale__control--value');
-let scaleValueNumber = parseInt(inputScale.value, 10);
-const scaleContolStep = 25;
-
-function changeScaleValue() {
-  buttonScaleSmaller.addEventListener('click', () => {
-    if (scaleValueNumber === 25) {
-      return;
-    }
-
-    scaleValueNumber = scaleValueNumber - scaleContolStep;
-    inputScale.value = `${scaleValueNumber}%`;
-
-    uploadPhotoImg.style.transform = `scale(${scaleValueNumber / 100})`;
-    return inputScale.value;
-  });
-
-  buttonScaleBigger.addEventListener('click', () => {
-    if (scaleValueNumber === 100) {
-      return;
-    }
-
-    scaleValueNumber = scaleValueNumber + scaleContolStep;
-    inputScale.value = `${scaleValueNumber}%`;
-
-    uploadPhotoImg.style.transform = `scale(${scaleValueNumber / 100})`;
-    return inputScale.value;
-  });
-
-}
-
-changeScaleValue();
-
 // Добавляет эффект на фото
 // const rangeSlider = document.querySelector('.effect-level');
 
-// let currentEffect;
-
+// Делегирование
 // function createEffect() {
-//   const effectControlItem = document.querySelectorAll('.effects__radio');
-//   for (let i = 0; i < effectControlItem.length; i++) {
-//     effectControlItem[i].addEventListener('click', () => {
-//       uploadPhotoImg.className = '';
-//       const cssEffectByPhoto = `effects__preview--${effectControlItem[i].value}`;
-//       uploadPhotoImg.classList.add(cssEffectByPhoto);
+//   form.addEventListener('change', (evt) => {
+//     if (evt.target.name === 'effect') {
+//       const { value } = evt.target;
 
-//       if (cssEffectByPhoto === 'effects__preview--none') {
-//         uploadPhotoImg.className = '';
+//       console.log(evt.target);
+//       console.log(value);
+//       const cssEffectByPhoto = `effects__preview--${value}`;
+//       console.log(cssEffectByPhoto);
+
+//       switch (value) {
+//         case 'chrome':
+//           evt.target.classList.add(cssEffectByPhoto);
+//           // логика для chrome
+//           break;
+//         case 'sepia':
+//           // логика для sepia
+//           break;
 //       }
 
-//       const settingOfRangeTen = {
-//         start: [1],
-//         connect: 'lower',
-//         step: 0.1,
-//         range: {
-//           'min': 0,
-//           'max': 1
-//         }
-//       };
-
-//       const settingOfRangethirty = {
-//         start: [3],
-//         connect: 'lower',
-//         step: 0.1,
-//         range: {
-//           'min': 0,
-//           'max': 3
-//         }
-//       };
-
-//       if (cssEffectByPhoto === 'effects__preview--chrome') {
-//         // rangeSlider.noUiSlider.off();
-
-//         // debugger;
-//         // noUiSlider.create(rangeSlider, settingOfRangeTen);
-//         // currentEffect = (values) => `grayscale(${values})`;
-//         // getFilter();
-
-//         // rangeSlider.noUiSlider.on('update', (values) => {
-//         //   let valueSlider = `grayscale(${values})`;
-//         //   uploadPhotoImg.style.filter = valueSlider;
-//         // });
-//       }
-
-//       if (cssEffectByPhoto === 'effects__preview--sepia') {
-//         noUiSlider.create(rangeSlider, settingOfRangeTen);
-
-//         rangeSlider.noUiSlider.on('update', (values) => {
-//           let valueSlider = `sepia(${values})`;
-//           console.log(valueSlider);
-//           uploadPhotoImg.style.filter = valueSlider;
-//         });
-//       }
-
-//       if (cssEffectByPhoto === 'effects__preview--marvin') {
-//         noUiSlider.create(rangeSlider, {
-//           start: [100],
-//           connect: 'lower',
-//           step: 1,
-//           range: {
-//             'min': 0,
-//             'max': 100
-//           }
-//         });
-
-//         rangeSlider.noUiSlider.on('update', (values) => {
-//           let valueSlider = `invert(${values})`;
-//           console.log(valueSlider);
-//           uploadPhotoImg.style.filter = valueSlider;
-//         });
-//       }
-
-//       if (cssEffectByPhoto === 'effects__preview--phobos') {
-//         noUiSlider.create(rangeSlider, settingOfRangethirty);
-
-//         rangeSlider.noUiSlider.on('update', (values) => {
-//           let valueSlider = `blur(${values})`;
-//           console.log(valueSlider);
-//           uploadPhotoImg.style.filter = valueSlider;
-//         });
-//       }
-
-//       if (cssEffectByPhoto === 'effects__preview--heat') {
-//         noUiSlider.create(rangeSlider, settingOfRangethirty);
-
-//         rangeSlider.noUiSlider.on('update', (values) => {
-//           let valueSlider = `brightness(${values})`;
-//           console.log(valueSlider);
-//           uploadPhotoImg.style.filter = valueSlider;
-//         });
-//       }
-//     });
-//   }
-// }
-
-// function getFilter() {
-//   rangeSlider.noUiSlider.on('update', () => {
-//     uploadPhotoImg.style.filter = currentEffect;
+//     }
 //   });
 // }
 
@@ -231,12 +116,12 @@ function validateCommentMaxLength(value) {
 
 const pristine = new Pristine(form);
 
-// Поле хэштега
+// Валидаторы поля хэштега
 pristine.addValidator(inputHashtag, emailTest);
 pristine.addValidator(inputHashtag, validateHashtagMaxLength);
 pristine.addValidator(inputHashtag, validateHashtagIsUnique);
 
-// Поле комментария
+// Валидаторы поля комментария
 pristine.addValidator(inputComment, validateCommentMaxLength);
 
 form.addEventListener('submit', (evt) => {
@@ -246,5 +131,3 @@ form.addEventListener('submit', (evt) => {
     evt.preventDefault();
   }
 });
-
-
