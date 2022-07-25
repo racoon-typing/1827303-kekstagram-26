@@ -118,15 +118,16 @@ function resetSettings() {
   formOverlay.classList.add('hidden');
 
   const successMessage = tempalteSuccessMessage.cloneNode(true);
-
   document.body.append(successMessage);
+
+  const sectionSuccessElement = document.querySelector('.success');
+  sectionSuccessElement.classList.remove('hidden');
+
+  const onSuccessButton = document.querySelector('.success__button');
+  onSuccessButton.addEventListener('click', () => {
+    sectionSuccessElement.classList.add('hidden');
+  });
 }
-
-const onSuccessButton = document.querySelector('.success__button');
-onSuccessButton.addEventListener('click', () => {
-
-});
-
 
 const setUserFormSubmit = (onSuccess) => {
   form.addEventListener('submit', (evt) => {
