@@ -1,6 +1,3 @@
-// import { simylarData } from './data.js';
-// Мимо-данные
-
 import { openModalWindow } from './big-photo.js';
 import { getInvsibleComment, countvisibleComment, getVisibleComment } from './comment.js';
 
