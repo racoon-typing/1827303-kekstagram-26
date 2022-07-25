@@ -127,6 +127,18 @@ function resetSettings() {
   onSuccessButton.addEventListener('click', () => {
     sectionSuccessElement.classList.add('hidden');
   });
+
+  function clickHandlerByEsc(e) {
+    if (e.key === 'Escape') {
+      sectionSuccessElement.classList.add('hidden');
+    }
+  }
+
+  if (sectionSuccessElement.classList.contains('hidden') === true) {
+    document.removeEventListener('keydown', clickHandlerByEsc);
+  }
+
+  document.addEventListener('keydown', clickHandlerByEsc);
 }
 
 const setUserFormSubmit = (onSuccess) => {
