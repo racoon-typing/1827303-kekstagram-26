@@ -4,19 +4,8 @@ import './user-form.js';
 import './scale.js';
 import './effect.js';
 import {renderSimilarList} from './miniature.js';
+import {createLoader, showAlert} from './api.js';
 
-fetch('https://26.javascript.pages.academy/kekstagram/data')
-  .then((response) => {
-    if (response.ok) {
-      return response.json();
-    }
-
-    throw new Error(`${response.status} ${response.statusText}`);
-  })
-  .then((data) => {
-    renderSimilarList(data);
-  })
-  .catch((err) => {
-    console.error(err);
-  });
-
+// аргументы передать то что нужно, и сделать сообщение об ошибке
+const loadPhoto = createLoader(renderSimilarList, showAlert);
+loadPhoto();
