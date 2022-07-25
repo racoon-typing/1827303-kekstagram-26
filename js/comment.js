@@ -56,4 +56,15 @@ function getVisibleComment() {
   });
 }
 
+//  Метод slice
+
+console.log(commentList);
+
+const COMMENT_COUNT = 5;
+let commentArray = [];
+
+if (commentList.length <= 5) {
+  commentArray = commentList.slice(0, COMMENT_COUNT);
+}
+
 export {getInvsibleComment, countvisibleComment, getVisibleComment};
