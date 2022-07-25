@@ -1,3 +1,5 @@
+// import { showAlert } from './api.js';
+
 // Показывает окно загрузки фото
 const formOverlay = document.querySelector('.img-upload__overlay');
 const form = document.querySelector('.img-upload__form');
@@ -123,9 +125,13 @@ pristine.addValidator(inputHashtag, validateHashtagIsUnique);
 pristine.addValidator(inputComment, validateCommentMaxLength);
 
 form.addEventListener('submit', (evt) => {
-  const valid = pristine.validate();
+  const isValid = pristine.validate();
 
-  if (!valid) {
+  if (!isValid) {
     evt.preventDefault();
+  } else if (isValid) {
+    const formData = new FormData(evt.target);
+
+    
   }
 });
