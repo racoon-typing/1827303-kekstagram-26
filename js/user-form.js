@@ -119,7 +119,7 @@ function resetSettings () {
 }
 
 function getSuccessMessage() {
-  resetSettings ();
+  resetSettings();
   formOverlay.classList.add('hidden');
 
   const successMessage = tempalteSuccessMessage.cloneNode(true);
