@@ -104,17 +104,22 @@ pristine.addValidator(inputComment, validateCommentMaxLength);
 //   submitButton.textContent = 'Сохранить';
 // };
 
+// Сообщение об успехе
 const inputScale = document.querySelector('.scale__control--value');
 const tempalteSuccessMessage = document.querySelector('#success')
   .content
   .querySelector('.success');
 
-function getSuccessMessage() {
+function resetSettings () {
   inputScale.value = '100%';
   uploadPhotoImg.classList.remove();
   inputHashtag.value = '';
   inputComment.value = '';
   uploadPhoto.value = '';
+}
+
+function getSuccessMessage() {
+  resetSettings ();
   formOverlay.classList.add('hidden');
 
   const successMessage = tempalteSuccessMessage.cloneNode(true);
@@ -135,8 +140,10 @@ function getSuccessMessage() {
       successMessage.remove();
     }
   }
+  // Проверка с хидден
+  // sectionSuccessElement.classList.contains('hidden') === true
 
-  if (sectionSuccessElement.classList.contains('hidden') === true) {
+  if (!successMessage) {
     document.removeEventListener('keydown', clickHandlerByEsc);
   }
 
@@ -150,6 +157,7 @@ function getSuccessMessage() {
   });
 }
 
+// Сообщение об ошибке
 const tempalteErrorMessage = document.querySelector('#error')
   .content
   .querySelector('.error');
@@ -164,18 +172,18 @@ function getErrorMessage() {
 
   const onErrorButton = document.querySelector('.error__button');
   onErrorButton.addEventListener('click', () => {
-    onErrorButton.classList.add('hidden');
+    formOverlay.classList.remove('hidden');
     errorMessage.remove();
   });
 
   function clickHandlerByEsc(e) {
     if (e.key === 'Escape') {
-      sectionErrorElement.classList.add('hidden');
+      formOverlay.classList.remove('hidden');
       errorMessage.remove();
     }
   }
 
-  if (sectionErrorElement.classList.contains('hidden') === true) {
+  if (!errorMessage) {
     document.removeEventListener('keydown', clickHandlerByEsc);
   }
 
@@ -183,8 +191,9 @@ function getErrorMessage() {
 
   window.addEventListener('click', (e) => {
     const target = e.target;
-    if (!target.closest('.success__inner')) {
-      sectionErrorElement.classList.add('hidden');
+    if (!target.closest('.error__inner')) {
+      formOverlay.classList.remove('hidden');
+      errorMessage.remove();
     }
   });
 }
@@ -205,6 +214,7 @@ const setUserFormSubmit = (onSuccess, onFail) => {
           headers: {
             'Content-Type': 'multipart/form-data'
           },
+          mode: 'no-cors',
           body: formData,
         },
       ).then((response) => {
