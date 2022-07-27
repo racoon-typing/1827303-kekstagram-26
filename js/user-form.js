@@ -165,6 +165,7 @@ const tempalteErrorMessage = document.querySelector('#error')
 function getErrorMessage() {
   const errorMessage = tempalteErrorMessage.cloneNode(true);
   document.body.append(errorMessage);
+  document.addEventListener('keydown', clickHandlerByEsc);
 
   const sectionErrorElement = document.querySelector('.error');
   sectionErrorElement.classList.remove('hidden');
@@ -176,26 +177,27 @@ function getErrorMessage() {
     errorMessage.remove();
   });
 
+  function closeErrorMessage() {
+    formOverlay.classList.remove('hidden');
+    errorMessage.remove();
+    document.removeEventListener('keydown', clickHandlerByEsc);
+    window.removeEventListener('click', onOutsideErrorMessageClick());
+  }
+
   function clickHandlerByEsc(e) {
     if (e.key === 'Escape') {
-      formOverlay.classList.remove('hidden');
-      errorMessage.remove();
+      closeErrorMessage();
     }
   }
 
-  if (!errorMessage) {
-    document.removeEventListener('keydown', clickHandlerByEsc);
-  }
-
-  document.addEventListener('keydown', clickHandlerByEsc);
-
-  window.addEventListener('click', (e) => {
+  function onOutsideErrorMessageClick(e) {
     const target = e.target;
     if (!target.closest('.error__inner')) {
-      formOverlay.classList.remove('hidden');
-      errorMessage.remove();
+      closeErrorMessage();
     }
-  });
+  }
+
+  window.addEventListener('click', onOutsideErrorMessageClick());
 }
 
 const setUserFormSubmit = (onSuccess, onFail) => {
