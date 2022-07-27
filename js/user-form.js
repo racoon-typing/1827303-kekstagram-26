@@ -166,6 +166,7 @@ function getErrorMessage() {
   const errorMessage = tempalteErrorMessage.cloneNode(true);
   document.body.append(errorMessage);
   document.addEventListener('keydown', clickHandlerByEsc);
+  document.addEventListener('click', onOutsideErrorMessageClick);
 
   const sectionErrorElement = document.querySelector('.error');
   sectionErrorElement.classList.remove('hidden');
@@ -174,16 +175,13 @@ function getErrorMessage() {
   const onErrorButton = document.querySelector('.error__button');
   onErrorButton.addEventListener('click', () => {
     closeErrorMessage();
-
-    // formOverlay.classList.remove('hidden');
-    // errorMessage.remove();
   });
 
   function closeErrorMessage() {
     formOverlay.classList.remove('hidden');
     errorMessage.remove();
     document.removeEventListener('keydown', clickHandlerByEsc);
-    window.removeEventListener('click', onOutsideErrorMessageClick());
+    document.removeEventListener('click', onOutsideErrorMessageClick);
   }
 
   function clickHandlerByEsc(e) {
@@ -198,8 +196,6 @@ function getErrorMessage() {
       closeErrorMessage();
     }
   }
-
-  window.addEventListener('click', onOutsideErrorMessageClick());
 }
 
 const setUserFormSubmit = (onSuccess, onFail) => {
