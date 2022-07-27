@@ -173,8 +173,10 @@ function getErrorMessage() {
 
   const onErrorButton = document.querySelector('.error__button');
   onErrorButton.addEventListener('click', () => {
-    formOverlay.classList.remove('hidden');
-    errorMessage.remove();
+    closeErrorMessage();
+
+    // formOverlay.classList.remove('hidden');
+    // errorMessage.remove();
   });
 
   function closeErrorMessage() {
@@ -210,7 +212,7 @@ const setUserFormSubmit = (onSuccess, onFail) => {
       const formData = new FormData(evt.target);
 
       fetch(
-        'https://26.javascript.pages.academy/kekstagram',
+        'https://26.javascript.pages.academy/kekstagra',
         {
           method: 'POST',
           body: formData,
