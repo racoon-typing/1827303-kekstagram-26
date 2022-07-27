@@ -211,7 +211,6 @@ const setUserFormSubmit = (onSuccess, onFail) => {
         'https://26.javascript.pages.academy/kekstagram',
         {
           method: 'POST',
-          mode: 'no-cors',
           body: formData,
         },
       ).then((response) => {
