@@ -124,37 +124,36 @@ function getSuccessMessage() {
 
   const successMessage = tempalteSuccessMessage.cloneNode(true);
   document.body.append(successMessage);
+  document.addEventListener('keydown', clickHandlerByEsc);
+  document.addEventListener('click', onOutsideErrorMessageClick);
 
   const sectionSuccessElement = document.querySelector('.success');
   sectionSuccessElement.classList.remove('hidden');
 
   const onSuccessButton = document.querySelector('.success__button');
   onSuccessButton.addEventListener('click', () => {
+    closeSuccessMessage();
+  });
+
+  function closeSuccessMessage() {
     sectionSuccessElement.classList.add('hidden');
     successMessage.remove();
-  });
+    document.removeEventListener('keydown', clickHandlerByEsc);
+    document.removeEventListener('click', onOutsideErrorMessageClick);
+  }
 
   function clickHandlerByEsc(e) {
     if (e.key === 'Escape') {
-      sectionSuccessElement.classList.add('hidden');
-      successMessage.remove();
+      closeSuccessMessage();
     }
   }
-  // Проверка с хидден
-  // sectionSuccessElement.classList.contains('hidden') === true
 
-  if (!successMessage) {
-    document.removeEventListener('keydown', clickHandlerByEsc);
-  }
-
-  document.addEventListener('keydown', clickHandlerByEsc);
-
-  window.addEventListener('click', (e) => {
+  function onOutsideErrorMessageClick(e) {
     const target = e.target;
     if (!target.closest('.success__inner')) {
-      sectionSuccessElement.classList.add('hidden');
+      closeSuccessMessage();
     }
-  });
+  }
 }
 
 // Сообщение об ошибке
@@ -208,7 +207,7 @@ const setUserFormSubmit = (onSuccess, onFail) => {
       const formData = new FormData(evt.target);
 
       fetch(
-        'https://26.javascript.pages.academy/kekstagra',
+        'https://26.javascript.pages.academy/kekstagram',
         {
           method: 'POST',
           body: formData,
