@@ -24,6 +24,15 @@ const inputHashtag = form.querySelector('.text__hashtags');
 const inputComment = document.querySelector('.text__description');
 
 function closeUploadPhoto() {
+  document.addEventListener('keydown', clickHandlerUploadByEsc);
+
+  function closeModalWindow() {
+    uploadPhoto.value = '';
+    document.body.classList.remove('modal-open');
+    formOverlay.classList.add('hidden');
+    document.removeEventListener('keydown', clickHandlerUploadByEsc);
+  }
+
   buttonCloseUpload.addEventListener('click', () => {
     closeModalWindow();
   });
@@ -37,15 +46,6 @@ function closeUploadPhoto() {
       closeModalWindow();
     }
   }
-
-  function closeModalWindow() {
-    uploadPhoto.value = '';
-    document.body.classList.remove('modal-open');
-    formOverlay.classList.add('hidden');
-    document.removeEventListener('keydown', clickHandlerUploadByEsc);
-  }
-
-  document.addEventListener('keydown', clickHandlerUploadByEsc);
 }
 
 closeUploadPhoto();
