@@ -2,6 +2,9 @@ const buttonLoadComment = document.querySelector('.comments-loader');
 const commentList = document.querySelector('.social__comments').children;
 const commentVisible = document.querySelector('.comments-visible');
 
+let visibleCommentAmount = 5;
+const commenstToShow = 5;
+
 function getInvsibleComment() {
   for (let i = 0; i <= commentList.length; i++) {
 
@@ -40,13 +43,14 @@ function countvisibleComment() {
 function getVisibleComment() {
   buttonLoadComment.addEventListener('click', () => {
 
-    for (let i = 5; i <= commentList.length; i++) {
+    for (let i = visibleCommentAmount; i <= visibleCommentAmount + commenstToShow; i++) {
       if (commentList[i]) {
         commentList[i].classList.remove('hidden');
       }
     }
 
-    commentVisible.textContent = commentList.length;
+    commentVisible.textContent = Math.min(visibleCommentAmount + commenstToShow, commentList.length);
+    visibleCommentAmount = visibleCommentAmount + commenstToShow;
 
     const visibleNumber = parseInt(commentVisible.textContent, 10);
 
