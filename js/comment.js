@@ -60,20 +60,4 @@ function getVisibleComment() {
   });
 }
 
-// Новый вариант по 5 штук
-// function getVisibleComment() {
-
-//   const countComment = 5;
-
-
-//   buttonLoadComment.addEventListener('click', () => {
-//     for (let i = 0; i <= n + 5; i++) {
-//       if (commentList[i]) {
-//         commentList[i].classList.remove('hidden');
-//         n = n + 5;
-//       }
-//     }
-//   });
-// }
-
 export { getInvsibleComment, countvisibleComment, getVisibleComment };
