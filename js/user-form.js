@@ -25,11 +25,8 @@ const inputComment = document.querySelector('.text__description');
 
 function closeUploadPhoto() {
   buttonCloseUpload.addEventListener('click', () => {
-    document.body.classList.remove('modal-open');
-    formOverlay.classList.add('hidden');
+    closeModalWindow();
   });
-
-  uploadPhoto.value = '';
 
   function clickHandlerUploadByEsc(e) {
     if (e.key === 'Escape') {
@@ -37,11 +34,14 @@ function closeUploadPhoto() {
         return;
       }
 
-      formOverlay.classList.add('hidden');
+      closeModalWindow();
     }
   }
 
-  if (formOverlay.classList.contains('hidden') === true) {
+  function closeModalWindow() {
+    uploadPhoto.value = '';
+    document.body.classList.remove('modal-open');
+    formOverlay.classList.add('hidden');
     document.removeEventListener('keydown', clickHandlerUploadByEsc);
   }
 
@@ -113,6 +113,7 @@ const tempalteSuccessMessage = document.querySelector('#success')
 function resetSettings () {
   inputScale.value = '100%';
   uploadPhotoImg.classList.remove();
+  uploadPhotoImg.style.filter = '';
   inputHashtag.value = '';
   inputComment.value = '';
   uploadPhoto.value = '';
