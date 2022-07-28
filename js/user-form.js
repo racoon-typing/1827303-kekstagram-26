@@ -8,6 +8,7 @@ function openUploadPhoto() {
   uploadPhoto.addEventListener('change', () => {
     document.body.classList.add('modal-open');
     formOverlay.classList.remove('hidden');
+    document.addEventListener('keydown', clickHandlerUploadByEsc);
 
     const selectedFile = uploadPhoto.files[0];
     const fileUrl = URL.createObjectURL(selectedFile);
@@ -24,31 +25,25 @@ const inputHashtag = form.querySelector('.text__hashtags');
 const inputComment = document.querySelector('.text__description');
 
 function closeUploadPhoto() {
-  document.addEventListener('keydown', clickHandlerUploadByEsc);
-
-  function closeModalWindow() {
-    uploadPhoto.value = '';
-    document.body.classList.remove('modal-open');
-    formOverlay.classList.add('hidden');
-    document.removeEventListener('keydown', clickHandlerUploadByEsc);
-  }
-
-  buttonCloseUpload.addEventListener('click', () => {
-    closeModalWindow();
-  });
-
-  function clickHandlerUploadByEsc(e) {
-    if (e.key === 'Escape') {
-      if (document.activeElement === inputHashtag || document.activeElement === inputComment) {
-        return;
-      }
-
-      closeModalWindow();
-    }
-  }
+  uploadPhoto.value = '';
+  document.body.classList.remove('modal-open');
+  formOverlay.classList.add('hidden');
+  document.removeEventListener('keydown', clickHandlerUploadByEsc);
 }
 
-closeUploadPhoto();
+buttonCloseUpload.addEventListener('click', () => {
+  closeUploadPhoto();
+});
+
+function clickHandlerUploadByEsc(e) {
+  if (e.key === 'Escape') {
+    if (document.activeElement === inputHashtag || document.activeElement === inputComment) {
+      return;
+    }
+
+    closeUploadPhoto();
+  }
+}
 
 // Проверка формы с помощью Pristine
 const HASHTAG_REGEX = /^#[A-Za-zА-Яа-яЁё0-9]{1,20}$/;
@@ -110,7 +105,7 @@ const tempalteSuccessMessage = document.querySelector('#success')
   .content
   .querySelector('.success');
 
-function resetSettings () {
+function resetSettings() {
   inputScale.value = '100%';
   uploadPhotoImg.classList.remove();
   uploadPhotoImg.style.filter = '';
@@ -240,4 +235,4 @@ const setUserFormSubmit = (onSuccess, onFail) => {
   });
 };
 
-export { setUserFormSubmit, getSuccessMessage, getErrorMessage};
+export { setUserFormSubmit, getSuccessMessage, getErrorMessage };
