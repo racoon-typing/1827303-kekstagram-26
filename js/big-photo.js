@@ -8,10 +8,6 @@ const tempalteCommentItem = document.querySelector('#comment-item')
   .content
   .querySelector('.social__comment');
 
-
-// const likesCounter = document.querySelector('.social__comment-count');
-// likesCounter.classList.add('hidden');
-
 // Открывает модальное окно
 function openModalWindow(url, likes, comments, description) {
   document.body.classList.add('modal-open');
@@ -36,18 +32,20 @@ function createComment({ avatar, name, message }) {
   commentListItem.appendChild(similarComment);
 }
 
+const tegBody = document.querySelector('body');
+
 // Закрывает модальное окно
 function closeModalWindow() {
   const buttonClose = document.querySelector('#picture-cancel');
   buttonClose.addEventListener('click', () => {
     modalWindow.classList.add('hidden');
-    const tegBody = document.querySelector('body');
     tegBody.classList.remove('modal-open');
   });
 
   function clickHandlerByEsc(e) {
     if (e.key === 'Escape') {
       modalWindow.classList.add('hidden');
+      tegBody.classList.remove('modal-open');
     }
   }
 
