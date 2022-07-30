@@ -1,3 +1,6 @@
+import { sendData } from './api.js';
+
+
 // Показывает окно загрузки фото
 const formOverlay = document.querySelector('.img-upload__overlay');
 const form = document.querySelector('.img-upload__form');
@@ -200,37 +203,14 @@ const setUserFormSubmit = (onSuccess, onFail) => {
     const isValid = pristine.validate();
 
     if (isValid) {
-      const formData = new FormData(evt.target);
+      sendData(
+        () => onSuccess(),
+        () => onFail('Не удалось отправить форму. Попробуйте ещё раз'),
+        new FormData(evt.target),
+      );
 
-      fetch(
-        'https://26.javascript.pages.academy/kekstagram',
-        {
-          method: 'POST',
-          body: formData,
-        },
-      ).then((response) => {
-        if (response.ok) {
-          onSuccess();
-        } else {
-          onFail();
-        }
-      }
-      ).catch(() => {
-        onFail();
-      });
+      // const formData = new FormData(evt.target);
 
-      // blockSubmitButton();
-      // sendData(
-      //   () => {
-      //     onSuccess();
-      //     unblockSubmitButton();
-      //   },
-      //   () => {
-      //     showAlert('Не удалось отправить форму. Попробуйте ещё раз');
-      //     unblockSubmitButton();
-      //   },
-      //   new FormData(evt.target),
-      // );
     }
   });
 };
