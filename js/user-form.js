@@ -1,6 +1,5 @@
 import { sendData } from './api.js';
 
-
 // Показывает окно загрузки фото
 const formOverlay = document.querySelector('.img-upload__overlay');
 const form = document.querySelector('.img-upload__form');
@@ -205,7 +204,7 @@ const setUserFormSubmit = (onSuccess, onFail) => {
     if (isValid) {
       sendData(
         () => onSuccess(),
-        () => onFail('Не удалось отправить форму. Попробуйте ещё раз'),
+        () => onFail(),
         new FormData(evt.target),
       );
     }

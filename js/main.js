@@ -11,5 +11,4 @@ import { setUserFormSubmit, getSuccessMessage, getErrorMessage } from './user-fo
 const loadPhoto = getData(renderSimilarList, showAlert);
 loadPhoto();
 
-const uploadData = setUserFormSubmit(getSuccessMessage, getErrorMessage);
-uploadData();
+setUserFormSubmit(getSuccessMessage, getErrorMessage);
