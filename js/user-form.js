@@ -168,7 +168,7 @@ function getErrorMessage() {
 
   const sectionErrorElement = document.querySelector('.error');
   sectionErrorElement.classList.remove('hidden');
-  formOverlay.classList.add('hidden');
+  // formOverlay.classList.add('hidden');
 
   const onErrorButton = document.querySelector('.error__button');
   onErrorButton.addEventListener('click', () => {
@@ -176,7 +176,7 @@ function getErrorMessage() {
   });
 
   function closeErrorMessage() {
-    formOverlay.classList.remove('hidden');
+    // formOverlay.classList.remove('hidden');
     errorMessage.remove();
     document.removeEventListener('keydown', clickHandlerByEsc);
     document.removeEventListener('click', onOutsideErrorMessageClick);
