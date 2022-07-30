@@ -208,9 +208,6 @@ const setUserFormSubmit = (onSuccess, onFail) => {
         () => onFail('Не удалось отправить форму. Попробуйте ещё раз'),
         new FormData(evt.target),
       );
-
-      // const formData = new FormData(evt.target);
-
     }
   });
 };
