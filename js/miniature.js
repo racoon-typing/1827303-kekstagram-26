@@ -30,31 +30,34 @@ function createSimilarPhoto({ url, likes, comments, description }) {
   miniatureList.appendChild(simylarElement);
 }
 
-function comparePhoto() {
-  formFilter.addEventListener('click', (evt) => {
-    if (evt.target === ) {
-
-    }
-
-    if (evt.target === ) {
-
-    }
-
-    if (evt.target === ) {
-
-    }
-  });
-}
-
 const renderSimilarList = (similarPhoto) => {
   similarPhoto
-    .slice()
-    .sort(comparePhoto)
     .forEach(createSimilarPhoto);
 
   filterPhoto.classList.remove('img-filters--inactive');
 
   simylarListElement.appendChild(miniatureList);
+  comparePhoto(similarPhoto);
 };
+
+function comparePhoto(similarPhoto) {
+  formFilter.addEventListener('click', (evt) => {
+    if (evt.target.id === 'filter-default') {
+      simylarListElement.innerHTML = '';
+      similarPhoto
+        .slice()
+        .forEach(createSimilarPhoto);
+      simylarListElement.appendChild(miniatureList);
+    }
+
+    // if (evt.target.id === 'filter-random') {
+
+    // }
+
+    // if (evt.target.id === 'filter-discussed') {
+
+    // }
+  });
+}
 
 export { renderSimilarList };
