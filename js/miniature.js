@@ -40,14 +40,21 @@ const renderSimilarList = (similarPhoto) => {
   comparePhoto(similarPhoto);
 };
 
+function sortPhoto (data) {
+  for (let i = 0; i <= data.length; i++) {
+    if (data[i]) {
+      data[i].likes
+
+    }
+  }
+}
+
 function comparePhoto(data) {
   formFilter.addEventListener('click', (evt) => {
     const photoElements = document.querySelectorAll('.picture');
-
-  console.log(data);
+    console.log(data);
 
     if (evt.target.id === 'filter-default') {
-
       for (let i = 0; i <= photoElements.length; i++) {
         if (photoElements[i]) {
           photoElements[i].remove();
@@ -74,9 +81,18 @@ function comparePhoto(data) {
       simylarListElement.appendChild(miniatureList);
     }
 
-    // if (evt.target.id === 'filter-discussed') {
+    if (evt.target.id === 'filter-discussed') {
+      for (let i = 0; i <= photoElements.length; i++) {
+        if (photoElements[i]) {
+          photoElements[i].remove();
+        }
+      }
 
-    // }
+      // data
+      // .slice();
+
+      console.log(data({ likes }));
+    }
   });
 }
 
