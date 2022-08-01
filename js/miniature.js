@@ -40,11 +40,10 @@ const renderSimilarList = (similarPhoto) => {
   comparePhoto(similarPhoto);
 };
 
-function sortPhoto (data) {
+function sortPhoto(data) {
   for (let i = 0; i <= data.length; i++) {
     if (data[i]) {
-      data[i].likes
-
+      return data[i].likes - data[i + 1].likes;
     }
   }
 }
@@ -88,10 +87,12 @@ function comparePhoto(data) {
         }
       }
 
-      // data
-      // .slice();
+      data
+        .slice()
+        .sort(sortPhoto)
+        .forEach(createSimilarPhoto);
 
-      console.log(data({ likes }));
+      simylarListElement.appendChild(miniatureList);
     }
   });
 }
