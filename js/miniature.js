@@ -75,6 +75,7 @@ function comparePhoto(data) {
 
       data
         .slice()
+        .sort(() => Math.random() - 0.5)
         .slice(0, 10)
         .forEach(createSimilarPhoto);
       simylarListElement.appendChild(miniatureList);
