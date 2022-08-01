@@ -1,5 +1,6 @@
 import { openModalWindow } from './big-photo.js';
 import { getInvsibleComment, countvisibleComment, getVisibleComment } from './comment.js';
+import { debounce } from './util.js';
 
 const simylarListElement = document.querySelector('.pictures');
 const simylarPhotoTempalate = document.querySelector('#picture')
@@ -40,6 +41,16 @@ const renderSimilarList = (similarPhoto) => {
   comparePhoto(similarPhoto);
 };
 
+const RERENDER_DELAY = 500;
+
+function appendPhoto () {
+  simylarListElement.appendChild(miniatureList);
+}
+
+function setDebounce (cb) {
+  cb();
+}
+
 function comparePhoto(data) {
   formFilter.addEventListener('click', (evt) => {
     const photoElements = document.querySelectorAll('.picture');
@@ -54,7 +65,10 @@ function comparePhoto(data) {
       data
         .slice()
         .forEach(createSimilarPhoto);
-      simylarListElement.appendChild(miniatureList);
+
+      // setDebounce(debounce(() => appendPhoto, RERENDER_DELAY));
+      appendPhoto ();
+      // simylarListElement.appendChild(miniatureList);
     }
 
     if (evt.target.id === 'filter-random') {
@@ -69,7 +83,9 @@ function comparePhoto(data) {
         .sort(() => Math.random() - 0.5)
         .slice(0, 10)
         .forEach(createSimilarPhoto);
-      simylarListElement.appendChild(miniatureList);
+
+      appendPhoto ();
+      // simylarListElement.appendChild(miniatureList);
     }
 
     if (evt.target.id === 'filter-discussed') {
@@ -84,7 +100,8 @@ function comparePhoto(data) {
         .sort((a, b) => b.likes - a.likes)
         .forEach(createSimilarPhoto);
 
-      simylarListElement.appendChild(miniatureList);
+      appendPhoto ();
+      // simylarListElement.appendChild(miniatureList);
     }
   });
 }
