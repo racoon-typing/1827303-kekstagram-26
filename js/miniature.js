@@ -50,9 +50,14 @@ function comparePhoto(similarPhoto) {
       simylarListElement.appendChild(miniatureList);
     }
 
-    // if (evt.target.id === 'filter-random') {
-
-    // }
+    if (evt.target.id === 'filter-random') {
+      simylarListElement.innerHTML = '';
+      similarPhoto
+        .slice()
+        .slice(0, 10)
+        .forEach(createSimilarPhoto);
+      simylarListElement.appendChild(miniatureList);
+    }
 
     // if (evt.target.id === 'filter-discussed') {
 
