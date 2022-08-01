@@ -40,19 +40,34 @@ const renderSimilarList = (similarPhoto) => {
   comparePhoto(similarPhoto);
 };
 
-function comparePhoto(similarPhoto) {
+function comparePhoto(data) {
   formFilter.addEventListener('click', (evt) => {
+    const photoElements = document.querySelectorAll('.picture');
+
+  console.log(data);
+
     if (evt.target.id === 'filter-default') {
-      simylarListElement.innerHTML = '';
-      similarPhoto
+
+      for (let i = 0; i <= photoElements.length; i++) {
+        if (photoElements[i]) {
+          photoElements[i].remove();
+        }
+      }
+
+      data
         .slice()
         .forEach(createSimilarPhoto);
       simylarListElement.appendChild(miniatureList);
     }
 
     if (evt.target.id === 'filter-random') {
-      simylarListElement.innerHTML = '';
-      similarPhoto
+      for (let i = 0; i <= photoElements.length; i++) {
+        if (photoElements[i]) {
+          photoElements[i].remove();
+        }
+      }
+
+      data
         .slice()
         .slice(0, 10)
         .forEach(createSimilarPhoto);
