@@ -40,15 +40,6 @@ const renderSimilarList = (similarPhoto) => {
   comparePhoto(similarPhoto);
 };
 
-// function sortPhoto(data) {
-//   for (let i = 0; i <= data.length; i++) {
-
-//     if (data[i]) {
-//       return data[i].likes - data[i + 1].likes;
-//     }
-//   }
-// }
-
 function comparePhoto(data) {
   formFilter.addEventListener('click', (evt) => {
     const photoElements = document.querySelectorAll('.picture');
