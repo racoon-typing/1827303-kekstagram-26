@@ -30,18 +30,6 @@ function createSimilarPhoto({ url, likes, comments, description }) {
   miniatureList.appendChild(simylarElement);
 }
 
-const renderSimilarList = (similarPhoto) => {
-  similarPhoto
-    .slice()
-    .sort(comparePhoto)
-    .forEach(createSimilarPhoto);
-
-  filterPhoto.classList.remove('img-filters--inactive');
-
-
-  simylarListElement.appendChild(miniatureList);
-};
-
 function comparePhoto() {
   formFilter.addEventListener('click', (evt) => {
     if (evt.target === ) {
@@ -57,6 +45,16 @@ function comparePhoto() {
     }
   });
 }
-comparePhoto();
+
+const renderSimilarList = (similarPhoto) => {
+  similarPhoto
+    .slice()
+    .sort(comparePhoto)
+    .forEach(createSimilarPhoto);
+
+  filterPhoto.classList.remove('img-filters--inactive');
+
+  simylarListElement.appendChild(miniatureList);
+};
 
 export { renderSimilarList };
