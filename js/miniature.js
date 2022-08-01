@@ -10,27 +10,53 @@ const simylarPhotoTempalate = document.querySelector('#picture')
 const miniatureList = document.createDocumentFragment();
 
 // Создание миниатюры
+const filterPhoto = document.querySelector('.img-filters');
+const formFilter = document.querySelector('.img-filters__form');
+
+function createSimilarPhoto({ url, likes, comments, description }) {
+  const simylarElement = simylarPhotoTempalate.cloneNode(true);
+  simylarElement.querySelector('.picture__img').src = url;
+  simylarElement.querySelector('.picture__likes').textContent = likes;
+  simylarElement.querySelector('.picture__comments').textContent = comments.length;
+
+  simylarElement.addEventListener('click', (evt) => {
+    evt.preventDefault();
+    openModalWindow(url, likes, comments, description);
+    getInvsibleComment();
+    countvisibleComment();
+    getVisibleComment();
+  });
+
+  miniatureList.appendChild(simylarElement);
+}
+
 const renderSimilarList = (similarPhoto) => {
-  function createSimilarPhoto({ url, likes, comments, description }) {
-    const simylarElement = simylarPhotoTempalate.cloneNode(true);
-    simylarElement.querySelector('.picture__img').src = url;
-    simylarElement.querySelector('.picture__likes').textContent = likes;
-    simylarElement.querySelector('.picture__comments').textContent = comments.length;
+  similarPhoto
+    .slice()
+    .sort(comparePhoto)
+    .forEach(createSimilarPhoto);
 
-    simylarElement.addEventListener('click', (evt) => {
-      evt.preventDefault();
-      openModalWindow(url, likes, comments, description);
-      getInvsibleComment();
-      countvisibleComment();
-      getVisibleComment();
-    });
+  filterPhoto.classList.remove('img-filters--inactive');
 
-    miniatureList.appendChild(simylarElement);
-  }
-
-  similarPhoto.forEach(createSimilarPhoto);
 
   simylarListElement.appendChild(miniatureList);
 };
 
-export {renderSimilarList};
+function comparePhoto() {
+  formFilter.addEventListener('click', (evt) => {
+    if (evt.target === ) {
+
+    }
+
+    if (evt.target === ) {
+
+    }
+
+    if (evt.target === ) {
+
+    }
+  });
+}
+comparePhoto();
+
+export { renderSimilarList };
