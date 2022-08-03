@@ -1,6 +1,6 @@
 import { openModalWindow } from './big-photo.js';
 import { getInvsibleComment, countvisibleComment, getVisibleComment } from './comment.js';
-import { debounce } from './util.js';
+// import { debounce } from './util.js';
 
 const simylarListElement = document.querySelector('.pictures');
 const simylarPhotoTempalate = document.querySelector('#picture')
