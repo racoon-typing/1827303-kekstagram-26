@@ -1,3 +1,5 @@
+import { sendData } from './api.js';
+
 // Показывает окно загрузки фото
 const formOverlay = document.querySelector('.img-upload__overlay');
 const form = document.querySelector('.img-upload__form');
@@ -165,7 +167,7 @@ function getErrorMessage() {
 
   const sectionErrorElement = document.querySelector('.error');
   sectionErrorElement.classList.remove('hidden');
-  formOverlay.classList.add('hidden');
+
 
   const onErrorButton = document.querySelector('.error__button');
   onErrorButton.addEventListener('click', () => {
@@ -173,7 +175,6 @@ function getErrorMessage() {
   });
 
   function closeErrorMessage() {
-    formOverlay.classList.remove('hidden');
     errorMessage.remove();
     document.removeEventListener('keydown', clickHandlerByEsc);
     document.removeEventListener('click', onOutsideErrorMessageClick);
@@ -200,37 +201,11 @@ const setUserFormSubmit = (onSuccess, onFail) => {
     const isValid = pristine.validate();
 
     if (isValid) {
-      const formData = new FormData(evt.target);
-
-      fetch(
-        'https://26.javascript.pages.academy/kekstagram',
-        {
-          method: 'POST',
-          body: formData,
-        },
-      ).then((response) => {
-        if (response.ok) {
-          onSuccess();
-        } else {
-          onFail();
-        }
-      }
-      ).catch(() => {
-        onFail();
-      });
-
-      // blockSubmitButton();
-      // sendData(
-      //   () => {
-      //     onSuccess();
-      //     unblockSubmitButton();
-      //   },
-      //   () => {
-      //     showAlert('Не удалось отправить форму. Попробуйте ещё раз');
-      //     unblockSubmitButton();
-      //   },
-      //   new FormData(evt.target),
-      // );
+      sendData(
+        () => onSuccess(),
+        () => onFail(),
+        new FormData(evt.target),
+      );
     }
   });
 };
