@@ -41,15 +41,15 @@ const renderSimilarList = (similarPhoto) => {
   comparePhoto(similarPhoto);
 };
 
-const RERENDER_DELAY = 500;
+// const RERENDER_DELAY = 500;
 
 function appendPhoto () {
   simylarListElement.appendChild(miniatureList);
 }
 
-function setDebounce (cb) {
-  cb();
-}
+// function setDebounce (cb) {
+//   cb();
+// }
 
 function comparePhoto(data) {
   formFilter.addEventListener('click', (evt) => {
@@ -66,9 +66,7 @@ function comparePhoto(data) {
         .slice()
         .forEach(createSimilarPhoto);
 
-      // setDebounce(debounce(() => appendPhoto, RERENDER_DELAY));
       appendPhoto ();
-      // simylarListElement.appendChild(miniatureList);
     }
 
     if (evt.target.id === 'filter-random') {
@@ -85,7 +83,6 @@ function comparePhoto(data) {
         .forEach(createSimilarPhoto);
 
       appendPhoto ();
-      // simylarListElement.appendChild(miniatureList);
     }
 
     if (evt.target.id === 'filter-discussed') {
@@ -101,7 +98,6 @@ function comparePhoto(data) {
         .forEach(createSimilarPhoto);
 
       appendPhoto ();
-      // simylarListElement.appendChild(miniatureList);
     }
   });
 }
